@@ -5,7 +5,7 @@ class Solution(object):
         if len(nums) < 2 or max(nums) - min(nums) == 0:  # in case bsize == 0
             return 0
         maxn, minn, lenn = max(nums), min(nums), len(nums)
-        bsize = (maxn - minn + 1.0) / lenn  # could have interger issue on OJ
+        bsize = (maxn - minn + 1.0) / lenn  # could have integer issue on OJ
         buckets = [[2 ** 31 - 1, -1] for _ in range(lenn + 1)]
         for i in nums:
             place = int((i - minn) // bsize)
