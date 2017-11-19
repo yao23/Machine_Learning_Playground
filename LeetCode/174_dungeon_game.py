@@ -4,6 +4,7 @@ class Solution(object):
         :type dungeon: List[List[int]]
         :rtype: int
         """
+        # beats 91.03%
         n = len(dungeon[0])
         need = [2**31] * (n-1) + [1]
         for row in dungeon[::-1]:
