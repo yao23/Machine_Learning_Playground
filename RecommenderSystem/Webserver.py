@@ -22,7 +22,7 @@ class WebServer(object):
 	def start(self):
 		# each object here simulates the API calls through network
 		# passing an object A to the constructor of B means A will communication to B
-
+		self.userAnalyzer = UserAnalyzer
 
 	def getAction(self,action):
 
@@ -30,14 +30,13 @@ class WebServer(object):
 		# return the ID's for the recommended items
 
 	def renderRecommendation(self, request):
-		if type(request.userId) is int:
-			print "registered user"
-			if request.userId == 1:
-				print "new registered user: cold start"
-			else:
-				print "old user: recommend based on history"
-		else:
+		[userType, userId, request] = UserAnalyzer.analyze(self.userAnalyzer, request, userActivityDB=DatabaseInterface.dbTable['user_activity'])
+		if userType == "anonymous":
 			print "anonymous user: provide popular movies"
+		elif userType == "new":
+			print "new registered user: cold start"
+		else:
+			print "old user: recommend based on history"
 
 	def increment(self):
 		self.log.info("incrementing the system, update the models")
