@@ -32,7 +32,7 @@ class WebServer(object):
 	def renderRecommendation(self, request):
 		if type(request.userId) is int:
 			print "registered user"
-			if (request.userId == 1):
+			if request.userId == 1:
 				print "new registered user: cold start"
 			else:
 				print "old user: recommend based on history"
