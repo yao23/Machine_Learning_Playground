@@ -30,7 +30,14 @@ class WebServer(object):
 		# return the ID's for the recommended items
 
 	def renderRecommendation(self, request):
-
+		if type(request.userId) is int:
+			print "registered user"
+			if (request.userId == 1):
+				print "new registered user: cold start"
+			else:
+				print "old user: recommend based on history"
+		else:
+			print "anonymous user: provide popular movies"
 
 	def increment(self):
 		self.log.info("incrementing the system, update the models")
