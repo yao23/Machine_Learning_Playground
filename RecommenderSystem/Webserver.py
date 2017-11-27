@@ -33,6 +33,7 @@ class WebServer(object):
 
 	def provideRecommendation(self, request):
 		# return the ID's for the recommended items
+        RecEngine.provideRecommendation(self.RecEngine, request=request)
 
 	def renderRecommendation(self, request):
 		[userType, userId, request] = UserAnalyzer.analyze(self.userAnalyzer, request, userActivityDB=DatabaseInterface.dbTable['user_activity'])
