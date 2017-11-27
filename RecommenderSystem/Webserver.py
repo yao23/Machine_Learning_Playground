@@ -29,6 +29,7 @@ class WebServer(object):
 		self.OfflineLearner = OfflineLearner
 
 	def getAction(self,action):
+		DatabaseInterface.putAction(self.db, action=action)
 
 	def provideRecommendation(self, request):
 		# return the ID's for the recommended items
