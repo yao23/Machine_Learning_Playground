@@ -26,10 +26,13 @@ class WebServer(object):
 		self.ModelStore = ModelStore
 		self.Ranker = Ranker
 		self.RecEngine = RecEngine
+		self.OnlineLearner = OnlineLearner
 		self.OfflineLearner = OfflineLearner
 
 	def getAction(self,action):
 		DatabaseInterface.putAction(self.db, action=action)
+		OnlineLearner.pushModel(self.OnlineLearner, self.db, action.userId)
+		OfflineLearner.pushModel(self.OfflineLearner, self.db, action.userId)
 
 	def provideRecommendation(self, request):
 		# return the ID's for the recommended items
