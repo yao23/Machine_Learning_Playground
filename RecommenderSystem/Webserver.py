@@ -26,6 +26,7 @@ class WebServer(object):
 		self.ModelStore = ModelStore
 		self.Ranker = Ranker
 		self.RecEngine = RecEngine
+		self.OfflineLearner = OfflineLearner
 
 	def getAction(self,action):
 
@@ -44,6 +45,7 @@ class WebServer(object):
 	def increment(self):
 		self.log.info("incrementing the system, update the models")
 		# increment the whole system by one day, trigger offline training
+		OfflineLearner.trainModel(self.OfflineLearner)
 
 	def getFromInventory(self, itemId):
 		return self.db.extract(DatabaseInterface.INVENTORY_KEY).loc[itemId]
