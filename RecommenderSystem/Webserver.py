@@ -23,6 +23,9 @@ class WebServer(object):
 		# each object here simulates the API calls through network
 		# passing an object A to the constructor of B means A will communication to B
 		self.userAnalyzer = UserAnalyzer
+		self.ModelStore = ModelStore
+		self.Ranker = Ranker
+		self.RecEngine = RecEngine
 
 	def getAction(self,action):
 
