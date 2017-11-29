@@ -17,17 +17,18 @@ class WebServer(object):
 		self.db = DatabaseInterface(configMap['data_dir'])
 		self.numberToServe = configMap['numberToServe']
 		self.log = logging.getLogger(__name__)
+		self.userAnalyzer = UserAnalyzer
+		self.ModelStore = ModelStore
+		self.Ranker = Ranker(numberToServe=self.numberToServe, database=self.db)
+		self.RecEngine = RecEngine
+		self.OnlineLearner = OnlineLearner
+		self.OfflineLearner = OfflineLearner
 
 	# numberToServe: the number of items finally served to the users
 	def start(self):
 		# each object here simulates the API calls through network
 		# passing an object A to the constructor of B means A will communication to B
-		self.userAnalyzer = UserAnalyzer
-		self.ModelStore = ModelStore
-		self.Ranker = Ranker
-		self.RecEngine = RecEngine
-		self.OnlineLearner = OnlineLearner
-		self.OfflineLearner = OfflineLearner
+
 
 	def getAction(self,action):
 		self.db.putAction(action=action)
@@ -35,7 +36,7 @@ class WebServer(object):
 
 	def provideRecommendation(self, request):
 		# return the ID's for the recommended items
-        recommendations = []
+		recommendations = []
 		self.Ranker.rerank((request.userId, recommendations))
 
 	def renderRecommendation(self, request):
