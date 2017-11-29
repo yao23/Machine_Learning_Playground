@@ -20,7 +20,7 @@ class WebServer(object):
 		self.userAnalyzer = UserAnalyzer
 		self.ModelStore = ModelStore
 		self.Ranker = Ranker(numberToServe=self.numberToServe, database=self.db)
-		self.RecEngine = RecEngine
+		self.RecEngine = RecEngine(self.userAnalyzer, self.ModelStore, DatabaseInterface.dbTable['user_activity'])
 		self.OnlineLearner = OnlineLearner
 		self.OfflineLearner = OfflineLearner
 
@@ -36,7 +36,7 @@ class WebServer(object):
 
 	def provideRecommendation(self, request):
 		# return the ID's for the recommended items
-		recommendations = []
+		recommendations = self.RecEngine.provideRecommendation(request)
 		self.Ranker.rerank((request.userId, recommendations))
 
 	def renderRecommendation(self, request):
