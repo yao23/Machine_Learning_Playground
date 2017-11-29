@@ -36,6 +36,7 @@ class WebServer(object):
 	def provideRecommendation(self, request):
 		# return the ID's for the recommended items
         self.RecEngine.provideRecommendation(request=request)
+		self.Ranker._getUsedItems(request.userId)
 
 	def renderRecommendation(self, request):
 		[userType, userId, request] = self.userAnalyzer.analyze(request, userActivityDB=DatabaseInterface.dbTable['user_activity'])
@@ -45,6 +46,7 @@ class WebServer(object):
 			print "new registered user: cold start"
 		else:
 			print "old user: recommend based on history"
+		self.provideRecommendation(request=request)
 
 	def increment(self):
 		self.log.info("incrementing the system, update the models")
