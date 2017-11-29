@@ -30,15 +30,15 @@ class WebServer(object):
 		self.OfflineLearner = OfflineLearner
 
 	def getAction(self,action):
-		DatabaseInterface.putAction(self.db, action=action)
-		OfflineLearner.pushModel(self.OfflineLearner, self.ModelStore.getModel(self.ModelStore, ModelStore.KNN_MODEL_KEY), action.userId)
+		self.db.putAction(action=action)
+		self.OfflineLearner.pushModel(self.ModelStore.getModel(self.ModelStore, ModelStore.KNN_MODEL_KEY), action.userId)
 
 	def provideRecommendation(self, request):
 		# return the ID's for the recommended items
-        RecEngine.provideRecommendation(self.RecEngine, request=request)
+        self.RecEngine.provideRecommendation(request=request)
 
 	def renderRecommendation(self, request):
-		[userType, userId, request] = UserAnalyzer.analyze(self.userAnalyzer, request, userActivityDB=DatabaseInterface.dbTable['user_activity'])
+		[userType, userId, request] = self.userAnalyzer.analyze(request, userActivityDB=DatabaseInterface.dbTable['user_activity'])
 		if userType == "anonymous":
 			print "anonymous user: provide popular movies"
 		elif userType == "new":
@@ -49,7 +49,7 @@ class WebServer(object):
 	def increment(self):
 		self.log.info("incrementing the system, update the models")
 		# increment the whole system by one day, trigger offline training
-		OfflineLearner.trainModel(self.OfflineLearner)
+		self.OfflineLearner.trainModel()
 
 	def getFromInventory(self, itemId):
 		return self.db.extract(DatabaseInterface.INVENTORY_KEY).loc[itemId]
