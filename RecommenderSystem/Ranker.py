@@ -21,5 +21,6 @@ class Ranker(object):
 		# here is the strategy:
 		# if the userId is -1, it means it is from anonymous user.
 		# else remove the watched item and
+		_getUsedItems(recommendationsTuple[0])
 
 
