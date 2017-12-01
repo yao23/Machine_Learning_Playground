@@ -21,8 +21,8 @@ class WebServer(object):
 		self.ModelStore = ModelStore
 		self.Ranker = Ranker(numberToServe=self.numberToServe, database=self.db)
 		self.RecEngine = RecEngine(self.userAnalyzer, self.ModelStore, DatabaseInterface.dbTable['user_activity'])
-		self.OnlineLearner = OnlineLearner
-		self.OfflineLearner = OfflineLearner
+		self.OnlineLearner = OnlineLearner(self.db, self.ModelStore)
+		self.OfflineLearner = OfflineLearner(self.db, self.ModelStore)
 
 	# numberToServe: the number of items finally served to the users
 	def start(self):

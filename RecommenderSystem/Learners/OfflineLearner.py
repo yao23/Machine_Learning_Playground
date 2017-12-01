@@ -23,3 +23,4 @@ class OfflineLearner(object):
 
 
 	def pushModel(self, model, key):
+		self.modelStore.setModel(model, key)
