@@ -28,11 +28,13 @@ class WebServer(object):
 	def start(self):
 		# each object here simulates the API calls through network
 		# passing an object A to the constructor of B means A will communication to B
+        DatabaseInterface.startEngine()
+        OnlineLearner.trainModel()
 
 
 	def getAction(self,action):
 		self.db.putAction(action=action)
-		self.OfflineLearner.pushModel(self.ModelStore.getModel(self.ModelStore, ModelStore.KNN_MODEL_KEY), action.userId)
+		self.OfflineLearner.pushModel(self.ModelStore.getModel(key=ModelStore.KNN_MODEL_KEY), memberId=action.userId)
 
 	def provideRecommendation(self, request):
 		# return the ID's for the recommended items
@@ -53,6 +55,7 @@ class WebServer(object):
 		self.log.info("incrementing the system, update the models")
 		# increment the whole system by one day, trigger offline training
 		self.OfflineLearner.trainModel()
+		self.ModelStore.cleanOnlineModel()
 
 	def getFromInventory(self, itemId):
 		return self.db.extract(DatabaseInterface.INVENTORY_KEY).loc[itemId]
