@@ -34,7 +34,8 @@ class WebServer(object):
 
 	def getAction(self,action):
 		self.db.putAction(action=action)
-		self.OfflineLearner.pushModel(self.ModelStore.getModel(key=ModelStore.KNN_MODEL_KEY), memberId=action.userId)
+		self.OnlineLearner.pushModel(model=self.ModelStore.getModel(key=ModelStore.KNN_MODEL_KEY), userId=action.userId)
+		self.OfflineLearner.pushModel(model=self.ModelStore.getModel(key=ModelStore.KNN_MODEL_KEY), memberId=action.userId)
 
 	def provideRecommendation(self, request):
 		# return the ID's for the recommended items
