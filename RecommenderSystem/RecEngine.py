@@ -3,6 +3,8 @@
 from ModelStore import ModelStore
 import logging
 
+from DatabaseInterface import DatabaseInterface
+
 class RecEngine(object):
 	logging.basicConfig(level=logging.INFO)
 

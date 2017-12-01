@@ -43,13 +43,6 @@ class WebServer(object):
 		self.Ranker.rerank((request.userId, recommendations))
 
 	def renderRecommendation(self, request):
-		[userType, userId, request] = self.userAnalyzer.analyze(request, userActivityDB=DatabaseInterface.dbTable['user_activity'])
-		if userType == "anonymous":
-			print "anonymous user: provide popular movies"
-		elif userType == "new":
-			print "new registered user: cold start"
-		else:
-			print "old user: recommend based on history"
 		self.provideRecommendation(request=request)
 
 	def increment(self):
