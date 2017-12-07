@@ -4,6 +4,8 @@
 #         self.val = x
 #         self.next = None
 
+from ListNode import ListNode
+
 class Solution(object):
     # @return a ListNode
     # beats 92.18%
