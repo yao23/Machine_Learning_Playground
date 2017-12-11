@@ -6,11 +6,6 @@ from DatabaseInterface import DatabaseInterface
 import logging
 import numpy as np
 
-from Models.ClusteringModel import ClusteringModel
-from Models.CFmodel import CFmodel
-from Models.MostPopularModel import MostPopularModel
-from Models.KNNmodel import KNNmodel
-
 
 class OfflineLearner(object):
     logging.basicConfig(level=logging.INFO)

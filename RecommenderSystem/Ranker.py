@@ -5,7 +5,6 @@ import numpy as np
 
 # rank the items from each recommendation module
 # highly influenced by business strategy and varies from system to system
-from DatabaseInterface import DatabaseInterface
 
 
 class Ranker(object):
