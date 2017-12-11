@@ -3,11 +3,6 @@
 from ModelStore import ModelStore
 import logging
 
-from DatabaseInterface import DatabaseInterface
-from Models.SimilarItemModel import SimilarItemModel
-from Models.CFmodel import CFmodel
-from Models.MostPopularModel import MostPopularModel
-
 
 class RecEngine(object):
     logging.basicConfig(level=logging.INFO)

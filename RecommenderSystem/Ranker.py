@@ -10,6 +10,7 @@ from DatabaseInterface import DatabaseInterface
 
 class Ranker(object):
     logging.basicConfig(level=logging.INFO)
+
     def __init__(self, numberToServe, database):
         self.numberToServe = numberToServe
         self.userHistoryDB = database.extract(DatabaseInterface.HISTORY_KEY)  # who rated what
@@ -22,7 +23,7 @@ class Ranker(object):
         else:
             return set(self.userHistoryDB[self.userHistoryDB.loc[:, "user_id"] == userId].loc[:, "item_id"])
 
-    def rerank(self,recommendationsTuple):
+    def rerank(self, recommendationsTuple):
         # recommendationTupe is a tuple of (userId, recommendations)
         # recommendations is a dictionary of lists {RecType: Items}, RecType can be "online", "offline", "popular"
         # return the ranked recommendation
@@ -58,3 +59,14 @@ class Ranker(object):
             # sometimes the user may watched a lot
             # this is apparently not a good strategy, why?
             results = np.random.choice(results, self.numberToServe, replace=False)
+
+        return results
+
+
+if __name__ == "__main__":
+    from DatabaseInterface import DatabaseInterface
+
+    db = DatabaseInterface("DATA")
+    db.startEngine()
+    ranker = Ranker(numberToServe=10, database=db)
+    print sorted(ranker._getUsedItems(1))
