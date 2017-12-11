@@ -16,13 +16,13 @@ class SimilarItemModel():
         # rating: the rating of the user to the item, also in the Action
         # only single record
         # each model learns one person's current interest
-        itemFeature = itemFeature.values.reshape(1, -1)
-        center, indices = self.clusteringModel.predict(itemFeature)
-
-        # indices: the itemIds that are in the same cluster as the item we get
-        # that is, the similar items
-
         if rating >= self.THRESHOLD:
+            itemFeature = itemFeature.values.reshape(1, -1)
+            center, indices = self.clusteringModel.predict(itemFeature)
+
+            # indices: the itemIds that are in the same cluster as the item we get
+            # that is, the similar items
+
             self.recs = indices[0]  # the indices is a list of list, like: [[1,2,3,4,5]]
         else:
             self.recs = []
