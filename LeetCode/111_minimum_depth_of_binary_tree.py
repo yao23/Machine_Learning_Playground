@@ -12,9 +12,10 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
-        if not root: return 0
+        if not root:
+            return 0
         d = map(self.minDepth, (root.left, root.right))
-        return 1 + (min(d) or max(d))
+        return 1 + (min(d) or max(d))  # mid(d) might be zero, but minDepth only counts root to left, e.g. 1 -> 2
 
     def minDepth1(self, root):
         if not root: return 0

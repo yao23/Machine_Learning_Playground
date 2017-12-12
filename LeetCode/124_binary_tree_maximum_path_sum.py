@@ -5,6 +5,7 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
     # beats 51.72%
     def maxPathSum(self, root):
