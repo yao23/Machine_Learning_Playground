@@ -23,7 +23,7 @@ class CFmodel():
     def train(self, ratingsMat, itemFeatureTable):
         # the logic:
         # using content-based modeling for rare items, predict some ratings
-        # using the ratings matrix filled with the predicted ratings from the content-based model to do matrix factorization
+        # using the ratings matrix filled with predicted ratings from the content-based model to do matrix factorization
         # itemFeatureTable is used for content-based model, which will predict for those items with few ratings
         # SVD will be used for collaborative filtering after the rare items have enough ratings
         indices = itemFeatureTable.index
