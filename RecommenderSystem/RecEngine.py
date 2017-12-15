@@ -44,7 +44,7 @@ class RecEngine(object):
             recommendations["offline"] = self.modelStore.getModel(ModelStore.KNN_MODEL_KEY) \
                 .provideRec(requestAnalyzed[2].userId)
         elif requestAnalyzed[0] == "old":
-            # for new user, we use CF model for offline model recommendation
+            # for old user, we use CF model for offline model recommendation
             recommendations["offline"] = self.modelStore.getModel(ModelStore.CF_MODEL_KEY) \
                 .provideRec(requestAnalyzed[2].userId)
 
