@@ -13,7 +13,9 @@ class Solution(object):
                 res, R = max(res, height[R] * w), R - 1
         return res
 
+    # https://discuss.leetcode.com/topic/14940/simple-and-clear-proof-explanation
     def maxArea1(self, height):
+        # beats 46.59%
         left = 0
         right = len(height) - 1
         water = 0
