@@ -8,13 +8,13 @@ class Solution(object):
         :rtype: int
         """
         n = len(height)
-        l, r, water, minHeight = 0, n - 1, 0, 0
-        while l < r:
-            while l < r and height[l] <= minHeight:
-                water += minHeight - height[l]
-                l += 1
-            while r > l and height[r] <= minHeight:
-                water += minHeight - height[r]
-                r -= 1
-            minHeight = min(height[l], height[r])
+        left, right, water, min_height = 0, n - 1, 0, 0
+        while left < right:
+            while left < right and height[left] <= min_height:
+                water += (min_height - height[left])
+                left += 1
+            while right > left and height[right] <= min_height:
+                water += (min_height - height[right])
+                right -= 1
+            min_height = min(height[left], height[right])
         return water
