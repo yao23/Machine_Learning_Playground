@@ -26,3 +26,18 @@ class Solution(object):
             else:
                 right -= 1
         return water
+
+    # https://discuss.leetcode.com/topic/16754/simple-and-fast-c-c-with-explanation
+    def maxArea2(self, height):
+        # beats 81.42%
+        left = 0
+        right = len(height) - 1
+        water = 0
+        while left < right:
+            h = min(height[left], height[right])
+            water = max(water, h * (right - left))
+            while height[left] <= h and left < right:
+                left += 1
+            while height[right] <= h and left < right:
+                right -= 1
+        return water
