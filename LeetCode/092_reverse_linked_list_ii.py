@@ -12,6 +12,7 @@ class Solution(object):
     # @param m, an integer
     # @param n, an integer
     # @return a ListNode
+    # input: 1->2->3->4->5, m = 2, n = 4, return 1->4->3->2->5
     # beats 43.68%
     def reverseBetween(self, head, m, n):
         """
@@ -30,7 +31,7 @@ class Solution(object):
         for i in range(m - 1):
             pre = pre.next
 
-        # reverse the [m, n] nodes
+        # reverse the [m, n] nodes, [2, 3, 4] in example
         reverse = None
         cur = pre.next
         for i in range(n - m + 1):
@@ -39,7 +40,7 @@ class Solution(object):
             reverse = cur
             cur = next
 
-        pre.next.next = cur
-        pre.next = reverse
+        pre.next.next = cur  # connect m with n+1, 2->5 in example output (pre = 1, pre.next = 2, cur = 5)
+        pre.next = reverse  # connect n with m-1, 1->4 in example output (reverse = 4)
 
         return dummy_node.next
