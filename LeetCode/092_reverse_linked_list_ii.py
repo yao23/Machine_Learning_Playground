@@ -4,6 +4,7 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution(object):
     # The idea is simple and intuitive: find linkedlist [m, n], reverse it,
     # then connect m with n+1, connect n with m-1

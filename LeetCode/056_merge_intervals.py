@@ -4,6 +4,7 @@
 #         self.start = s
 #         self.end = e
 
+
 class Solution(object):
     # go through the intervals sorted by start coordinate and
     # either combine the current interval with the previous one
