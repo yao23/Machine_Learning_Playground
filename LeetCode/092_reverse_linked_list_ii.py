@@ -23,9 +23,9 @@ class Solution(object):
         if m == n:
             return head
 
-        dummyNode = ListNode(0)
-        dummyNode.next = head
-        pre = dummyNode
+        dummy_node = ListNode(0)
+        dummy_node.next = head
+        pre = dummy_node
 
         for i in range(m - 1):
             pre = pre.next
@@ -42,4 +42,4 @@ class Solution(object):
         pre.next.next = cur
         pre.next = reverse
 
-        return dummyNode.next
+        return dummy_node.next
