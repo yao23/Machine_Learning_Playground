@@ -67,3 +67,12 @@ class Solution(object):
         counts = counts.items()
         # Use quick select to get the top k counts.
         return [c[0] for c in quick_select(0, len(counts) - 1)]
+
+    def topKFrequent3(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        c = collections.Counter(nums)
+        return heapq.nlargest(k, c, c.get)
