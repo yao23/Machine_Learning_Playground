@@ -1,3 +1,6 @@
+import itertools
+
+
 class Solution(object):
     # Recursive, take any number as first
     # Take any number as the first number and append any permutation of the other numbers
@@ -31,3 +34,26 @@ class Solution(object):
 
     def permute4(self, nums):
         return map(list, itertools.permutations(nums))
+
+    # swap current index with pivot one to generate new permutation
+    def helper_method(self, nums, nums_len, depth, result):
+        if depth == nums_len:
+            tmp_res = list(nums)
+            result.append(tmp_res)
+            return
+
+        for i in range(depth, nums_len):
+            if i != depth:
+                nums[depth], nums[i] = nums[i], nums[depth]
+                self.helper_method(nums, nums_len, depth + 1, result)
+                nums[depth], nums[i] = nums[i], nums[depth]
+            else:
+                self.helper_method(nums, nums_len, depth + 1, result)
+
+    def permute5(self, nums):
+        # beats 58.61%
+        result = []
+        nums_len = len(nums)
+        self.helper_method(nums, nums_len, 0, result)
+
+        return result
