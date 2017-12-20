@@ -3,6 +3,7 @@ import heapq
 
 
 class Solution(object):
+    # similar: LC 692
     # beats 71.68%
     def topKFrequent(self, nums, k):
         """
