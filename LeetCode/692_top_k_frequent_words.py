@@ -31,7 +31,7 @@ class Solution(object):
         freqs = []
         heapq.heapify(freqs)
         for word, count in counts.items():
-            heapq.heappush(freqs, (Element(count, word), word))
+            heapq.heappush(freqs, (Element(count, word), word))  # (Element(count, word), word) tuple sorted by Element
             if len(freqs) > k:
                 heapq.heappop(freqs)
 
