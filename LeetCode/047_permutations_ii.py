@@ -17,3 +17,30 @@ class Solution(object):
                         break              # handles duplication
             ans = new_ans
         return ans
+
+    def helper_method(self, nums, nums_len, depth, result):
+        if depth == nums_len:
+            tmp_res = list(nums)
+            result.append(tmp_res)
+            return
+
+        nums_set = []  # remove duplicate
+        for i in range(depth, nums_len):
+            if nums[i] in nums_set:
+                continue
+            else:
+                nums_set.append(nums[i])
+                if depth == i:
+                    self.helper_method(nums, nums_len, depth + 1, result)
+                else:
+                    nums[depth], nums[i] = nums[i], nums[depth]
+                    self.helper_method(nums, nums_len, depth + 1, result)
+                    nums[depth], nums[i] = nums[i], nums[depth]
+
+    def permuteUnique1(self, nums):
+        # beats 75.12%
+        result = []
+        nums_len = len(nums)
+        sorted(nums)
+        self.helper_method(nums, nums_len, 0, result)
+        return result
