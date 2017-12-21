@@ -13,6 +13,7 @@ class Solution(object):
 
     # DFS recursively
     def subsets1(self, nums):
+        # beats 16.57%
         res = []
         self.dfs(sorted(nums), 0, [], res)
         return res
