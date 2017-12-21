@@ -7,6 +7,7 @@
 
 
 class Solution(object):
+    # iterative
     def findTarget(self, root, k):
         """
         :type root: TreeNode
@@ -26,3 +27,24 @@ class Solution(object):
             if i.right:
                 bfs.append(i.right)
         return False
+
+    # recursive
+    def findTarget1(self, root, k):
+        # beats 51.24%
+        a = set()
+        self.f = False
+
+        def dfs(root, k):
+            if not root:
+                return
+            if root.val not in a:
+                a.add(k - root.val)
+                dfs(root.left, k)
+                dfs(root.right, k)
+            else:
+                self.f = True
+                return
+
+        dfs(root, k)
+        return self.f
+
