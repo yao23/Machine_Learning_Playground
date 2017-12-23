@@ -1,5 +1,6 @@
 import collections
 
+
 class Solution(object):
     # beats 42.97%
     def minWindow(self, s, t):
