@@ -32,34 +32,27 @@ class Solution(object):
     # "a", "b" => ""
     # beats 57.82%
     def minWindow1(self, s, t):
-        target_char_counter = collections.Counter(t)
+        need_char_counter = collections.Counter(t)
         s_len = len(s)
-        need_str_num, start, end, d, head = len(t), 0, 0, sys.maxint, 0
-        # print("conter: %s" % target_char_counter)
+        need_len = len(t)
+        start = 0
+        end = 0
+        min_len = sys.maxint  # maxsize in python3
+        res_start = 0
         while end < s_len:
-            # print("New round:")
-            # print("step0: %d, %d, %d, %d, %d" % (head, start, end, d, need_str_num))
-            # print("cur char: %s, %d" % (s[end], target_char_counter[s[end]]))
-            if target_char_counter[s[end]] > 0:
-                need_str_num -= 1
-            target_char_counter[s[end]] -= 1
-            end += 1
-            # print("step1: %d, %d, %d, %d, %d" % (head, start, end, d, need_str_num))
+            if need_char_counter[s[end]] > 0:  # find t char in s
+                need_len -= 1
+            need_char_counter[s[end]] -= 1
+            end += 1  # move right pointer to right (expand window)
 
-            while need_str_num == 0:
-                # print("New round inside:")
-                # print("step2: %d, %d, %d, %d, %d" % (head, start, end, d, need_str_num))
-                if end - start < d:
-                    head = start
-                    d = end - start
-                    # print("min len: %d" % d)
-                # print("step3: %d, %d, %d, %d, %d" % (head, start, end, d, need_str_num))
-                if target_char_counter[s[start]] == 0:
-                    need_str_num += 1
-                target_char_counter[s[start]] += 1
-                start += 1
-                # print("step4: %d, %d, %d, %d, %d" % (head, start, end, d, need_str_num))
+            while need_len == 0:  # find t in s
+                if end - start < min_len:  # update min_len
+                    res_start = start
+                    min_len = end - start
 
-        # print("min len (finally): %d" % d)
-        # print("step5: %d, %d, %d, %d, %d" % (head, start, end, d, need_str_num))
-        return "" if (d == sys.maxint) else s[head:head + d]
+                if need_char_counter[s[start]] == 0:  # t char in s (pass a valid char and need one more)
+                    need_len += 1
+                need_char_counter[s[start]] += 1
+                start += 1  # move left pointer to right (narrow window)
+
+        return "" if (min_len == sys.maxint) else s[res_start:res_start + min_len]
