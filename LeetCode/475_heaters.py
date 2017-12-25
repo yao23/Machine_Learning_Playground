@@ -18,6 +18,7 @@ class Solution:
         res = 0
 
         while house_index < house_num:
+            # find the nearest heater for each house, by comparing the next heater with the current heater
             while (heater_index < heater_num - 1) and (
                     math.fabs(heaters[heater_index + 1] - houses[house_index]) <= math.fabs(
                     heaters[heater_index] - houses[house_index])):
