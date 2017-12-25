@@ -1,4 +1,5 @@
 import math
+import collections
 
 
 class Solution:
@@ -34,4 +35,23 @@ class Solution:
                 count += 1
                 while right < num_len and nums[right - 1] == nums[right]:  # skip right duplicates
                     right += 1
+        return count
+
+    # beats 45.12%
+    def findPairs1(self, nums, k):
+        num_len = len(nums)
+        if num_len < 2:
+            return 0
+        if k < 0:
+            return 0
+
+        count = 0
+        count_map = collections.Counter(nums)
+        for num, counter in count_map.items():
+            if k != 0:
+                if (num - k) in count_map:  # find pair whose diff (k) is non-zero
+                    count += 1
+            else:
+                if counter > 1:  # find pair whose diff is zero
+                    count += 1
         return count
