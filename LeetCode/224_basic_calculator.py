@@ -49,3 +49,41 @@ class Solution(object):
                 signs.pop()
             i += 1
         return total
+
+    def calculate2(self, s):
+        if s.isnumeric:
+            if "(" not in s and ")" not in s and "+" not in s and "-" not in s:
+                return s
+        val_stack = []
+        op_stack = []
+        for ss in s:
+            if ss == "(":
+                op_stack.append(ss)
+            elif ss == ")":
+                while op_stack[-1] != "(":
+                    val_stack.append(self.cal(op_stack.pop(), val_stack.pop(), val_stack.pop()))
+                op_stack.pop()
+            elif ss in "+-*/":
+                while op_stack and not self.is_higher_than(ss, op_stack[-1]):
+                    val_stack.append(self.cal(op_stack.pop(), val_stack.pop(), val_stack.pop()))
+                op_stack.append(ss)
+            else:
+                # append all numbers until hit operator
+                val_stack.append(int(ss))
+
+        while op_stack:
+            val_stack.append(self.cal(op_stack.pop(), val_stack.pop(), val_stack.pop()))
+
+        return val_stack.pop()
+
+    def cal(self, operator, operand1, operand2):
+        if operator == "+":
+            return operand1 + operand2
+        else:
+            return operand2 - operand1
+
+    def is_higher_than(self, op1, op2):
+        if op2 == "(":
+            return op1 != "("
+        else:
+            return op2 in "+-" and op1 in "*/"
