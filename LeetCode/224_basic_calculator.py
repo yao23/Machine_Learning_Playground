@@ -50,12 +50,15 @@ class Solution(object):
             i += 1
         return total
 
+    # beats 50.00%
     def calculate2(self, s):
         if s.isnumeric:
             if "(" not in s and ")" not in s and "+" not in s and "-" not in s:
                 return s
         val_stack = []
         op_stack = []
+        s = ''.join(s.split())  # trim space, like " 2-1 + 2 "
+        i = 0
         for ss in s:
             if ss == "(":
                 op_stack.append(ss)
@@ -68,8 +71,10 @@ class Solution(object):
                     val_stack.append(self.cal(op_stack.pop(), val_stack.pop(), val_stack.pop()))
                 op_stack.append(ss)
             else:
-                # append all numbers until hit operator
+                if i > 0 and s[i - 1].isdigit():  # append all digits, like 11 in "1-11"
+                    ss = str(val_stack.pop()) + ss
                 val_stack.append(int(ss))
+            i += 1
 
         while op_stack:
             val_stack.append(self.cal(op_stack.pop(), val_stack.pop(), val_stack.pop()))
