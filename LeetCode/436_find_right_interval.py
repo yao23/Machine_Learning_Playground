@@ -15,6 +15,8 @@ class Solution:
 
         For each end point search for the first start point that is equal or higher in a previously constructed ordered
         list of start points. If there is one then return its index. If not return -1
+
+        beats 71.43%
         """
         ordered_list = sorted((e.start, i) for i, e in enumerate(intervals))
         res = []
