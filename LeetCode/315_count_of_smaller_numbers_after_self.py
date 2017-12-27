@@ -6,14 +6,14 @@ class Solution(object):
         :rtype: List[int]
 
         The smaller numbers on the right of a number are exactly those that jump from its right to its left during a
-        stable sort. So I do mergesort with added tracking of those right-to-left jumps.
+        stable sort. So I do merge sort with added tracking of those right-to-left jumps.
         """
         def sort(enum):
             half = len(enum) / 2
             if half:
-                left, right = sort(enum[:half]), sort(enum[half:])
+                left, right = sort(enum[:half]), sort(enum[half:])  # merge sort left and right parts
                 for i in range(len(enum))[::-1]:
-                    if not right or left and left[-1][1] > right[-1][1]:
+                    if not right or left and left[-1][1] > right[-1][1]:  # have smaller one in right
                         smaller[left[-1][0]] += len(right)
                         enum[i] = left.pop()
                     else:
