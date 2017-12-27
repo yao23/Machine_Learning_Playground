@@ -4,6 +4,9 @@ class Solution(object):
         """
         :type nums: List[int]
         :rtype: List[int]
+
+        The smaller numbers on the right of a number are exactly those that jump from its right to its left during a
+        stable sort. So I do mergesort with added tracking of those right-to-left jumps.
         """
         def sort(enum):
             half = len(enum) / 2
