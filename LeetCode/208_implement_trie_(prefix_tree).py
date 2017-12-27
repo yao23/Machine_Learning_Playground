@@ -1,10 +1,12 @@
 import collections
 
+
 class TrieNode:
     # Initialize your data structure here.
     def __init__(self):
         self.children = collections.defaultdict(TrieNode)
         self.is_word = False
+
 
 class Trie(object):
     # beats 20.32%
