@@ -175,12 +175,16 @@ class SegmentTree(object):
 
 
 class BinarySearchTreeNode(object):
+    """
+    similar like the following Rank Tree
+    count and left_tree_size works like rank
+    """
     def __init__(self, val):
         self.val = val
         self.left = None
         self.right = None
         self.count = 1
-        self.leftTreeSize = 0
+        self.left_tree_size = 0
 
 
 class BinarySearchTree(object):
@@ -194,10 +198,10 @@ class BinarySearchTree(object):
 
         if val == root.val:
             root.count += 1
-            return root.leftTreeSize
+            return root.left_tree_size
 
         if val < root.val:
-            root.leftTreeSize += 1
+            root.left_tree_size += 1
 
             if not root.left:
                 root.left = BinarySearchTreeNode(val)
@@ -206,10 +210,9 @@ class BinarySearchTree(object):
 
         if not root.right:
             root.right = BinarySearchTreeNode(val)
-            return root.count + root.leftTreeSize
+            return root.count + root.left_tree_size
 
-        return root.count + root.leftTreeSize + self.insert(
-            val, root.right)
+        return root.count + root.left_tree_size + self.insert(val, root.right)
 
 
 class TreeNode(object):
