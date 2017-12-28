@@ -48,15 +48,51 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
 
-        # beats 2.58%
-        """
-        hashTable = {v: i for i, v in enumerate(sorted(set(nums)))}
+        solution with Segment Tree
 
-        tree, r = SegmentTree(len(hashTable)), []
+        beats 2.58%
+        """
+        hash_table = {v: i for i, v in enumerate(sorted(set(nums)))}
+
+        tree, r = SegmentTree(len(hash_table)), []
         for i in xrange(len(nums) - 1, -1, -1):
-            r.append(tree.sum(0, hashTable[nums[i]] - 1))
-            tree.update(hashTable[nums[i]], 1)
+            r.append(tree.sum(0, hash_table[nums[i]] - 1))
+            tree.update(hash_table[nums[i]], 1)
         return r[::-1]
+
+    def countSmaller3(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+
+        solution with Binary Index Tree
+
+        beats 93.87%
+        """
+        hash_table = {v: i for i, v in enumerate(sorted(set(nums)))}
+
+        tree, r = BinaryIndexedTree(len(hash_table)), []
+        for i in xrange(len(nums) - 1, -1, -1):
+            r.append(tree.sum(hash_table[nums[i]]))
+            tree.update(hash_table[nums[i]] + 1, 1)
+        return r[::-1]
+
+
+class BinaryIndexedTree(object):
+    def __init__(self, n):
+        self.sums = [0] * (n + 1)
+
+    def update(self, i, val):
+        while i < len(self.sums):
+            self.sums[i] += 1
+            i += i & -i
+
+    def sum(self, i):
+        r = 0
+        while i > 0:
+            r += self.sums[i]
+            i -= i & -i
+        return r
 
 
 class SegmentTreeNode(object):
