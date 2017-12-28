@@ -92,6 +92,21 @@ class Solution(object):
                    for i in xrange(len(nums) - 1, -1, -1)
                ][::-1]
 
+    def countSmaller5(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+
+        solution with Rank Tree
+
+        beats 5.48%
+        """
+        R, res = RankTree(), []
+        for elem in nums[::-1]:
+            R.insert(elem)
+            res.insert(0, R.get_rank(elem))
+        return res
+
 
 class BinaryIndexedTree(object):
     def __init__(self, n):
@@ -195,3 +210,42 @@ class BinarySearchTree(object):
 
         return root.count + root.leftTreeSize + self.insert(
             val, root.right)
+
+
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+        self.rank = 0
+
+
+class RankTree(object):
+    def __init__(self):
+        self.root = None
+
+    def insert(self, val):
+        def _insert(root, val):
+            if not root:
+                return TreeNode(val)
+            if val <= root.val:
+                root.left = _insert(root.left, val)
+                root.rank += 1
+            if val > root.val:
+                root.right = _insert(root.right, val)
+            return root
+
+        self.root = _insert(self.root, val)
+
+    def get_rank(self, val):
+        def _get_rank(root, val):
+            if not root:
+                return 0
+            if root.val >= val:
+                # Go left and look for rank of predecessor
+                return _get_rank(root.left, val)
+            else:
+                # Go right and look for rank of successor
+                return 1 + root.rank + _get_rank(root.right, val)
+
+        return _get_rank(self.root, val)
