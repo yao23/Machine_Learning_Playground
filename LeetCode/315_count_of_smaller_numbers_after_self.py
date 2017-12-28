@@ -71,11 +71,11 @@ class Solution(object):
         """
         hash_table = {v: i for i, v in enumerate(sorted(set(nums)))}
 
-        tree, r = BinaryIndexedTree(len(hash_table)), []
-        for i in xrange(len(nums) - 1, -1, -1):
-            r.append(tree.sum(hash_table[nums[i]]))
+        tree, res = BinaryIndexedTree(len(hash_table)), []
+        for i in xrange(len(nums) - 1, -1, -1):  # from right to left
+            res.append(tree.sum(hash_table[nums[i]]))
             tree.update(hash_table[nums[i]] + 1, 1)
-        return r[::-1]
+        return res[::-1]
 
     def countSmaller4(self, nums):
         """
@@ -115,14 +115,14 @@ class BinaryIndexedTree(object):
     def update(self, i, val):
         while i < len(self.sums):
             self.sums[i] += 1
-            i += i & -i
+            i += i & -i  # length to find ancestor
 
     def sum(self, i):
-        r = 0
+        res = 0
         while i > 0:
-            r += self.sums[i]
-            i -= i & -i
-        return r
+            res += self.sums[i]
+            i -= i & -i  # length to find ancestor
+        return res
 
 
 class SegmentTreeNode(object):
