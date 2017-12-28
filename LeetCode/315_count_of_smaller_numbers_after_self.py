@@ -101,10 +101,10 @@ class Solution(object):
 
         beats 5.48%
         """
-        R, res = RankTree(), []
-        for elem in nums[::-1]:
-            R.insert(elem)
-            res.insert(0, R.get_rank(elem))
+        rank_tree, res = RankTree(), []
+        for elem in nums[::-1]:  # from right to left
+            rank_tree.insert(elem)
+            res.insert(0, rank_tree.get_rank(elem))
         return res
 
 
@@ -230,7 +230,7 @@ class RankTree(object):
                 return TreeNode(val)
             if val <= root.val:
                 root.left = _insert(root.left, val)
-                root.rank += 1
+                root.rank += 1  # update count of smaller number for root
             if val > root.val:
                 root.right = _insert(root.right, val)
             return root
