@@ -57,29 +57,34 @@ class Solution(object):
                     res[str_replaced_letter] = word
             return res
 
-        def bfs_helper(start, end, word_dict):
+        def bfs_helper(start, end, word_dic):
             step = 0
+            visited_set = set()
             start_set = set()
             end_set = set()
             start_set.add(start)
             end_set.add(end)
+            visited_set.add(start)
+            visited_set.add(end)
 
-            while start_set:
+            while start_set and end_set:
+                step += 1
+                # always start from smaller set
                 if len(start_set) > len(end_set):
                     tmp_set = start_set
                     start_set = end_set
                     end_set = tmp_set
 
-                step += 1
                 next_set = set()
                 for word in start_set:
                     if word in end_set:
-                        return step
+                        return step + 1
                     else:
                         for idx, letter in enumerate(word):
                             tmp_str = word[:idx] + "_" + word[idx + 1:]
-                            if tmp_str in word_dict:
-                                next_set.add(tmp_str)
+                            if tmp_str in word_dic and word_dic.get(tmp_str) not in visited_set:
+                                next_set.add(word_dic.get(tmp_str))
+                                visited_set.add(word_dic.get(tmp_str))
                 start_set = next_set
 
             return step
