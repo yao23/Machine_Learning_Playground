@@ -95,3 +95,42 @@ class Solution(object):
         else:
             word_dict = construct_graph(wordList)
             return bfs_helper(beginWord, endWord, word_dict)
+
+    def ladderLength2(self, beginWord, endWord, wordList):
+        """
+        two-end BFS
+
+        :param beginWord:
+        :param endWord:
+        :param wordList:
+        :return:
+        """
+        if endWord not in wordList:
+            return 0
+
+        begin_set, end_set = set([beginWord]), set([endWord])
+        wordSet = set(wordList)
+
+        length = 1
+        alphabets = list(map(chr, range(ord('a'), ord('z') + 1)))
+
+        while begin_set:
+            # find all possible one-change words in the wordList
+            begin_set = wordSet & set(
+                word[:idx] + char + word[idx + 1:] for word in begin_set for idx in range(len(beginWord)) for char in
+                alphabets)
+
+            if begin_set & end_set:
+                # if there are common word in next_level and end_set
+                return length + 1
+
+            length += 1
+
+            # always proceed on the smaller set
+            if len(begin_set) > len(end_set):
+                begin_set, end_set = end_set, begin_set
+
+            # remove from wordList all the visted words in next_level, so as to avoid revisiting
+            wordSet -= begin_set
+
+        return 0
