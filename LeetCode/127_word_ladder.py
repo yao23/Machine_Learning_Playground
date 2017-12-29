@@ -9,6 +9,9 @@ class Solution(object):
         :type endWord: str
         :type wordList: List[str]
         :rtype: int
+
+        use underscore to replace each character in the wordList to save time than replace with letters from a to z
+
         """
 
         def construct_dict(word_list):
