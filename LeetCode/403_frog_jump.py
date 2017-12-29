@@ -26,6 +26,8 @@ class Solution:
         :type stones: List[int]
         :rtype: bool
 
+        https://discuss.leetcode.com/topic/59570/python-documented-solution-that-is-easy-to-understand
+
         beats 31.58%
         """
         # catches a tricky test case: stones = [0,2]
