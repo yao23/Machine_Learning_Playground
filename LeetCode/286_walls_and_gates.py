@@ -9,7 +9,7 @@ class Solution(object):
         """
         q = [(i, j) for i, row in enumerate(rooms) for j, r in enumerate(row) if not r]
         for i, j in q:
-            for row_index, col_index in (i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1):
+            for row_index, col_index in (i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1):  # top/bottom/left/right node
                 if 0 <= row_index < len(rooms) and 0 <= col_index < len(rooms[0]) \
                         and rooms[row_index][col_index] > 2 ** 30:
                     rooms[row_index][col_index] = rooms[i][j] + 1
