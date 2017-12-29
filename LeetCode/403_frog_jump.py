@@ -12,12 +12,12 @@ class Solution:
         stack = [(0, 0)]
         while stack:
             stone, jump = stack.pop()
-            for j in (jump-1, jump, jump+1):
-                s = stone + j
-                if j > 0 and s in stone_set and (s, j) not in fail:
-                    if s == stones[-1]:
+            for jump_step in (jump - 1, jump, jump + 1):
+                stone_next = stone + jump_step
+                if jump_step > 0 and stone_next in stone_set and (stone_next, jump_step) not in fail:
+                    if stone_next == stones[-1]:
                         return True
-                    stack.append((s, j))
+                    stack.append((stone_next, jump_step))
             fail.add((stone, jump))
         return False
 
