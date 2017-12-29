@@ -28,6 +28,7 @@ class Solution:
 
         beats 31.58%
         """
+        # catches a tricky test case: stones = [0,2]
         if stones[1] != 1:
             return False
         # create a dictionary where the keys are the stones
@@ -35,10 +36,6 @@ class Solution:
         # integers which represent the jump lengths that
         # can reach the stone represented by the key
         d = dict((x, set()) for x in stones)
-
-        # catches a tricky test case: stones = [0,2]
-        if stones[1] != 1:
-            return False
 
         # the problems says that the first jump made is
         # always of length 1 and starts at stone 0. That
