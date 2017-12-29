@@ -17,3 +17,29 @@ class Solution(object):
                 max_end = max(max_end, i + nums[i])
             start, end = end + 1, max_end
         return step
+
+    def jump1(self, nums):
+        """
+        check indices before each index from 1 to nums_len - 1
+        stop at the leftmost one which enables jump from j to i
+
+        beats 55.00%
+
+        :param nums:
+        :return:
+        """
+        nums_len = len(nums)
+        if nums_len == 0:
+            return -1
+        min_step = [0] * nums_len
+        min_step[0] = 0
+        cur_index = 0
+
+        for i in range(1, nums_len):
+            for j in range(cur_index, i):
+                if nums[j] + j >= i:
+                    min_step[i] = min_step[j] + 1
+                    cur_index = j
+                    break  # stop at the leftmost one
+
+        return min_step[-1]
