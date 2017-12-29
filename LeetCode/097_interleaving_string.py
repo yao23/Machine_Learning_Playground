@@ -8,16 +8,16 @@ class Solution(object):
         :type s3: str
         :rtype: bool
         """
-        r, c, l= len(s1), len(s2), len(s3)
-        if r+c != l:
+        dp_row, dp_col, dp_len = len(s1), len(s2), len(s3)
+        if dp_row + dp_col != dp_len:
             return False
-        dp = [True for _ in xrange(c+1)]
-        for j in xrange(1, c+1):
-            dp[j] = dp[j-1] and s2[j-1] == s3[j-1]
-        for i in xrange(1, r+1):
-            dp[0] = (dp[0] and s1[i-1] == s3[i-1])
-            for j in xrange(1, c+1):
-                dp[j] = (dp[j] and s1[i-1] == s3[i-1+j]) or (dp[j-1] and s2[j-1] == s3[i-1+j])
+        dp = [True for _ in xrange(dp_col + 1)]
+        for j in xrange(1, dp_col + 1):
+            dp[j] = dp[j - 1] and (s2[j - 1] == s3[j - 1])
+        for i in xrange(1, dp_row + 1):
+            dp[0] = (dp[0] and s1[i - 1] == s3[i - 1])
+            for j in xrange(1, dp_col + 1):
+                dp[j] = (dp[j] and s1[i - 1] == s3[i - 1 + j]) or (dp[j - 1] and s2[j - 1] == s3[i - 1 + j])
         return dp[-1]
 
     # DFS
@@ -37,10 +37,10 @@ class Solution(object):
             x, y = stack.pop()
             if x + y == dp_len:
                 return True
-            if x + 1 <= dp_row and s1[x] == s3[x + y] and (x + 1, y) not in visited:
+            if (x + 1 <= dp_row) and (s1[x] == s3[x + y]) and (x + 1, y) not in visited:
                 stack.append((x + 1, y))
                 visited.add((x + 1, y))
-            if y + 1 <= dp_col and s2[y] == s3[x + y] and (x, y + 1) not in visited:
+            if (y + 1 <= dp_col) and (s2[y] == s3[x + y]) and (x, y + 1) not in visited:
                 stack.append((x, y + 1))
                 visited.add((x, y + 1))
         return False
@@ -62,10 +62,10 @@ class Solution(object):
             x, y = queue.pop(0)
             if x + y == dp_len:
                 return True
-            if x + 1 <= dp_row and s1[x] == s3[x + y] and (x + 1, y) not in visited:
+            if (x + 1 <= dp_row) and (s1[x] == s3[x + y]) and (x + 1, y) not in visited:
                 queue.append((x + 1, y))
                 visited.add((x + 1, y))
-            if y + 1 <= dp_col and s2[y] == s3[x + y] and (x, y + 1) not in visited:
+            if (y + 1 <= dp_col) and (s2[y] == s3[x + y]) and (x, y + 1) not in visited:
                 queue.append((x, y + 1))
                 visited.add((x, y + 1))
         return False
