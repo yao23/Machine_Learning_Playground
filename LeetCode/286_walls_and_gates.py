@@ -21,6 +21,8 @@ class Solution(object):
         :rtype: void Do not return anything, modify rooms in-place instead.
 
         DFS (start from gate who is r in the code and represented as 0)
+
+        beats 31.25%
         """
         s = [(i, j, 0) for i, row in enumerate(rooms) for j, r in enumerate(row) if not r]
         while s:
