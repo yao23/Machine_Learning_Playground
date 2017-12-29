@@ -8,7 +8,7 @@ class Solution(object):
         :rtype: List[int]
         """
         ans = []
-        islands = Union()
+        islands = UnionFind()
         for p in map(tuple, positions):
             islands.add(p)
             for dp in (0, 1), (0, -1), (1, 0), (-1, 0):
@@ -18,7 +18,8 @@ class Solution(object):
             ans += [islands.count]
         return ans
 
-class Union(object):
+
+class UnionFind(object):
     def __init__(self):
         self.id = {}
         self.sz = {}
@@ -29,14 +30,14 @@ class Union(object):
         self.sz[p] = 1
         self.count += 1
 
-    def root(self, i):
+    def find(self, i):  # root()
         while i != self.id[i]:
             self.id[i] = self.id[self.id[i]]
             i = self.id[i]
         return i
 
     def unite(self, p, q):
-        i, j = self.root(p), self.root(q)
+        i, j = self.find(p), self.find(q)
         if i == j:
             return
         if self.sz[i] > self.sz[j]:
