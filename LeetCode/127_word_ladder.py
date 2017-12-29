@@ -47,6 +47,8 @@ class Solution(object):
         :type endWord: str
         :type wordList: List[str]
         :rtype: int
+
+        beats 92.41%
         """
 
         def construct_graph(word_list):
@@ -54,7 +56,7 @@ class Solution(object):
             for word in word_list:
                 for idx, letter in enumerate(word):
                     str_replaced_letter = word[:idx] + "_" + word[idx + 1:]
-                    res[str_replaced_letter] = word
+                    res[str_replaced_letter] = res.get(str_replaced_letter, []) + [word]
             return res
 
         def bfs_helper(start, end, word_dic):
@@ -64,31 +66,30 @@ class Solution(object):
             end_set = set()
             start_set.add(start)
             end_set.add(end)
-            visited_set.add(start)
-            visited_set.add(end)
+            visited_set.add(start)  # "hot", "dog", ["hot","dot","dog"] => 3
+            visited_set.add(end)  # "hot", "dog", ["hot","dog"] => 0
 
             while start_set and end_set:
                 step += 1
                 # always start from smaller set
                 if len(start_set) > len(end_set):
-                    tmp_set = start_set
-                    start_set = end_set
-                    end_set = tmp_set
+                    start_set, end_set = end_set, start_set
 
                 next_set = set()
                 for word in start_set:
                     for idx, letter in enumerate(word):
                         tmp_str = word[:idx] + "_" + word[idx + 1:]
-                        dic_word = word_dic.get(tmp_str)
-                        if dic_word in end_set:
-                            return step + 1
-                        else:
-                            if tmp_str in word_dic and dic_word not in visited_set:
-                                next_set.add(dic_word)
-                                visited_set.add(dic_word)
+                        dic_words = word_dic.get(tmp_str, [])
+                        for dic_word in dic_words:
+                            if dic_word in end_set:
+                                return step + 1
+                            else:
+                                if tmp_str in word_dic and dic_word not in visited_set:
+                                    next_set.add(dic_word)
+                                    visited_set.add(dic_word)
                 start_set = next_set
 
-            return step
+            return 0
 
         if endWord not in wordList:
             return 0
