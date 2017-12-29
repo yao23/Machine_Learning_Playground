@@ -7,6 +7,8 @@ class Solution(object):
 
         max[i] = max(nums[i], nums[i] * max[i - 1], nums[i] * min[i - 1])
         min[i] = min(nums[i], nums[i] * max[i - 1], nums[i] * min[i - 1])
+
+        time: O(n), space: O(1)
         """
         min_tmp = nums[0]
         max_tmp = nums[0]
