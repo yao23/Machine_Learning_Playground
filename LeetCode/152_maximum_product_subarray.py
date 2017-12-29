@@ -4,12 +4,15 @@ class Solution(object):
         """
         :type nums: List[int]
         :rtype: int
+
+        max[i] = max(nums[i], nums[i] * max[i - 1], nums[i] * min[i - 1])
+        min[i] = min(nums[i], nums[i] * max[i - 1], nums[i] * min[i - 1])
         """
-        MinTemp = nums[0]
-        MaxTemp = nums[0]
-        Max = nums[0]
+        min_tmp = nums[0]
+        max_tmp = nums[0]
+        max_res = nums[0]
         for i in xrange(1, len(nums)):
-            MinTemp, MaxTemp = min(nums[i], nums[i] * MaxTemp, nums[i] * MinTemp), max(nums[i], nums[i] * MaxTemp,
-                                                                                       nums[i] * MinTemp)
-            Max = max(Max, MaxTemp)
-        return Max
+            min_tmp, max_tmp = min(nums[i], nums[i] * max_tmp, nums[i] * min_tmp), max(nums[i], nums[i] * max_tmp,
+                                                                                       nums[i] * min_tmp)
+            max_res = max(max_res, max_tmp)
+        return max_res
