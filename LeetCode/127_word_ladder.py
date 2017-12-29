@@ -40,3 +40,49 @@ class Solution(object):
 
         dict_words = construct_dict(set(wordList))
         return bfs_words(beginWord, endWord, dict_words)
+
+    def ladderLength1(self, beginWord, endWord, wordList):
+        """
+        :type beginWord: str
+        :type endWord: str
+        :type wordList: List[str]
+        :rtype: int
+        """
+
+        def construct_graph(word_list):
+            res = {}
+            for word in word_list:
+                for idx, letter in enumerate(word):
+                    str_replaced_letter = word[:idx] + "_" + word[idx + 1:]
+                    res[str_replaced_letter] = word
+            return res
+
+        def bfs_helper(start, end, word_dict):
+            step = 0
+            start_set = set()
+            end_set = set()
+            start_set.add(start)
+            end_set.add(end)
+
+            while start_set:
+                if len(start_set) > len(end_set):
+                    tmp_set = start_set
+                    start_set = end_set
+                    end_set = tmp_set
+
+                step += 1
+                next_set = set()
+                for word in start_set:
+                    if word in end_set:
+                        return step
+                    else:
+                        for idx, letter in enumerate(word):
+                            tmp_str = word[:idx] + "_" + word[idx + 1:]
+                            if tmp_str in word_dict:
+                                next_set.add(tmp_str)
+                start_set = next_set
+
+            return step
+
+        word_dict = construct_graph(wordList)
+        return bfs_helper(beginWord, endWord, word_dict)
