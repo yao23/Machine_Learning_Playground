@@ -1,5 +1,6 @@
 from collections import deque
 
+
 class Solution(object):
     # beats 68.80%
     def ladderLength(self, beginWord, endWord, wordList):
@@ -11,12 +12,12 @@ class Solution(object):
         """
 
         def construct_dict(word_list):
-            d = {}
+            dict_word = {}
             for word in word_list:
                 for i in range(len(word)):
                     s = word[:i] + "_" + word[i + 1:]
-                    d[s] = d.get(s, []) + [word]
-            return d
+                    dict_word[s] = dict_word.get(s, []) + [word]
+            return dict_word
 
         def bfs_words(begin, end, dict_words):
             queue, visited = deque([(begin, 1)]), set()
@@ -34,5 +35,5 @@ class Solution(object):
                                 queue.append((neigh, steps + 1))
             return 0
 
-        d = construct_dict(set(wordList))
-        return bfs_words(beginWord, endWord, d)
+        dict_words = construct_dict(set(wordList))
+        return bfs_words(beginWord, endWord, dict_words)
