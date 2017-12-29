@@ -77,17 +77,21 @@ class Solution(object):
 
                 next_set = set()
                 for word in start_set:
-                    if word in end_set:
-                        return step + 1
-                    else:
-                        for idx, letter in enumerate(word):
-                            tmp_str = word[:idx] + "_" + word[idx + 1:]
-                            if tmp_str in word_dic and word_dic.get(tmp_str) not in visited_set:
-                                next_set.add(word_dic.get(tmp_str))
-                                visited_set.add(word_dic.get(tmp_str))
+                    for idx, letter in enumerate(word):
+                        tmp_str = word[:idx] + "_" + word[idx + 1:]
+                        dic_word = word_dic.get(tmp_str)
+                        if dic_word in end_set:
+                            return step + 1
+                        else:
+                            if tmp_str in word_dic and dic_word not in visited_set:
+                                next_set.add(dic_word)
+                                visited_set.add(dic_word)
                 start_set = next_set
 
             return step
 
-        word_dict = construct_graph(wordList)
-        return bfs_helper(beginWord, endWord, word_dict)
+        if endWord not in wordList:
+            return 0
+        else:
+            word_dict = construct_graph(wordList)
+            return bfs_helper(beginWord, endWord, word_dict)
