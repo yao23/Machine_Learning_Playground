@@ -92,7 +92,7 @@ class Solution(object):
 
             return 0
 
-        if endWord not in wordList:
+        if endWord not in wordList:  # "hit", "cog", ["hot","dot","dog","lot","log"] => 0 ("cog" not in wordList)
             return 0
         else:
             word_dict = construct_graph(wordList)
