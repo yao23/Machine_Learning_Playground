@@ -29,19 +29,19 @@ class Solution(object):
         :type s3: str
         :rtype: bool
         """
-        r, c, l = len(s1), len(s2), len(s3)
-        if r + c != l:
+        dp_row, dp_col, dp_len = len(s1), len(s2), len(s3)
+        if dp_row + dp_col != dp_len:
             return False
         stack, visited = [(0, 0)], set((0, 0))
         while stack:
             x, y = stack.pop()
-            if x + y == l:
+            if x + y == dp_len:
                 return True
-            if x + 1 <= r and s1[x] == s3[x + y] and (x + 1, y) not in visited:
-                stack.append((x + 1, y));
+            if x + 1 <= dp_row and s1[x] == s3[x + y] and (x + 1, y) not in visited:
+                stack.append((x + 1, y))
                 visited.add((x + 1, y))
-            if y + 1 <= c and s2[y] == s3[x + y] and (x, y + 1) not in visited:
-                stack.append((x, y + 1));
+            if y + 1 <= dp_col and s2[y] == s3[x + y] and (x, y + 1) not in visited:
+                stack.append((x, y + 1))
                 visited.add((x, y + 1))
         return False
 
