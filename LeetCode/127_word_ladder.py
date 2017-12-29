@@ -11,7 +11,7 @@ class Solution(object):
         :rtype: int
 
         use underscore to replace each character in the wordList to save time than replace with letters from a to z
-
+        https://leetcode.com/problems/word-ladder/discuss/40723/
         """
 
         def construct_dict(word_list):
@@ -48,6 +48,7 @@ class Solution(object):
         :type wordList: List[str]
         :rtype: int
 
+        https://leetcode.com/problems/word-ladder/discuss/40711/
         beats 92.41%
         """
 
@@ -100,6 +101,9 @@ class Solution(object):
     def ladderLength2(self, beginWord, endWord, wordList):
         """
         two-end BFS
+        https://leetcode.com/problems/word-ladder/discuss/40709/
+
+        "hit", "cog", ["hot","dot","dog","lot","log"] => 0 ("cog" not in wordList)
 
         :param beginWord:
         :param endWord:
