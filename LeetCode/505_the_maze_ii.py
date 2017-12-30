@@ -8,6 +8,7 @@ class Solution:
         :type destination: List[int]
         :rtype: int
 
+        https://leetcode.com/articles/the-maze-ii/
         beats 66.67%
         """
         dest = tuple(destination)
@@ -47,6 +48,11 @@ class Solution:
         :type start: List[int]
         :type destination: List[int]
         :rtype: int
+
+        https://leetcode.com/problems/the-maze-ii/discuss/98409/
+        This is a typical problem where we can use uniform-cost search algorithm(Dijkstra's algorithm).
+        We should note that whenever we update the distance of a node that is already in the max-heap,
+        we need to re-heapify the max-heap to retain the heap invariance.
 
         beats 100.00%
         """
