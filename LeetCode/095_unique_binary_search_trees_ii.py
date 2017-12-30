@@ -73,3 +73,27 @@ class Solution(object):
             return []
         else:
             return trees(1, n)
+
+    def generateTrees4(self, n):
+        """
+        :type n: int
+        :rtype: List[TreeNode]
+
+        beats 53.13%
+        """
+
+        def generate(first, last):
+            trees = []
+            for root in range(first, last + 1):
+                for left in generate(first, root - 1):
+                    for right in generate(root + 1, last):
+                        node = TreeNode(root)
+                        node.left = left
+                        node.right = right
+                        trees += node,
+            return trees or [None]
+
+        if n == 0:
+            return []
+        else:
+            return generate(1, n)
