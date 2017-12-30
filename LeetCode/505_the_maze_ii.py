@@ -1,5 +1,4 @@
 import heapq
-from heapq import heappop, heappush, heapify
 
 class Solution:
     def shortestDistance(self, maze, start, destination):
@@ -56,80 +55,80 @@ class Solution:
         # save the reference of the corresponding node of a state, for fast look-up
         node_ref = {tuple(start): root}
         # save the shortest distance from start to every other state, you can also regard it as a visited set
-        min_dist = {tuple(start):0}
+        min_dist = {tuple(start): 0}
         while len(queue):
             # when a node is popped out, the shortest distance from start to this node is found
-            d, state = heappop(queue)
+            cur_dist, state = heapq.heappop(queue)
             # add it to min_dist
-            min_dist[state] = d
-            i, j = state
+            min_dist[state] = cur_dist
+            x, y = state
             # remove it from node_ref
             node_ref.pop(state)
             if list(state) == destination:
-                return d
+                return cur_dist
             modified = False
-            t_j = j
+            tmp_y = y
             dist = 0
-            while t_j > 0 and maze[i][t_j - 1] != 1:  # roll left
+            while tmp_y > 0 and maze[x][tmp_y - 1] != 1:  # roll left
                 dist += 1
-                t_j -= 1
-            # if shortest distance to (i, t_j) is not found((i, t_j) is not visited), update the distance
-            if (i, t_j) not in min_dist:
+                tmp_y -= 1
+            # if shortest distance to (i, tmp_y) is not found((i, tmp_y) is not visited), update the distance
+            if (x, tmp_y) not in min_dist:
                 # if state is not in max-heap, then create a node to represent it and push it into max-heap,
                 # and save the node's reference in node_ref
-                if (i, t_j) not in node_ref:
-                    node = [d + dist, (i, t_j)]
-                    node_ref[(i, t_j)] = node
-                    heappush(queue, node)
+                if (x, tmp_y) not in node_ref:
+                    node = [cur_dist + dist, (x, tmp_y)]
+                    node_ref[(x, tmp_y)] = node
+                    heapq.heappush(queue, node)
                 # if state is in max-heap, update it distance
                 else:
                     # we modify the corresponding node in the max-heap
                     modified = True
-                    node = node_ref[(i, t_j)]
-                    node[0] = min(node[0], d + dist)
-            t_i = i
+                    node = node_ref[(x, tmp_y)]
+                    node[0] = min(node[0], cur_dist + dist)
+            tmp_x = x
             dist = 0
-            while t_i > 0 and maze[t_i - 1][j] != 1:  # roll up
+            while tmp_x > 0 and maze[tmp_x - 1][y] != 1:  # roll up
                 dist += 1
-                t_i -= 1
-            if (t_i, j) not in min_dist:
-                if (t_i, j) not in node_ref:
-                    node = [d + dist, (t_i, j)]
-                    node_ref[(t_i, j)] = node
-                    heappush(queue, node)
+                tmp_x -= 1
+            if (tmp_x, y) not in min_dist:
+                if (tmp_x, y) not in node_ref:
+                    node = [cur_dist + dist, (tmp_x, y)]
+                    node_ref[(tmp_x, y)] = node
+                    heapq.heappush(queue, node)
                 else:
                     modified = True
-                    node = node_ref[(t_i, j)]
-                    node[0] = min(node[0], d + dist)
-            t_j = j
+                    node = node_ref[(tmp_x, y)]
+                    node[0] = min(node[0], cur_dist + dist)
+            tmp_y = y
             dist = 0
-            while t_j < len(maze[0]) - 1 and maze[i][t_j + 1] != 1:  # roll right
+            while tmp_y < len(maze[0]) - 1 and maze[x][tmp_y + 1] != 1:  # roll right
                 dist += 1
-                t_j += 1
-            if (i, t_j) not in min_dist:
-                if (i, t_j) not in node_ref:
-                    node = [d + dist, (i, t_j)]
-                    node_ref[(i, t_j)] = node
-                    heappush(queue, node)
+                tmp_y += 1
+            if (x, tmp_y) not in min_dist:
+                if (x, tmp_y) not in node_ref:
+                    node = [cur_dist + dist, (x, tmp_y)]
+                    node_ref[(x, tmp_y)] = node
+                    heapq.heappush(queue, node)
                 else:
                     modified = True
-                    node = node_ref[(i, t_j)]
-                    node[0] = min(node[0], d + dist)
-            t_i = i
+                    node = node_ref[(x, tmp_y)]
+                    node[0] = min(node[0], cur_dist + dist)
+            tmp_x = x
             dist = 0
-            while t_i < len(maze) - 1 and maze[t_i + 1][j] != 1:  # roll down
+            while tmp_x < len(maze) - 1 and maze[tmp_x + 1][y] != 1:  # roll down
                 dist += 1
-                t_i += 1
-            if (t_i, j) not in min_dist:
-                if (t_i, j) not in node_ref:
-                    node = [d + dist, (t_i, j)]
-                    node_ref[(t_i, j)] = node
-                    heappush(queue, node)
+                tmp_x += 1
+            if (tmp_x, y) not in min_dist:
+                if (tmp_x, y) not in node_ref:
+                    node = [cur_dist + dist, (tmp_x, y)]
+                    node_ref[(tmp_x, y)] = node
+                    heapq.heappush(queue, node)
                 else:
                     modified = True
-                    node = node_ref[(t_i, j)]
-                    node[0] = min(node[0], d + dist)
+                    node = node_ref[(tmp_x, y)]
+                    node[0] = min(node[0], cur_dist + dist)
             # if some nodes in the max-heap are modified, then heapify the max-heap to retain the heap invariance
             if modified:
-                heapify(queue)
+                heapq.heapify(queue)
         return -1
