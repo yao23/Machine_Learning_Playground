@@ -21,3 +21,40 @@ class Solution(object):
             right_base = right_base + 1 if (ratings[i] > ratings[i + 1]) else 1
             res[i] = max(right_base, res[i])
         return sum(res)
+
+    def candy1(self, ratings):
+        """
+        :type ratings: List[int]
+        :rtype: int
+
+        use one pass scan from left to right
+
+        beats 100.00%
+        """
+        ratings_len = len(ratings)
+        if ratings_len == 0:
+            return -1
+        cur_sum = 1
+        prev = 1
+        down = 0
+        for i in range(1, ratings_len):
+            if ratings[i] < ratings[i - 1]:
+                down += 1
+            else:
+                # check descend sequence before
+                if down > 0:
+                    # step 1: add from 1 to down
+                    cur_sum += (down * (down + 1) // 2)
+                    # step 2: add enough on prev
+                    if down >= prev:
+                        cur_sum += (down - prev + 1)
+                    prev = 1
+                    down = 0
+                prev = 1 if (ratings[i] == ratings[i - 1]) else (prev + 1)
+                cur_sum += prev
+        if down > 0:
+            cur_sum += (down * (down + 1) // 2)
+            if down >= prev:
+                cur_sum += (down - prev + 1)
+        return cur_sum
+
