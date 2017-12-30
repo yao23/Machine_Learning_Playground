@@ -28,6 +28,7 @@ class Solution(object):
         :rtype: int
 
         https://leetcode.com/problems/candy/discuss/42770/
+        http://www.allenlipeng47.com/blog/index.php/2016/07/21/candy/
         test case: ratings = [0, 4, 5, 5, 2, 1, 0, 0]
 
         This solution picks each element from the input array only once. (use one pass scan from left to right)
@@ -61,7 +62,7 @@ class Solution(object):
                 if down > 0:
                     # step 1: add from 1 to down
                     cur_sum += (down * (down + 1) // 2)
-                    # step 2: add enough on prev
+                    # step 2: add enough on prev (which should be down + 1)
                     if down >= prev:
                         cur_sum += (down - prev + 1)
                     prev = 1
