@@ -27,7 +27,23 @@ class Solution(object):
         :type ratings: List[int]
         :rtype: int
 
-        use one pass scan from left to right
+        https://leetcode.com/problems/candy/discuss/42770/
+        test case: ratings = [0, 4, 5, 5, 2, 1, 0, 0]
+
+        This solution picks each element from the input array only once. (use one pass scan from left to right)
+        First, we give a candy to the first child. Then for each child we have three cases:
+
+        His/her rating is equal to the previous one -> give 1 candy.
+        His/her rating is greater than the previous one -> give him (previous + 1) candies.
+        His/her rating is less than the previous one -> don't know what to do yet, let's just count the number of such
+        consequent cases.
+
+        When we enter 1 or 2 condition we can check our count from 3. If it's not zero then we know that we were
+        descending before and we have everything to update our total candies amount: number of children in descending
+        sequence of ratings - countDown, number of candies given at peak - prev (we don't update prev when descending).
+        Total number of candies for "descending" children can be found through arithmetic progression formula
+        (1+2+...+countDown). Plus we need to update our peak child if his number of candies is less then or equal to
+        countDown.
 
         beats 100.00%
         """
