@@ -1,10 +1,10 @@
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-from itertools import product
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 
 class Solution(object):
     # beats 97.40%
@@ -15,7 +15,7 @@ class Solution(object):
         """
         if n == 0:
             return []
-        tree_list = [[[None]] * (n + 2) for i in range(n + 2)]
+        tree_list = [[[None]] * (n + 2) for _ in range(n + 2)]
         for i in range(1, n + 1):
             tree_list[i][i] = [TreeNode(i)]
             for j in reversed(range(1, i)):
