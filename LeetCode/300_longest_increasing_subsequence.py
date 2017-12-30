@@ -35,3 +35,37 @@ class Solution(object):
             tails[left] = num
             size = max(left + 1, size)
         return size
+
+    def lengthOfLIS1(self, nums):
+        """
+        :param nums:
+        :return:
+
+        insertion sort similar idea to find longest increasing sequence
+
+        beats 72.99%
+        """
+        nums_len = len(nums)
+        result = [1] * nums_len
+        res_len = 0
+        for i in range(nums_len):
+            start = 0
+            end = res_len
+            while start < end - 1:
+                mid = start + (end - start) // 2
+                if result[mid] < nums[i]:
+                    start = mid
+                else:
+                    end = mid
+
+            if result[start] >= nums[i]:
+                result[start] = nums[i]
+                insert_at = start
+            else:
+                result[end] = nums[i]
+                insert_at = end
+
+            if insert_at == res_len:
+                res_len += 1
+
+        return res_len
