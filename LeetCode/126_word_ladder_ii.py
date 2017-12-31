@@ -23,7 +23,7 @@ class Solution(object):
         self.endWord = endWord
         self.wordList = wordList
 
-        def addPath(tree, start, end, is_forward):
+        def add_path(tree, start, end, is_forward):
             if is_forward:
                 tree[start].add(end)
             else:
@@ -40,7 +40,7 @@ class Solution(object):
 
         self.word_map = preprocess(wordList)
 
-        def getNeighbors(word):
+        def get_neighbors(word):
             # Reduce O(w) time to constant time for get_neighbors.
             result = []
             for i in range(len(word)):
@@ -50,32 +50,32 @@ class Solution(object):
                         result.append(match)
             return set(result)
 
-        def bibfs(cur_level, other_level, is_forward):
+        def bi_bfs(cur_level, other_level, is_forward):
             if len(cur_level) == 0:  # Nothing to find...
                 return False
             if len(cur_level) > len(other_level):
-                return bibfs(other_level, cur_level, not is_forward)
+                return bi_bfs(other_level, cur_level, not is_forward)
             next_level = []
             done = False
             for node in cur_level:
                 self.visited[node] = True
-                for neighbor in getNeighbors(node):
+                for neighbor in get_neighbors(node):
                     if neighbor not in cur_level:  # Rejects longer path.
-                        addPath(self.tree, node, neighbor, is_forward)
+                        add_path(self.tree, node, neighbor, is_forward)
                     if neighbor in other_level:  # Found
                         done = True
                     next_level.append(neighbor)
             # Finish adding nodes...
-            return done or bibfs(next_level, other_level, is_forward)
+            return done or bi_bfs(next_level, other_level, is_forward)
 
-        def constructPath(begin_word, end_word, tree):
+        def construct_path(begin_word, end_word, tree):
             if begin_word == end_word:
                 return [[begin_word]]
             return [[begin_word] + path for next_word in tree[begin_word]
-                    for path in constructPath(next_word, end_word, tree)]
+                    for path in construct_path(next_word, end_word, tree)]
 
-        found = bibfs([beginWord], [endWord], True)
+        found = bi_bfs([beginWord], [endWord], True)
         if found:
-            return constructPath(beginWord, endWord, self.tree)
+            return construct_path(beginWord, endWord, self.tree)
         else:
             return []
