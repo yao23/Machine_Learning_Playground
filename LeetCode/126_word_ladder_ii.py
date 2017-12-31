@@ -15,13 +15,6 @@ class Solution(object):
         :type wordList: List[str]
         :rtype: List[List[str]]
         """
-        if endWord not in wordList:
-            return []
-        self.visited = {}
-        self.tree = collections.defaultdict(set)
-        self.beginWord = beginWord
-        self.endWord = endWord
-        self.wordList = wordList
 
         def add_path(tree, start, end, is_forward):
             if is_forward:
@@ -29,16 +22,14 @@ class Solution(object):
             else:
                 tree[end].add(start)
 
-        def preprocess(wordList):
+        def preprocess(words_list):
             # For each possible form of a word, find its relatives.
             word_map = collections.defaultdict(set)
-            for word in wordList:
+            for word in words_list:
                 for i in range(len(word)):
                     match_one_letter = word[0:i] + "_" + word[i+1:]
                     word_map[match_one_letter].add(word)
             return word_map
-
-        self.word_map = preprocess(wordList)
 
         def get_neighbors(word):
             # Reduce O(w) time to constant time for get_neighbors.
@@ -74,7 +65,16 @@ class Solution(object):
             return [[begin_word] + path for next_word in tree[begin_word]
                     for path in construct_path(next_word, end_word, tree)]
 
-        found = bi_bfs([beginWord], [endWord], True)
+        if endWord not in wordList:
+            return []
+        self.visited = {}
+        self.tree = collections.defaultdict(set)
+        self.begin_word = beginWord
+        self.end_word = endWord
+        self.word_list = wordList
+        self.word_map = preprocess(wordList)
+
+        found = bi_bfs([beginWord], [endWord], True)  # bi-direction BFS
         if found:
             return construct_path(beginWord, endWord, self.tree)
         else:
