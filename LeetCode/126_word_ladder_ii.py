@@ -1,5 +1,6 @@
 import collections
 
+
 class Solution(object):
     # @param start, a string
     # @param end, a string
@@ -22,57 +23,56 @@ class Solution(object):
         self.endWord = endWord
         self.wordList = wordList
 
-        def addPath(tree, start, end, isForward):
-            if isForward:
+        def addPath(tree, start, end, is_forward):
+            if is_forward:
                 tree[start].add(end)
             else:
                 tree[end].add(start)
 
         def preprocess(wordList):
             # For each possible form of a word, find its relatives.
-            wordMap = collections.defaultdict(set)
+            word_map = collections.defaultdict(set)
             for word in wordList:
                 for i in range(len(word)):
-                    matchOneLetter = word[0:i] + "_" + word[i+1:]
-                    wordMap[matchOneLetter].add(word)
-            return wordMap
+                    match_one_letter = word[0:i] + "_" + word[i+1:]
+                    word_map[match_one_letter].add(word)
+            return word_map
 
-        self.wordMap = preprocess(wordList)
+        self.word_map = preprocess(wordList)
 
         def getNeighbors(word):
             # Reduce O(w) time to constant time for get_neighbors.
             result = []
             for i in range(len(word)):
-                matchOneLetter = word[0:i] + "_" + word[i+1:]
-                for match in self.wordMap[matchOneLetter]:
+                match_one_letter = word[0:i] + "_" + word[i+1:]
+                for match in self.word_map[match_one_letter]:
                     if match not in self.visited and match != word:
                         result.append(match)
             return set(result)
 
-
-        def bibfs(thislev, otherlev, isForward):
-            if len(thislev) == 0: # Nothing to find...
+        def bibfs(cur_level, other_level, is_forward):
+            if len(cur_level) == 0:  # Nothing to find...
                 return False
-            if len(thislev) > len(otherlev):
-                return bibfs(otherlev, thislev, not isForward)
-            nextlev = []
+            if len(cur_level) > len(other_level):
+                return bibfs(other_level, cur_level, not is_forward)
+            next_level = []
             done = False
-            for node in thislev:
+            for node in cur_level:
                 self.visited[node] = True
                 for neighbor in getNeighbors(node):
-                    if neighbor not in thislev: # Rejects longer path.
-                        addPath(self.tree, node, neighbor, isForward)
-                    if neighbor in otherlev: # Found
+                    if neighbor not in cur_level:  # Rejects longer path.
+                        addPath(self.tree, node, neighbor, is_forward)
+                    if neighbor in other_level:  # Found
                         done = True
-                    nextlev.append(neighbor)
+                    next_level.append(neighbor)
             # Finish adding nodes...
-            return done or bibfs(nextlev, otherlev, isForward)
+            return done or bibfs(next_level, other_level, is_forward)
 
-
-        def constructPath(beginWord, endWord, tree):
-            if beginWord == endWord:
-                return [[beginWord]]
-            return [[beginWord] + path for nextWord in tree[beginWord] for path in constructPath(nextWord, endWord, tree)]
+        def constructPath(begin_word, end_word, tree):
+            if begin_word == end_word:
+                return [[begin_word]]
+            return [[begin_word] + path for next_word in tree[begin_word]
+                    for path in constructPath(next_word, end_word, tree)]
 
         found = bibfs([beginWord], [endWord], True)
         if found:
