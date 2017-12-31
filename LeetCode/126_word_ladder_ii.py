@@ -79,3 +79,53 @@ class Solution(object):
             return construct_path(beginWord, endWord, self.tree)
         else:
             return []
+
+    def findLadders1(self, beginWord, endWord, wordList):
+        """
+        :type beginWord: str
+        :type endWord: str
+        :type wordList: List[str]
+        :rtype: List[List[str]]
+
+        https://leetcode.com/submissions/detail/134036243/
+        It maintains a dictionary(called parent) which has:
+        key: "next step string"
+        value: set of "current string"s
+        For example, 'cog': set(['dog', 'log']). Both 'dog' and 'log' can be transformed to 'cog'.
+
+        "hit"
+        "cog"
+        ["hot","dot","dog","lot","log","cog"]
+        parents: defaultdict(<class 'set'>, {'cog': {'dog', 'log'}, 'dog': {'dot'}, 'log': {'lot'},
+                                'lot': {'hot'}, 'dot': {'hot'}, 'hot': {'hit'}})
+
+        Then it went through the dictionary to get the path.
+
+        beats 49.02%
+        """
+        word_set = set([])
+        for word in wordList:
+            word_set.add(word)
+
+        level = set([beginWord])
+
+        parents = collections.defaultdict(set)
+
+        while level and endWord not in parents:  # BFS
+            next_level = collections.defaultdict(set)
+            for word in level:
+                for i in range(len(beginWord)):
+                    p1 = word[:i]
+                    p2 = word[i + 1:]
+                    for j in 'abcdefghijklmnopqrstuvwxyz':
+                        # accelerate
+                        if word[i] != j:
+                            child_word = p1 + j + p2
+                            if child_word in word_set and child_word not in parents:
+                                next_level[child_word].add(word)
+            level = next_level
+            parents.update(next_level)
+
+        res = [[endWord]]
+        while res and res[0][0] != beginWord:
+            res = [[p] + r for r in res for p in parents[r[0]]]
