@@ -3,9 +3,9 @@ class Solution(object):
     # beats 98.77%
     def longestPalindrome(self, s):
         """
-		:type s: str
-		:rtype: str
-		"""
+        :type s: str
+        :rtype: str
+        """
         if len(s) == 0:
             return 0
         maxLen = 1
