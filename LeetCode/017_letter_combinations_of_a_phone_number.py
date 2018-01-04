@@ -5,8 +5,9 @@ class Solution(object):
         :type digits: str
         :rtype: List[str]
         """
-        if '' == digits: return []
-        kvmaps = {
+        if '' == digits:
+            return []
+        kv_maps = {
             '2': 'abc',
             '3': 'def',
             '4': 'ghi',
@@ -16,4 +17,4 @@ class Solution(object):
             '8': 'tuv',
             '9': 'wxyz'
         }
-        return reduce(lambda acc, digit: [x + y for x in acc for y in kvmaps[digit]], digits, [''])
+        return reduce(lambda acc, digit: [x + y for x in acc for y in kv_maps[digit]], digits, [''])
