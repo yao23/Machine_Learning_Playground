@@ -1,8 +1,9 @@
 class MinStack(object):
-    # beats 72.87%
     def __init__(self):
         """
         initialize your data structure here.
+
+        beats 72.87%
         """
         self.q = []
 
@@ -42,6 +43,49 @@ class MinStack(object):
         else:
             return self.q[len(self.q) - 1][1]
 
+
+class MinStack1:
+    def __init__(self):
+        """
+        initialize your data structure here.
+
+        beats 60.25%
+        """
+        self.data_stack = []
+        self.min_stack = []
+
+    def push(self, x):
+        """
+        :type x: int
+        :rtype: void
+        """
+        len_data = len(self.data_stack)
+        if len_data == 0:
+            self.min_stack.append(x)
+        else:
+            last_min = self.min_stack[-1]
+            if x <= last_min:
+                self.min_stack.append(x)
+        self.data_stack.append(x)
+
+    def pop(self):
+        """
+        :rtype: void
+        """
+        if len(self.data_stack) > 0 and self.data_stack.pop() == self.min_stack[-1]:
+            self.min_stack.pop()
+
+    def top(self):
+        """
+        :rtype: int
+        """
+        return self.data_stack[-1]
+
+    def getMin(self):
+        """
+        :rtype: int
+        """
+        return self.min_stack[-1]
 
 # Your MinStack object will be instantiated and called as such:
 # obj = MinStack()
