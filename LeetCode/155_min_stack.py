@@ -13,10 +13,10 @@ class MinStack(object):
         :type x: int
         :rtype: void
         """
-        curMin = self.getMin()
-        if curMin == None or x < curMin:
-            curMin = x
-        self.q.append((x, curMin))
+        cur_min = self.getMin()
+        if cur_min is None or x < cur_min:
+            cur_min = x
+        self.q.append((x, cur_min))
 
     def pop(self):
         """
