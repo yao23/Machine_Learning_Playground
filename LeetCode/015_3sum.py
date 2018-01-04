@@ -8,7 +8,7 @@ class Solution(object):
         res = []
         nums.sort()
         for i in xrange(len(nums)-2):
-            if i > 0 and nums[i] == nums[i-1]:
+            if i > 0 and nums[i] == nums[i - 1]:
                 continue
             left, right = i + 1, len(nums) - 1
             while left < right:
