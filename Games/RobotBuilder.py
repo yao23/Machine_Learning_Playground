@@ -46,6 +46,16 @@ rectangle(60, 15, 'grey')
 t.goto(55, 110)
 rectangle(15, 40, 'grey')
 
+# hands
+t.goto(-155, 130)
+rectangle(25, 25, 'green')
+t.goto(-147, 130)
+rectangle(10, 15, t.bgcolor())
+t.goto(50, 130)
+rectangle(25, 25, 'green')
+t.goto(58, 130)
+rectangle(10, 15, t.bgcolor())
+
 # neck
 t.goto(-50, 120)
 rectangle(15, 20, 'grey')
