@@ -114,6 +114,75 @@ class Codec2:
         :type root: TreeNode
         :rtype: str
 
+        beats 82.15%
+        """
+        if not root:
+            return "#"
+
+        vals = []
+        queue = collections.deque()
+        queue.append(root)
+        vals.append(root.val)
+        # level order traversal
+        while queue:
+            cur = queue.popleft()
+            if cur.left:
+                vals.append(cur.left.val)
+                queue.append(cur.left)
+            else:
+                vals.append("#")
+            if cur.right:
+                vals.append(cur.right.val)
+                queue.append(cur.right)
+            else:
+                vals.append("#")
+
+        return ' '.join(map(str, vals))
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+
+        :type data: str
+        :rtype: TreeNode
+        """
+        print("data: %s" % data)
+
+        def generate_node(data_str):
+            if data_str == '#':
+                return None
+            else:
+                return TreeNode(int(data_str))
+
+        def build_tree(values):
+            head = generate_node(next(values))
+            queue = collections.deque()
+            if head:
+                queue.append(head)
+                # level order traversal
+                while queue:
+                    node = queue.popleft()
+                    node.left = generate_node(next(values))
+                    node.right = generate_node(next(values))
+                    if node.left:
+                        queue.append(node.left)
+                    if node.right:
+                        queue.append(node.right)
+                return head
+            else:
+                return head
+
+        data_arr = iter(data.split())
+        return build_tree(data_arr)
+
+
+class Codec3:
+
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+
+        :type root: TreeNode
+        :rtype: str
+
         beats 52.86%
         """
         res = ""
