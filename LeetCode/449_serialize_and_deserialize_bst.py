@@ -1,4 +1,7 @@
 # Definition for a binary tree node.
+import collections
+
+
 class TreeNode(object):
     def __init__(self, x):
         self.val = x
@@ -61,6 +64,49 @@ class Codec:
 
 
 class Codec1:
+
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+
+        :type root: TreeNode
+        :rtype: str
+
+        https://leetcode.com/problems/serialize-and-deserialize-bst/discuss/93171/
+
+        beats 95.29%
+        """
+        vals = []
+
+        def preOrder(node):
+            if node:
+                vals.append(node.val)
+                preOrder(node.left)
+                preOrder(node.right)
+
+        preOrder(root)
+
+        return ' '.join(map(str, vals))
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+
+        :type data: str
+        :rtype: TreeNode
+        """
+        values = collections.deque(int(val) for val in data.split())
+
+        def build(min_val, max_val):
+            if values and min_val < values[0] < max_val:
+                val = values.popleft()
+                node = TreeNode(val)
+                node.left = build(min_val, val)
+                node.right = build(val, max_val)
+                return node
+
+        return build(float('-infinity'), float('infinity'))
+
+
+class Codec2:
 
     def serialize(self, root):
         """Encodes a tree to a single string.
