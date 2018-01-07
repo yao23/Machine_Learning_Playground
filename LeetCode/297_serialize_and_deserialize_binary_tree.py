@@ -1,9 +1,10 @@
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 
 class Codec:
     # beats 65.22%
@@ -16,15 +17,15 @@ class Codec:
 
         def doit(node):
             if node:
-                vals.append(str(node.val))
+                values.append(str(node.val))
                 doit(node.left)
                 doit(node.right)
             else:
-                vals.append('#')
+                values.append('#')
 
-        vals = []
+        values = []
         doit(root)
-        return ' '.join(vals)
+        return ' '.join(values)
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
@@ -34,7 +35,7 @@ class Codec:
         """
 
         def doit():
-            val = next(vals)
+            val = next(values)
             if val == '#':
                 return None
             node = TreeNode(int(val))
@@ -42,7 +43,7 @@ class Codec:
             node.right = doit()
             return node
 
-        vals = iter(data.split())
+        values = iter(data.split())
         return doit()
 
 # Your Codec object will be instantiated and called as such:
