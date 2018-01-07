@@ -29,7 +29,7 @@ rectangle(50, 20, 'blue')
 t.goto(-25, -50)
 rectangle(15, 100, 'grey')
 t.goto(-55, -50)
-rectangle(15, 100, 'grey')
+rectangle(-15, 100, 'grey')
 
 # body
 t.goto(-90, 100)
