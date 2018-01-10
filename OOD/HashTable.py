@@ -67,7 +67,7 @@ class HashTable:
         if node_list:
             for i, node in enumerate(node_list):
                 if node.key == element_key:
-                    return node.value
+                    return node.get_value()
             return -1
         else:
             return -1
