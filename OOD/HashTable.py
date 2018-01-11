@@ -38,13 +38,12 @@ class HashTable:
     Hash Function is length of key mod by array size
     If collided, use chaining technique to append to the node list
     """
-    max_len = 10
-    hash_table_arr = []
 
     def __init__(self):
         """
         Initialize Hash Table
         """
+        self.max_len = 10
         self.hash_table_arr = []
 
     def hash_of_key(self, element_key):

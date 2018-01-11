@@ -1,6 +1,4 @@
 class User:
-    name = ""
-    user_id = 0
 
     def __init__(self, name, user_id):
         self.name = name
@@ -20,7 +18,6 @@ class User:
 
 
 class Song:
-    name = ""
 
     def __init__(self, name):
         self.name = name
@@ -30,7 +27,6 @@ class Song:
 
 
 class SongSelector:
-    current_song = None
 
     def __init__(self, song):
         self.current_song = song
@@ -43,8 +39,6 @@ class SongSelector:
 
 
 class PlayList:
-    song = None
-    song_list = []
 
     def __init__(self, song, song_list):
         self.song = song
@@ -58,15 +52,12 @@ class PlayList:
 
 
 class CD:
-    name = ""
 
     def __init__(self, name):
         self.name = name
 
 
 class CDPlayer:
-    play_list = []
-    cd = ""
 
     def get_playlist(self):
         return self.play_list
@@ -89,10 +80,6 @@ class CDPlayer:
 
 
 class JukeBox:
-    cd_player = None
-    user = None
-    cd_collection = {}
-    song_selector = None
 
     def __init__(self, cd_player, user, cd_collection, song_selector):
         self.cd_player = cd_player
