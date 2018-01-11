@@ -4,6 +4,7 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution(object):
     # beats 58.24%
     def removeNthFromEnd(self, head, n):
