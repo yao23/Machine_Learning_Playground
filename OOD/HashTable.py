@@ -87,3 +87,60 @@ class HashTable:
             node_list.append(Cell(element_key, element_value))
         else:
             node_list.append(Cell(element_key, element_value))
+
+    def debug_print_hash(self):
+        for i in range(len(self.hash_table_arr)):
+            print("%d : " % i)
+            item_list = self.hash_table_arr[i]
+            if item_list:
+                for cell in item_list:
+                    print(cell.to_string() + ", ")
+
+            print("")
+
+
+class Dummy:
+    """
+    Test Dummy Class
+    """
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age
+
+    def to_string(self):
+        return "(" + self.__name + ", " + self.__age + ")"
+
+    def get_age(self):
+        return self.__age
+
+    def get_name(self):
+        return self.__name
+
+
+class TestSolution:
+    """
+    Test Solution Class
+    """
+    def __init__(self):
+        bob = Dummy("Bob", 20)
+        jim = Dummy("Jim", 25)
+        alex = Dummy("Alex", 30)
+        tim = Dummy("Tim", 35)
+        maxwell = Dummy("Maxwell", 40)
+        john = Dummy("John", 45)
+        julie = Dummy("Julie", 50)
+        christy = Dummy("Christy", 55)
+        tim2 = Dummy("Tim2", 100)  # this should replace the first Tim
+        dummies = [bob, jim, alex, tim, maxwell, john, julie, christy, tim2]
+
+        hash_instance = HashTable()
+        for index, dummy in enumerate(dummies):
+            hash_instance.put_element(dummy.get_name(), dummy)
+
+        hash_instance.debug_print_hash()
+
+        # Test: Recall
+        for index, dummy in enumerate(dummies):
+            name = dummy.get_name()
+            dummy = hash_instance.get_element(name)
+            print("Dummy named %s : %s" % (name, dummy.to_string()))
