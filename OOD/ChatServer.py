@@ -135,7 +135,7 @@ class UserManager:
         req.status = request_status[2]  # Accepted
         from_user = req.get_from_user()
         to_user = req.get_to_user()
-        from_user.addContact(to_user)
+        from_user.add_contact(to_user)
         to_user.add_contact(from_user)
 
     def reject_add_request(self, req):
@@ -163,9 +163,9 @@ class User:
     User
     """
     def __init__(self, user_id, account_name, full_name):
+        self.user_id = user_id
         self.account_name = account_name
         self.full_name = full_name
-        self.user_id = user_id
         self.private_chats = {}
         self.group_chats = []
         self.received_add_requests = {}
@@ -174,10 +174,10 @@ class User:
         self.status = user_status_type[0]  # Offline
 
     def send_message_to_user(self, to_user, content):
-        chat = self.private_chats.get(to_user.getId())
+        chat = self.private_chats.get(to_user.get_id())
         if not chat:
             chat = PrivateChat(self, to_user)
-            self.private_chats.put(to_user.getId(), chat)
+            self.private_chats.put(to_user.get_id(), chat)
 
         message = Message(content, datetime.date)
         return chat.add_message(message)
@@ -197,10 +197,10 @@ class User:
         return self.status
 
     def add_contact(self, user):
-        if user.getId() in self.contacts:
+        if user.get_id() in self.contacts:
             return False
         else:
-            self.contacts[user.getId()] = user
+            self.contacts[user.get_id()] = user
             return True
 
     def received_add_request(self, req):
@@ -216,7 +216,7 @@ class User:
     def remove_add_request(self, req):
         if req.get_to_user() == self:
             self.received_add_requests.remove(req)
-        elif req.getFromUser() == self:
+        elif req.get_from_user() == self:
             self.sent_add_requests.remove(req)
 
     def request_add_user(self, account_name):
