@@ -35,7 +35,7 @@ class Chat:
     def get_messages(self):
         return self.messages
 
-    def addMessage(self, message):
+    def add_message(self, message):
         self.messages.add(message)
         return True
 
@@ -180,7 +180,7 @@ class User:
             self.private_chats.put(to_user.getId(), chat)
 
         message = Message(content, datetime.date)
-        return chat.addMessage(message)
+        return chat.add_message(message)
 
     def send_message_to_group_chat(self, group_id, content):
         chat = self.group_chats.get(group_id)
