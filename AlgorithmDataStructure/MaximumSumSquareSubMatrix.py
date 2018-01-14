@@ -154,9 +154,8 @@ def find_max_sub_square_matrix1(a):
     return max_sum
 
 
-# values = [[10, 20], [30, 40, 50, 60, 70]]
 input_matrix = [[1, 2, -1, -4, -20], [-8, -3, 4, 2, 1], [3, 8, 10, 1, 3], [-4, -1, 1, 7, -6]]
 input_matrix1 = [[3, -1, 4], [4, -2, 6], [3, 1, -21]]
 # find_max_sub_matrix(input_matrix)
-# find_max_sub_matrix([[3,-1,4],[4,-2,6],[3,1,-21]])
+find_max_sub_rectangle_matrix([[3, -1, 4], [4, -2, 6], [3, 1, -21]])
 find_max_sub_square_matrix1(input_matrix1)
