@@ -114,12 +114,12 @@ def print_square_sum(mat, k, max_sum):
         for i in range(k):
             cur_sum += mat[i][j]
         strip_sum[0][j] = cur_sum
-        # Calculate sum of remaining rectangles
+        # Calculate sum of remaining rectangles (strip sum)
         for i in range(1, n - k + 1):
-            cur_sum += (mat[i + k - 1][j] - mat[i - 1][j]);
+            cur_sum += (mat[i + k - 1][j] - mat[i - 1][j])
             strip_sum[i][j] = cur_sum
 
-    # 2: CALCULATE SUM of Sub-Squares using stripSum[][]
+    # 2: CALCULATE SUM of Sub-Squares using strip_sum[][]
     for i in range(n - k + 1):
         # Calculate and print sum of first sub-square in this row
         cur_sum = 0
