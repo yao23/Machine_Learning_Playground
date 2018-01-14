@@ -102,8 +102,9 @@ def print_square_sum(mat, k, max_sum):
     if k > n:
         return
 
-    # 1: PREPROCESSING
+    # 1: Pre-processing
     # To store sums of all strips of size k x 1
+    # https://stackoverflow.com/questions/21036140/python-two-dimensional-array-changing-an-element
     strip_sum = [[0] * n for _ in range(n)]
 
     # Go column by column
@@ -132,8 +133,8 @@ def print_square_sum(mat, k, max_sum):
 
     # 2: CALCULATE SUM of Sub-Squares using stripSum[][]
     for i in range(n - k + 1):
-        # Calculate and print sum of first subsquare in this row
-        cur_sum = 0;
+        # Calculate and print sum of first sub-square in this row
+        cur_sum = 0
         for j in range(k):
             cur_sum += strip_sum[i][j]
         print("cur_sum - 1st square (%d, %d): %d" % (i, j, cur_sum))
@@ -155,6 +156,14 @@ def print_square_sum(mat, k, max_sum):
 
 
 def find_max_sub_square_matrix1(a):
+    """
+    Get max sum in square sub-matrix with optimization, O(n^3)
+
+    https://www.geeksforgeeks.org/given-n-x-n-square-matrix-find-sum-sub-squares-size-k-x-k/
+
+    :param a:
+    :return:
+    """
     length = len(a)
     max_sum = -sys.maxsize - 1
     for i in range(length):
@@ -163,34 +172,6 @@ def find_max_sub_square_matrix1(a):
     print("max_sum: %d" % max_sum)
     print()
     return max_sum
-
-
-def find_max_sub_matrix1(a):
-    cols = len(a[0])
-    rows = len(a)
-    current_result = []
-    max_sum = -sys.maxsize - 1
-    left = 0
-    top = 0
-    right = 0
-    bottom = 0
-
-    for left_col in range(cols):
-        tmp = [0] * rows
-        for right_col in range(left_col, cols):
-            square_side = right_col - left_col + 1
-            for i in range(rows - square_side + 1):
-                tmp[i] += a[i][right_col]
-
-            current_result = kadane(tmp)
-            if current_result[0] > max_sum:
-                max_sum = current_result[0]
-                left = left_col
-                top = current_result[1]
-                right = right_col
-                bottom = current_result[2]
-
-    print("MaxSum: %d, range: [(%d, %d) (%d, %d)]" % (max_sum, left, top, bottom, right))
 
 
 # values = [[10, 20], [30, 40, 50, 60, 70]]
