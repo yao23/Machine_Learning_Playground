@@ -110,26 +110,14 @@ def print_square_sum(mat, k, max_sum):
     # Go column by column
     for j in range(n):
         # Calculate sum of first k x 1 rectangle in this column
-        cur_sum = 0;
+        cur_sum = 0
         for i in range(k):
-            cur_sum += mat[i][j];
+            cur_sum += mat[i][j]
         strip_sum[0][j] = cur_sum
-        print("strip_sum - 1st col (0, %d): %d, %d" % (j, cur_sum, strip_sum[0][j]))
-        print(strip_sum)
         # Calculate sum of remaining rectangles
         for i in range(1, n - k + 1):
-            print("row %d, col %d" % (i, j))
             cur_sum += (mat[i + k - 1][j] - mat[i - 1][j]);
-            print(strip_sum)
-            print("strip_sum - before (%d, %d): %d, %d" % (i, j, cur_sum, strip_sum[i][j]))
-            print("row %d, col %d, val %d" % (i, j, strip_sum[i][j]))
             strip_sum[i][j] = cur_sum
-            print("strip_sum - after (%d, %d): %d, %d" % (i, j, cur_sum, strip_sum[i][j]))
-            print("row %d, col %d, val %d" % (i, j, strip_sum[i][j]))
-            print(strip_sum)
-    print()
-    print(strip_sum)
-    print()
 
     # 2: CALCULATE SUM of Sub-Squares using stripSum[][]
     for i in range(n - k + 1):
@@ -137,21 +125,15 @@ def print_square_sum(mat, k, max_sum):
         cur_sum = 0
         for j in range(k):
             cur_sum += strip_sum[i][j]
-        print("cur_sum - 1st square (%d, %d): %d" % (i, j, cur_sum))
         max_sum = max(max_sum, cur_sum)
 
         # Calculate sum of remaining squares in current row by
         # removing the leftmost strip of previous sub-square and
         # adding a new strip
         for j in range(1, n - k + 1):
-            print("next(%d, %d): %d, prev(%d, %d): %d" % (
-            i, j + k - 1, strip_sum[i][j + k - 1], i, j - 1, strip_sum[i][j - 1]))
             cur_sum += (strip_sum[i][j + k - 1] - strip_sum[i][j - 1])
-            print("cur_sum - square (%d, %d): %d" % (i, j, cur_sum))
             max_sum = max(max_sum, cur_sum)
 
-    print("cur_sum %d" % cur_sum)
-    print()
     return max_sum
 
 
@@ -168,9 +150,7 @@ def find_max_sub_square_matrix1(a):
     max_sum = -sys.maxsize - 1
     for i in range(length):
         max_sum = print_square_sum(a, i + 1, max_sum)
-    print()
-    print("max_sum: %d" % max_sum)
-    print()
+
     return max_sum
 
 
@@ -179,8 +159,4 @@ input_matrix = [[1, 2, -1, -4, -20], [-8, -3, 4, 2, 1], [3, 8, 10, 1, 3], [-4, -
 input_matrix1 = [[3, -1, 4], [4, -2, 6], [3, 1, -21]]
 # find_max_sub_matrix(input_matrix)
 # find_max_sub_matrix([[3,-1,4],[4,-2,6],[3,1,-21]])
-print("-----------------------------")
-print("find max sum in square matrix")
-print(input_matrix1)
-
 find_max_sub_square_matrix1(input_matrix1)
