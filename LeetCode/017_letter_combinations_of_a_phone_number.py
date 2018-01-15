@@ -67,6 +67,7 @@ class Solution(object):
         :type digits: str
         :rtype: List[str]
 
+        backtracking solution
         beats 26.60%
         """
         digit_letters_map = dict([('2', 'abc'), ('3', 'def'), ('4', 'ghi'), ('5', 'jkl'), ('6', 'mno'), ('7', 'pqrs'),
