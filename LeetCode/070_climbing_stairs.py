@@ -1,10 +1,11 @@
 class Solution(object):
-    # Bottom up, constant space
-    # beats 33.40%
     def climbStairs(self, n):
         """
         :type n: int
         :rtype: int
+
+        Bottom up, constant space
+        beats 33.40%
         """
         if n == 1:
             return 1
@@ -15,12 +16,13 @@ class Solution(object):
             a = tmp
         return b
 
-    # Bottom up, O(n) space
-    # beats 33.40%
     def climbStairs0(self, n):
         """
         :type n: int
         :rtype: int
+
+        Bottom up, O(n) space
+        beats 33.40%
         """
         if n == 1:
             return 1
@@ -30,16 +32,17 @@ class Solution(object):
             res[i] = res[i - 1] + res[i - 2]
         return res[-1]
 
-    # Top down + memorization (list)
-    # beats 20.08%
     def climbStairs1(self, n):
         """
         :type n: int
         :rtype: int
+
+        Top down + memorization (list)
+        beats 20.08%
         """
         if n == 1:
             return 1
-        dic = [-1 for i in xrange(n)]
+        dic = [-1 for _ in xrange(n)]
         dic[0], dic[1] = 1, 2
         return self.helper(n - 1, dic)
 
