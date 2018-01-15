@@ -1,9 +1,16 @@
 class Solution(object):
-    # beats 82.34%
     def maxProfit(self, prices):
         """
         :type prices: List[int]
         :rtype: int
+
+        find min difference between later element and previous one
+
+        find min element before current one (store in an array, then optimize as a tmp variable (low)
+
+        update max profit with difference between previous min and current one
+
+        beats 82.34%
         """
         low = float('inf')
         profit = 0
