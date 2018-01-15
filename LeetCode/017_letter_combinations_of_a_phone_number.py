@@ -61,3 +61,29 @@ class Solution(object):
             '9': 'wxyz'
         }
         return reduce(lambda acc, digit: [x + y for x in acc for y in kv_maps[digit]], digits, [''])
+
+    def letterCombinations3(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+
+        beats 26.60%
+        """
+        digit_letters_map = dict([('2', 'abc'), ('3', 'def'), ('4', 'ghi'), ('5', 'jkl'), ('6', 'mno'), ('7', 'pqrs'),
+                                  ('8', 'tuv'), ('9', 'wxyz')])
+        res = []
+
+        def dfs(depth, input_digits, tmp_res, res):
+            if depth == len(input_digits):
+                res.append(tmp_res)
+            else:
+                digit = input_digits[depth]
+                letters = digit_letters_map[digit]
+                for letter in letters:
+                    dfs(depth + 1, input_digits, tmp_res + letter, res)
+
+        if not digits:
+            return []
+        else:
+            dfs(0, digits, "", res)
+            return res
