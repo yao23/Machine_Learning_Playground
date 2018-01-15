@@ -1,12 +1,14 @@
 from itertools import combinations
 
+
 class Solution(object):
-    # beats 63.91%
     def combinationSum3(self, k, n):
         """
         :type k: int
         :type n: int
         :rtype: List[List[int]]
+
+        beats 63.91%
         """
         return [c for c in combinations(range(1, 10), k) if sum(c) == n]
 
@@ -38,3 +40,31 @@ class Solution(object):
                                          for first in range(1, comb[0] if comb else 10)],
                        range(k), [[]])
                 if sum(c) == n]
+
+    def combinationSum3_4(self, k, n):
+        """
+        :type k: int
+        :type n: int
+        :rtype: List[List[int]]
+
+        Backtracking solution
+        beats 26.09%
+        """
+
+        def dfs(k, target, depth, tmp_res, res):
+            len_tmp_res = len(tmp_res)
+            if len_tmp_res == k:
+                if target == 0:
+                    res.append(list(tmp_res))
+                else:
+                    return
+            else:
+                for i in range(depth, 10):
+                    dfs(k, target - i, i + 1, tmp_res + [i], res)
+
+        res = []
+        if n > 0 and k > 0:
+            dfs(k, n, 1, [], res)
+            return res
+        else:
+            return res
