@@ -249,3 +249,8 @@ class CallHandler:
                     emp.receive_call(call)
                     return True
         return False
+
+
+class CallCenter:
+    def __init__(self):
+        ch = CallHandler.get_instance()
