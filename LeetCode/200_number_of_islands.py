@@ -1,9 +1,12 @@
 class Solution(object):
-    # beats 20.33%
     def numIslands(self, grid):
         """
         :type grid: List[List[str]]
         :rtype: int
+
+        Graph traversal (DFS, BFS) and update visited node
+
+        beats 20.33%
         """
         def sink(i, j):
             if 0 <= i < len(grid) and 0 <= j < len(grid[i]) and grid[i][j] == '1':
