@@ -1,9 +1,19 @@
 class Solution(object):
-    # beats 70.83%
     def maxProfit(self, prices):
         """
         :type prices: List[int]
         :rtype: int
+
+        brute force:
+        it's not hard to come out the idea to get differences between any 2 days,
+        and get max profit by add two appropriate differences in O(n^2)
+
+        optimization:
+        the goal is to speed up to O(n)
+        the idea is based on brute force (two appropriate differences are previous max profit and later one)
+        and Buy and Sell Stock I (get max profit in O(n) with one pass forward and another pass backward)
+
+        beats 70.83%
         """
         if not prices:
             return 0
