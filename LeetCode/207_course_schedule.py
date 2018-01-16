@@ -4,6 +4,13 @@ class Solution(object):
         :type numCourses: int
         :type prerequisites: List[List[int]]
         :rtype: bool
+
+        if node v has not been visited, then mark it as 0.
+        if node v is being visited, then mark it as -1. If we find a vertex marked as -1 in DFS, then their is a ring.
+        if node v has been visited, then mark it as 1.
+        If a vertex was marked as 1, then no ring contains v or its successors. (1 in 0 -> 1 <- 3)
+
+        beats 63.48%
         """
         graph = [[] for _ in xrange(numCourses)]
         visit = [0 for _ in xrange(numCourses)]
@@ -26,8 +33,3 @@ class Solution(object):
             if not dfs(i):
                 return False
         return True
-
-# if node v has not been visited, then mark it as 0.
-# if node v is being visited, then mark it as -1. If we find a vertex marked as -1 in DFS, then their is a ring.
-# if node v has been visited, then mark it as 1.
-# If a vertex was marked as 1, then no ring contains v or its successors.
