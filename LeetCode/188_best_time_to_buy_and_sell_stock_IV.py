@@ -67,3 +67,32 @@ class Solution(object):
                 profits[i] = max_all = max(max_all, max_here)
         return profits[-1]
 
+    def maxProfit2(self, k, prices):
+        """
+        :type k: int
+        :type prices: List[int]
+        :rtype: int
+
+        beats 88.10%
+        """
+        n = len(prices)
+        if n == 0:
+            return 0
+        if k > n // 2:
+            return sum(i - j
+                       for i, j in zip(prices[1:], prices[:-1]) if i - j > 0)
+        memo = [0] * n
+        for i in range(k):
+            tmp_memo = [0]
+            cur_max, tmp_max = -prices[0], 0
+            for j in range(1, n):
+                if cur_max + prices[j] > tmp_max:
+                    tmp_max = cur_max + prices[j]
+                    tmp_memo.append(tmp_max)
+                else:
+                    tmp_memo.append(tmp_max)
+                if memo[j - 1] - prices[j] > cur_max:
+                    cur_max = memo[j - 1] - prices[j]
+            memo = tmp_memo
+
+        return memo[-1]
