@@ -21,7 +21,8 @@ class Solution(object):
         :type n: int
         :rtype: bool
 
-        endless cycle means has some replication (repeated number) when calculate square sum
+        https://leetcode.com/problems/happy-number/discuss/56915/
+        endless cycle means has some replication (repeated number) when calculate square sum for each digit
 
         beats 54.70%
         """
