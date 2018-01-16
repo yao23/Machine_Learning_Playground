@@ -4,36 +4,66 @@ class Solution(object):
         :type k: int
         :type prices: List[int]
         :rtype: int
+        
+        beats 35.60%
         """
-        # beats 35.60%
         n = len(prices)
         if n < 2:
             return 0
-        # k is big enougth to cover all ramps.
+        # k is big enough to cover all ramps.
         if k >= n / 2:
-            return sum(i - j
-                       for i, j in zip(prices[1:], prices[:-1]) if i - j > 0)
-        globalMax = [[0] * n for _ in xrange(k + 1)]
+            return sum(i - j for i, j in zip(prices[1:], prices[:-1]) if i - j > 0)
+        global_max = [[0] * n for _ in xrange(k + 1)]
         for i in xrange(1, k + 1):
-            # The max profit with i transations and selling stock on day j.
-            localMax = [0] * n
+            # The max profit with i transactions and selling stock on day j.
+            local_max = [0] * n
             for j in xrange(1, n):
                 profit = prices[j] - prices[j - 1]
-                localMax[j] = max(
-                    # We have made max profit with (i - 1) transations in
+                local_max[j] = max(
+                    # We have made max profit with (i - 1) transactions in
                     # (j - 1) days.
-                    # For the last transation, we buy stock on day (j - 1)
+                    # For the last transaction, we buy stock on day (j - 1)
                     # and sell it on day j.
-                    globalMax[i - 1][j - 1] + profit,
-                    # We have made max profit with (i - 1) transations in
+                    global_max[i - 1][j - 1] + profit,
+                    # We have made max profit with (i - 1) transactions in
                     # (j - 1) days.
-                    # For the last transation, we buy stock on day j and
+                    # For the last transaction, we buy stock on day j and
                     # sell it on the same day, so we have 0 profit, apparently
                     # we do not have to add it.
-                    globalMax[i - 1][j - 1],  # + 0,
+                    global_max[i - 1][j - 1],  # + 0,
                     # We have made profit in (j - 1) days.
                     # We want to cancel the day (j - 1) sale and sell it on
                     # day j.
-                    localMax[j - 1] + profit)
-                globalMax[i][j] = max(globalMax[i][j - 1], localMax[j])
-        return globalMax[k][-1]
+                    local_max[j - 1] + profit)
+                global_max[i][j] = max(global_max[i][j - 1], local_max[j])
+        return global_max[k][-1]
+
+    def maxProfit1(self, k, prices):
+        """
+        :type k: int
+        :type prices: List[int]
+        :rtype: int
+
+        beats 50.00%
+        """
+        if not prices:
+            return 0
+
+        n = len(prices)
+        if k >= n // 2:
+            return sum(
+                x - y
+                for x, y in zip(prices[1:], prices[:-1])
+                if x > y)
+
+        profits = [0] * n
+        for j in range(k):
+            # Update new_profits
+            max_all = max_prev = max_here = 0
+            for i in range(1, n):
+                profit = prices[i] - prices[i - 1]
+                max_here = max(max_here + profit, max_prev + profit, max_prev)
+                max_prev = profits[i]
+                profits[i] = max_all = max(max_all, max_here)
+        return profits[-1]
+
