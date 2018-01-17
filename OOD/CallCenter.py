@@ -98,7 +98,7 @@ class Employee:
             CallHandler.get_instance().dispatch_call(self.__current_call)
 
             # free the employee
-            self.__current_call= None
+            self.__current_call = None
 
         # assign a new call
         self.assign_new_call()
@@ -112,7 +112,7 @@ class Employee:
         if not self.is_free():
             return False
         else:
-            return CallHandler.get_instance().assignCall(self)
+            return CallHandler.get_instance().assign_call(self)
 
     def is_free(self):
         """
@@ -168,7 +168,7 @@ class CallHandler:
         self.call_queues = [None] * self.__level
 
         # Create respondents.
-        respondents =  [Respondent() for _ in range(self.__num_respondent)]
+        respondents = [Respondent() for _ in range(self.__num_respondent)]
         self.employee_levels.append(respondents)
 
         # Create managers.
