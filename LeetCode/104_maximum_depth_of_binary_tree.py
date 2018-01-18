@@ -5,6 +5,7 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
     # beats 10.60%
     def maxDepth(self, root):
