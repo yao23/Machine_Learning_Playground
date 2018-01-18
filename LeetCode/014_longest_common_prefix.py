@@ -1,10 +1,10 @@
 class Solution(object):
-    # @return a string
-    # beats 14.79%
     def longestCommonPrefix(self, strs):
         """
         :type strs: List[str]
         :rtype: str
+
+        beats 14.79%
         """
         if not strs:
             return ""
