@@ -1,12 +1,14 @@
 class Solution(object):
-    # beats 33.33%
     def wordBreak(self, s, wordDict):
         """
         :type s: str
         :type wordDict: List[str]
         :rtype: List[str]
+
+        beats 33.33%
         """
         memo = {len(s): ['']}
+
         def sentences(i):
             if i not in memo:
                 memo[i] = [s[i:j] + (tail and ' ' + tail)
