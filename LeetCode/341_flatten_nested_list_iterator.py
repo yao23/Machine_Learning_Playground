@@ -23,6 +23,7 @@
 #        :rtype List[NestedInteger]
 #        """
 
+
 class NestedIterator(object):
     # beats 29.12%
     def __init__(self, nestedList):
