@@ -5,6 +5,9 @@ class Solution(object):
         :type edges: List[List[int]]
         :rtype: bool
 
+        if there is loop, num_edges > num_vertex - 1
+        if there is island, num_edges < num_vertex - 1
+
         Union-Find
         beats 90.69%
         """
@@ -66,6 +69,9 @@ class Solution(object):
         :type n: int
         :type edges: List[List[int]]
         :rtype: bool
+
+        if there is no loop, num_edges = num_vertex - 1
+        if there is no island vertex left after traversal, it's a valid tree
 
         BFS
         beats 99.31%
