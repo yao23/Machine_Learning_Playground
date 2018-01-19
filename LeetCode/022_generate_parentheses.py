@@ -1,14 +1,21 @@
 class Solution(object):
-    # beats 94.80%
     def generateParenthesis(self, n):
         """
         :type n: int
         :rtype: List[str]
+
+        it can always generate left parenthesis if there are still left ones remaining,
+        but it can only append right parenthesis only if there are left ones placed.
+
+        beats 94.80%
         """
         def generate(p, left, right, parens=[]):
-            if left:         generate(p + '(', left-1, right)
-            if right > left: generate(p + ')', left, right-1)
-            if not right:    parens += p,
+            if left:
+                generate(p + '(', left - 1, right)
+            if right > left:
+                generate(p + ')', left, right - 1)
+            if not right:
+                parens += p,
             return parens
         return generate('', n, n)
 
@@ -17,8 +24,10 @@ class Solution(object):
             if right >= left >= 0:
                 if not right:
                     yield p
-                for q in generate(p + '(', left - 1, right): yield q
-                for q in generate(p + ')', left, right - 1): yield q
+                for q in generate(p + '(', left - 1, right):
+                    yield q
+                for q in generate(p + ')', left, right - 1):
+                    yield q
 
         return list(generate('', n, n))
 
