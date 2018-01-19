@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 95.24%
     def verifyPreorder(self, preorder):
         """
         :type preorder: List[int]
         :rtype: bool
+
+        beats 95.24%
         """
         stack = []
         lower = -1 << 31
