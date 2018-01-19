@@ -11,17 +11,20 @@ class Suit:
     def __init__(self):
         pass
 
-    @staticmethod
-    def get_suit():
-        index = random.randint(0, 4)
-        if index == 0:
+    def get_suit(self):
+        value = random.randint(0, 4)
+        return self.get_suit_from_value(value)
+
+    def get_suit_from_value(self, value):
+        if value == 0:
             return Suit.Club
-        elif index == 1:
+        elif value == 1:
             return Suit.Diamond
-        if index == 2:
+        if value == 2:
             return Suit.Heart
-        if index == 3:
+        if value == 3:
             return Suit.Spade
+
 
 class Card:
     """
@@ -234,11 +237,114 @@ class BlackJackHand(Hand):
         return (first.is_ace() and second.is_face_card()) or (second.is_ace() and first.is_face_card())
 
 
+class BlackJackGameAutomator:
+    """
+    Black Jack Game Automator
+    """
+    hit_until = 16
+
+    def __init__(self, num_players):
+        self.__hands = [BlackJackHand() for _ in num_players]
+        self.__deck = Deck()
+
+    def deal_initial(self):
+        for hand in self.__hands:
+            card1 = self.__deck.deal_card()
+            card2 = self.__deck.deal_card()
+            if card1 is None and card2 is None:
+                return False
+            hand.add_card(card1)
+            hand.add_card(card2)
+        return True
+
+    def get_black_jacks(self):
+        winners = []
+        for i in range(len(self.__hands)):
+            if self.__hands[i].is_black_jack():
+                winners.append(i)
+        return winners
+
+    def play_hand_with_index(self, i):
+        hand = self.__hands[i]
+        return self.play_hand(hand)
+
+    def play_hand(self, hand):
+        while hand.get_score() < self.hit_until:
+            card = self.__deck.deal_card()
+            if card is None:
+                return False
+            hand.add_card(card)
+        return True
+
+    def play_all_hands(self):
+        for hand in self.__hands:
+            if not self.play_hand(hand):
+                return False
+        return True
+
+    def get_winners(self):
+        winners = []
+        winning_score = 0
+        for i, hand in enumerate(self.__hands):
+            if not hand.is_busted():
+                if hand.get_score() > winning_score:
+                    winning_score = hand.get_score()
+                    winners.clear()
+                    winners.append(i)
+                elif hand.get_score() == winning_score:
+                    winners.append(i)
+        return winners
+
+    def initialize_deck(self):
+        cards = []
+        for i in range(1, 14):
+            for j in range(0, 4):
+                suit = Suit.get_suit_from_value(j)
+                card = BlackJackCard(i, suit)
+                cards.append(card)
+
+        self.__deck = Deck()
+        self.__deck.set_deck_of_cards(cards)
+        self.__deck.shuffle_cards()
+
+    def print_hands_and_score(self):
+        for i, hand in enumerate(self.__hands):
+            print("Hand %d (%d): " % (i, hand.get_score()))
+            hand.print_hand_cards()
+
+
 class CardSystem:
     """
     Card System
     """
     def __init__(self):
-        pass
-
-
+        num_hands = 5
+        automator = BlackJackGameAutomator(num_hands)
+        automator.initialize_deck()
+        success = automator.deal_initial()
+        if not success:
+            print("Error. Out of cards.")
+        else:
+            print("--- Initial ---")
+            automator.print_hands_and_score()
+            black_jacks = automator.get_black_jacks()
+            if len(black_jacks) > 0:
+                print("Blackjack at ")
+                for i in black_jacks:
+                    print("%d, " % i)
+                print()
+            else:
+                success = automator.play_all_hands()
+                if not success:
+                    print("Error. Out of cards.")
+                else:
+                    print("--- Completed Game ---")
+                    automator.print_hands_and_score()
+                    winners = automator.get_winners()
+                    if len(winners) > 0:
+                        print("Winners: ")
+                        for i in winners:
+                            print("%d, " % i)
+                        print()
+                    else:
+                        print("Draw. All players have busted.")
