@@ -1,27 +1,31 @@
 class Solution(object):
-    # Union-Find
-    # beats 90.69%
     def validTree(self, n, edges):
         """
         :type n: int
         :type edges: List[List[int]]
         :rtype: bool
+
+        Union-Find
+        beats 90.69%
         """
         parent = range(n)
+
         def find(x):
             return x if parent[x] == x else find(parent[x])
+
         def union(xy):
             x, y = map(find, xy)
             parent[x] = y
             return x != y
         return len(edges) == n-1 and all(map(union, edges))
 
-    # beats 80.86%
     def validTree1(self, n, edges):
         """
         :type n: int
         :type edges: List[List[int]]
         :rtype: bool
+
+        beats 80.86%
         """
         parent = range(n)
 
@@ -35,13 +39,14 @@ class Solution(object):
             parent[x] = y
         return len(edges) == n - 1
 
-    # DFS
-    # beats 80.86%
     def validTree2(self, n, edges):
         """
         :type n: int
         :type edges: List[List[int]]
         :rtype: bool
+
+        DFS
+        beats 80.86%
         """
         if len(edges) != n - 1:
             return False
@@ -56,13 +61,14 @@ class Solution(object):
         visit(0)
         return not neighbors
 
-    # BFS
-    # beats 99.31%
     def validTree3(self, n, edges):
         """
         :type n: int
         :type edges: List[List[int]]
         :rtype: bool
+
+        BFS
+        beats 99.31%
         """
         if len(edges) != n - 1:
             return False
