@@ -9,11 +9,12 @@ class ListNode(object):
 
 
 class Solution(object):
-    # beats 32.93%
     def mergeKLists(self, lists):
         """
         :type lists: List[ListNode]
         :rtype: ListNode
+
+        beats 32.93%
         """
         dummy = ListNode(None)
         curr = dummy
