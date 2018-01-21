@@ -1,21 +1,34 @@
 class Solution(object):
-    # beats 97.39%
     def maxArea(self, height):
         """
         :type height: List[int]
         :rtype: int
+
+        the largest width is from start to end
+        later heights can compete only with larger heights, so move smaller between left and right heights
+
+        beats 97.39%
         """
-        L, R, width, res = 0, len(height) - 1, len(height) - 1, 0
+        left, right, width, res = 0, len(height) - 1, len(height) - 1, 0
         for w in range(width, 0, -1):
-            if height[L] < height[R]:
-                res, L = max(res, height[L] * w), L + 1
+            if height[left] < height[right]:
+                res, left = max(res, height[left] * w), left + 1
             else:
-                res, R = max(res, height[R] * w), R - 1
+                res, right = max(res, height[right] * w), right - 1
         return res
 
-    # https://discuss.leetcode.com/topic/14940/simple-and-clear-proof-explanation
     def maxArea1(self, height):
-        # beats 46.59%
+        """
+        :param height:
+        :return:
+
+        https://discuss.leetcode.com/topic/14940/simple-and-clear-proof-explanation
+
+        the largest width is from start to end
+        later heights can compete only with larger heights, so move smaller between left and right heights
+
+        beats 46.59%
+        """
         left = 0
         right = len(height) - 1
         water = 0
@@ -27,9 +40,18 @@ class Solution(object):
                 right -= 1
         return water
 
-    # https://discuss.leetcode.com/topic/16754/simple-and-fast-c-c-with-explanation
     def maxArea2(self, height):
-        # beats 81.42%
+        """
+        :param height:
+        :return:
+
+        https://discuss.leetcode.com/topic/16754/simple-and-fast-c-c-with-explanation
+
+        the largest width is from start to end
+        later heights can compete only with larger heights, so move left and right heights until meet larger ones
+
+        beats 81.42%
+        """
         left = 0
         right = len(height) - 1
         water = 0
