@@ -17,7 +17,7 @@ class Solution(object):
             return b[k]
         if not b:
             return a[k]
-        ia, ib = len(a) // 2 , len(b) // 2
+        ia, ib = len(a) // 2, len(b) // 2
         ma, mb = a[ia], b[ib]
 
         # when k is bigger than the sum of a and b's median indices

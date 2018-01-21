@@ -1,10 +1,13 @@
 class Solution(object):
-    # @return an integer
-    # beats 86.09%
     def lengthOfLongestSubstring(self, s):
         """
         :type s: str
         :rtype: int
+
+        if meet duplicate character and move start pointer to the index after previously appeared one
+        otherwise calculate max length
+
+        beats 86.09%
         """
         start = max_length = 0
         used_char = {}
