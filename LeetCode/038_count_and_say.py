@@ -1,9 +1,13 @@
+import itertools
+
+
 class Solution(object):
-    # beats 6.52%
     def countAndSay(self, n):
         """
         :type n: int
         :rtype: str
+
+        beats 6.52%
         """
         s = '1'
         for _ in range(n - 1):
