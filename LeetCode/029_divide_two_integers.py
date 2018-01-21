@@ -1,11 +1,14 @@
 class Solution(object):
-    # @return an integer
-    # beats 73.69%
     def divide(self, dividend, divisor):
         """
         :type dividend: int
         :type divisor: int
         :rtype: int
+
+        binary search like idea
+        times 2 every time temp divisor is less than dividend
+
+        beats 73.69%
         """
         positive = (dividend < 0) is (divisor < 0)
         dividend, divisor = abs(dividend), abs(divisor)
