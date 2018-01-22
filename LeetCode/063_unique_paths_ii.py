@@ -1,11 +1,10 @@
 class Solution(object):
-    # @param obstacleGrid, a list of lists of integers
-    # @return an integer
-    # beats 61.37%
     def uniquePathsWithObstacles(self, obstacleGrid):
         """
         :type obstacleGrid: List[List[int]]
         :rtype: int
+
+        beats 61.37%
         """
         m = len(obstacleGrid)
         n = len(obstacleGrid[0])
