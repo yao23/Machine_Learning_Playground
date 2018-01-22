@@ -6,14 +6,15 @@
 
 
 class Solution(object):
-    # go through the intervals sorted by start coordinate and
-    # either combine the current interval with the previous one
-    # if they overlap, or add it to the output by itself if they don't.
-    # beats 52.65%
     def merge(self, intervals):
         """
         :type intervals: List[Interval]
         :rtype: List[Interval]
+
+        go through the intervals sorted by start coordinate and either combine the current interval with the previous
+        one if they overlap, or add it to the output by itself if they don't.
+
+        beats 52.65%
         """
         out = []
         for i in sorted(intervals, key=lambda i: i.start):
