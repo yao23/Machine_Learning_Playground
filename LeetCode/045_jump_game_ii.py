@@ -6,6 +6,9 @@ class Solution(object):
         """
         :type nums: List[int]
         :rtype: int
+
+        check every index in the current available range to reach the end or not
+
         """
         n, start, end, step = len(nums), 0, 0, 0
         while end < n - 1:
