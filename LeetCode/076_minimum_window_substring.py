@@ -1,8 +1,8 @@
 import collections
 import sys
 
+
 class Solution(object):
-    # beats 42.97%
     def minWindow(self, s, t):
         """
         :type s: str
@@ -13,6 +13,8 @@ class Solution(object):
         In need[c] I store how many times I need character c (can be negative) and missing tells how many characters
         are still missing. In the loop, first add the new character to the window.
         Then, if nothing is missing, remove as much as possible from the window start and then update the result.
+
+        beats 42.97%
         """
         need, missing = collections.Counter(t), len(t)
         cur_left = res_left = res_right = 0
@@ -27,11 +29,18 @@ class Solution(object):
                     res_left, res_right = cur_left, cur_right
         return s[res_left:res_right]
 
-    # https://discuss.leetcode.com/topic/30941/here-is-a-10-line-template-that-can-solve-most-substring-problems
-    # "a", "a" => "a"
-    # "a", "b" => ""
-    # beats 57.82%
     def minWindow1(self, s, t):
+        """
+        :param s:
+        :param t:
+        :return:
+
+        https://discuss.leetcode.com/topic/30941/here-is-a-10-line-template-that-can-solve-most-substring-problems
+        "a", "a" => "a"
+        "a", "b" => ""
+
+        beats 57.82%
+        """
         need_char_counter = collections.Counter(t)
         s_len = len(s)
         need_len = len(t)
