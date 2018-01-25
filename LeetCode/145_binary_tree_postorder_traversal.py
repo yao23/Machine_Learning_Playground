@@ -5,12 +5,14 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # beats 94.77%
     def postorderTraversal(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
+
+        beats 94.77%
         """
         traversal, stack = [], [(root, False)]
         while stack:
