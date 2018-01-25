@@ -36,6 +36,7 @@ class Solution(object):
         self.flatten(right)
 
     prev = None
+
     def flatten1(self, root):
         """
         :type root: TreeNode
