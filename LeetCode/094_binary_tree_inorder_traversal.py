@@ -5,13 +5,16 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # Recursive
-    # beats 26.66%
     def inorderTraversal(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
+
+        Recursive
+
+        beats 26.66%
         """
         res = []
         self.helper(root, res)
@@ -23,12 +26,18 @@ class Solution(object):
             res.append(root.val)
             self.helper(root.right, res)
 
-    # Iterative
-    # beats 99.08%
     def inorderTraversal1(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
+
+        Iterative
+
+        in-order traversal needs to start from left child, and process current node if there is no left child
+        it needs a data structure to store visiting trace and check last one when necessary, so stack is ideal
+        after finish processing left and current ones, start deal with right sub-tree
+
+        beats 99.08%
         """
         res, stack = [], []
         while True:
