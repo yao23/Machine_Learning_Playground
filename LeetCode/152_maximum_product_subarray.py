@@ -1,5 +1,4 @@
 class Solution(object):
-    # beats 20.16%
     def maxProduct(self, nums):
         """
         :type nums: List[int]
@@ -9,6 +8,8 @@ class Solution(object):
         min[i] = min(nums[i], nums[i] * max[i - 1], nums[i] * min[i - 1])
 
         time: O(n), space: O(1)
+
+        beats 20.16%
         """
         min_tmp = nums[0]
         max_tmp = nums[0]
