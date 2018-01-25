@@ -4,12 +4,14 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution(object):
-    # beats 40.62%
     def hasCycle(self, head):
         """
         :type head: ListNode
         :rtype: bool
+
+        beats 40.62%
         """
         try:
             slow = head
