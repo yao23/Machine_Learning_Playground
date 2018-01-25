@@ -9,6 +9,9 @@ class Solution(object):
         " 3+5 / 2 " = 5
 
         collect all immediate results and add them finally
+        stack: store previous numbers
+        num: most recent number
+        sign: most recent operator
 
         beats 95.56%
         """
