@@ -1,12 +1,13 @@
 class Solution(object):
-    # "((3+4)+5-4+2)+1" => 11
-    # "((3+4)+5-4)" => 8
-    # "2-(5-6)" => 3
-    # beats 100.00%
     def calculate(self, s):
         """
         :type s: str
         :rtype: int
+
+        "((3+4)+5-4+2)+1" => 11
+        "((3+4)+5-4)" => 8
+        "2-(5-6)" => 3
+        beats 100.00%
         """
         res, num, sign, stack = 0, 0, 1, []
         for ss in s:
@@ -27,11 +28,12 @@ class Solution(object):
                 num = 0
         return res + num * sign
 
-    # beats 58.91%
     def calculate1(self, s):
         """
         :type s: str
         :rtype: int
+
+        beats 58.91%
         """
         total = 0
         i, signs = 0, [1, 1]
@@ -50,8 +52,13 @@ class Solution(object):
             i += 1
         return total
 
-    # beats 50.00%
     def calculate2(self, s):
+        """
+        :param s:
+        :return:
+
+        beats 50.00%
+        """
         if s.isnumeric:
             if "(" not in s and ")" not in s and "+" not in s and "-" not in s:
                 return s
