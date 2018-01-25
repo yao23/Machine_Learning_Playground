@@ -5,13 +5,17 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # beats 68.74%
     def kthSmallest(self, root, k):
         """
         :type root: TreeNode
         :type k: int
         :rtype: int
+
+        in-order traversal
+
+        beats 68.74%
         """
         count = []
         self.helper(root, count)
