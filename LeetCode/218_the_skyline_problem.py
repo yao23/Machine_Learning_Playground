@@ -1,13 +1,27 @@
-# https://discuss.leetcode.com/topic/14987/108-ms-17-lines-body-explained/2
-
 from heapq import *
 
+
 class Solution(object):
-    # beats 93.68%
     def getSkyline(self, buildings):
         """
         :type buildings: List[List[int]]
         :rtype: List[List[int]]
+
+        https://discuss.leetcode.com/topic/14987/108-ms-17-lines-body-explained/2
+
+        It sweeps from left to right. But it doesn't only keep heights of "alive buildings" in the priority queue and
+        it doesn't remove them as soon as their building is left behind. Instead, (height, right) pairs are kept in the
+        priority queue and they stay in there as long as there's a larger height in there, not just until their building
+        is left behind.
+
+        In each loop, we first check what has the smaller x-coordinate: adding the next building from the input, or
+        removing the next building from the queue. In case of a tie, adding buildings wins, as that guarantees
+        correctness (think about it :-). We then either add all input buildings starting at that x-coordinate or we
+        remove all queued buildings ending at that x-coordinate or earlier (remember we keep buildings in the queue as
+        long as they're "under the roof" of a larger actually alive building). And then, if the current maximum height
+        in the queue differs from the last in the skyline, we add it to the skyline.
+
+        beats 93.68%
         """
         LRH = buildings
         skyline = []
