@@ -1,10 +1,15 @@
 class Solution(object):
-    # beats 18.86%
     def canCompleteCircuit(self, gas, cost):
         """
         :type gas: List[int]
         :type cost: List[int]
         :rtype: int
+
+        gas = [3, 4, 3, 6, 7, 1, 2]
+        cost = [2, 4, 5, 1, 5, 1, 3]
+        start = 4 (gas[4] = 7, cost[4] = 5)
+
+        beats 18.86%
         """
         if len(gas) == 0 or len(cost) == 0 or sum(gas) < sum(cost):
             return -1
@@ -17,12 +22,13 @@ class Solution(object):
                 position = (i + 1)
         return position
 
-    # beats 73.08%
     def canCompleteCircuit1(self, gas, cost):
         """
         :type gas: List[int]
         :type cost: List[int]
         :rtype: int
+
+        beats 73.08%
         """
         len_gas = len(gas)
         len_cost = len(cost)
