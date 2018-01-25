@@ -6,9 +6,11 @@ class UndirectedGraphNode:
 
 
 class Solution:
-    # @param node, a undirected graph node
-    # @return a undirected graph node
-    # beats 92.16%
+    """
+    @param node, a undirected graph node
+    @return a undirected graph node
+    beats 92.16%
+    """
     def cloneGraph(self, node):
         if not node:
             return node
