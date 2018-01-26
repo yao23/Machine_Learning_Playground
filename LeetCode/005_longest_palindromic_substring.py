@@ -17,6 +17,12 @@ class Solution(object):
         keeping track of maxPalindromeLen, and for each added character, you check if the substrings ending with
         this new character, with length P+1 or P+2, are palindromes, and update accordingly.
 
+        if input string is infinite, it wants to get longest palindrome substring so far, the idea is to use an array
+        with size 26, which records the current longest palindrome substring could be ended in that letter.
+        for example, for input string "zaaa" which could be ended by "a" or "z" for next possible longest palindrome
+        substring, so arr[0] = "zaaa", arr[25] = "zaaa", iterate the array and get longest one then trim first letter
+        ("z" in the example), then we can get longest palindrome substring so far.
+
         beats 98.77%
 
         """
