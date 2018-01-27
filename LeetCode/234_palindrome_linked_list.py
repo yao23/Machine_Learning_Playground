@@ -4,12 +4,16 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution(object):
-    # beats 95.69%
     def isPalindrome(self, head):
         """
         :type head: ListNode
         :rtype: bool
+
+        reverse left half list, then compare with right half list
+
+        beats 95.69%
         """
         rev = None
         slow = fast = head
