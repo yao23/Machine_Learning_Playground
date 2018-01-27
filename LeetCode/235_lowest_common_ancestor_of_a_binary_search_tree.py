@@ -5,14 +5,18 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # beats 22.86%
     def lowestCommonAncestor(self, root, p, q):
         """
         :type root: TreeNode
         :type p: TreeNode
         :type q: TreeNode
         :rtype: TreeNode
+
+        lowest common ancestor is less than one node value and larger than another in BST
+
+        beats 22.86%
         """
         while root:
             if root.val > p.val and root.val > q.val:
