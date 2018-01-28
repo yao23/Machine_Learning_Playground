@@ -1,21 +1,28 @@
 import collections
 
+
 class Solution(object):
-    # beats 43.88%
     def maxSlidingWindow(self, nums, k):
         """
         :type nums: List[int]
         :type k: int
         :rtype: List[int]
+
+        use two-end queue to store max number index in current window
+        pop out smaller ones if current number is larger
+        pop left number index in two-end queue if it slides out of window
+        store two-end queue first number in result list as maximum sliding window number
+
+        beats 43.88%
         """
-        d = collections.deque()
-        out = []
-        for i, n in enumerate(nums):
-            while d and nums[d[-1]] < n:
-                d.pop()
-            d += i,
-            if d[0] == i - k:
-                d.popleft()
+        two_end_queue = collections.deque()
+        res_list = []
+        for i, num in enumerate(nums):
+            while two_end_queue and nums[two_end_queue[-1]] < num:
+                two_end_queue.pop()
+            two_end_queue += i,
+            if two_end_queue[0] == i - k:
+                two_end_queue.popleft()
             if i >= k - 1:
-                out += nums[d[0]],
-        return out
+                res_list += nums[two_end_queue[0]],
+        return res_list
