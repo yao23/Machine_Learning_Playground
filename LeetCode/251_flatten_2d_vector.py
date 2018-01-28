@@ -1,9 +1,10 @@
 class Vector2D(object):
-    # beats 37.54%
     def __init__(self, vec2d):
         """
         Initialize your data structure here.
         :type vec2d: List[List[int]]
+
+        beats 37.54%
         """
         self.col = 0
         self.row = 0
