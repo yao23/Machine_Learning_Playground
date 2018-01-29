@@ -1,11 +1,13 @@
 import collections
 
+
 class Solution(object):
-    # beats 33.84%
     def alienOrder(self, words):
         """
         :type words: List[str]
         :rtype: str
+
+        beats 33.84%
         """
         less = []
         for pair in zip(words, words[1:]):
@@ -24,11 +26,14 @@ class Solution(object):
             chars -= free
         return ''.join(order + list(chars))
 
-    # beats 10.85%
     def alienOrder1(self, words):
         """
         :type words: List[str]
         :rtype: str
+
+        similar like 210 Course Schedule II
+
+        beats 10.85%
         """
         pre, suc = collections.defaultdict(set), collections.defaultdict(set)
         for pair in zip(words, words[1:]):
@@ -38,7 +43,7 @@ class Solution(object):
                     pre[b].add(a)
                     break
         chars = set(''.join(words))
-        free = chars - set(pre)
+        free = chars - set(pre)  # nodes without pre
         order = ''
         while free:
             a = free.pop()
