@@ -1,15 +1,20 @@
-# The knows API is already defined for you.
-# @param a, person a
-# @param b, person b
-# @return a boolean, whether a knows b
-# def knows(a, b):
+def knows(a, b):
+    """
+    The knows API is already defined for you.
+    @param a, person a
+    @param b, person b
+    @return a boolean, whether a knows b
+    """
+    pass
+
 
 class Solution(object):
-    # beats 55.71%
     def findCelebrity(self, n):
         """
         :type n: int
         :rtype: int
+
+        beats 55.71%
         """
         x = 0
         for i in xrange(n):
