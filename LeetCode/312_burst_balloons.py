@@ -46,3 +46,37 @@ class Solution(object):
             return coins
 
         return calculate(0, n - 1)
+
+    def maxCoins2(self, nums):
+        """
+        :param nums:
+        :return:
+
+        beats 17.54%
+        """
+        len_nums = len(nums)
+        full_nums = [0] * (len_nums + 2)
+        full_nums[0] = full_nums[-1] = 1
+        for i, num in enumerate(nums):
+            full_nums[i + 1] = num
+        scores = [[-1 for _ in range(len_nums + 2)] for _ in range(len_nums + 2)]
+        for row in range(len_nums):
+            for col in range(len_nums):
+                scores[row][col] = -1
+
+        return self.get_scores(1, len_nums, scores, full_nums)
+
+    def get_scores(self, start, end, scores, full_nums):
+        if start > end:
+            return 0
+        if scores[start][end] != -1:
+            return scores[start][end]
+        for pos in range(start, end + 1):
+            mid_coin_scores = full_nums[start - 1] * full_nums[pos] * full_nums[end + 1]
+            left_coin_scores = self.get_scores(start, pos - 1, scores, full_nums)
+            right_coin_scores = self.get_scores(pos + 1, end, scores, full_nums)
+            cur_sum = left_coin_scores + mid_coin_scores + right_coin_scores
+            if scores[start][end] < cur_sum:
+                scores[start][end] = cur_sum
+
+        return scores[start][end]
