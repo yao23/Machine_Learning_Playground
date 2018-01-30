@@ -49,3 +49,30 @@ class Solution(object):
             node = stack.pop()
             res.append(node.val)
             root = node.right
+
+    def inorderTraversal2(self, root):
+        class OpsElement:
+            def __init__(self, ops, element):
+                self.__ops = ops
+                self.__element = element
+
+            def get_ops(self):
+                return self.__ops
+
+            def get_element(self):
+                return self.__element
+
+        res = []
+        stack = []
+        stack.append(OpsElement(0, root))
+        while not stack:
+            cur_ops_element = stack.pop()
+            if cur_ops_element.get_element() is None:
+                continue
+            if cur_ops_element.get_ops() == 0:  # visit
+                stack.append(OpsElement(0, cur_ops_element.get_element().right))
+                stack.append(OpsElement(1, cur_ops_element.get_element()))
+                stack.append(OpsElement(0, cur_ops_element.get_element().left))
+            else:  # print
+                res.append(cur_ops_element.get_element())
+        return res
