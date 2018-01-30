@@ -1,10 +1,12 @@
 class Solution(object):
-    # https://discuss.leetcode.com/topic/15295/seven-short-solutions-1-to-7-lines
-    # beats 71.20%
     def rotate(self, matrix):
         """
         :type matrix: List[List[int]]
         :rtype: void Do not return anything, modify matrix in-place instead.
+
+        https://discuss.leetcode.com/topic/15295/seven-short-solutions-1-to-7-lines
+
+        beats 71.20%
         """
         n = len(matrix)
         for i in range(n/2):
@@ -43,3 +45,23 @@ class Solution(object):
         for row in A:
             for j in range(n / 2):
                 row[j], row[~j] = row[~j], row[j]
+
+    def rotate7(self, matrix):
+        """
+        :param matrix:
+        :return:
+
+        in -place and 1 pass to exchange 4 points in clockwise
+
+        beats 64.54%
+        """
+        row = len(matrix)
+        col = len(matrix[0])
+
+        for i in range(row / 2):
+            for j in range(i, col - 1):
+                tmp = matrix[i][j]
+                matrix[i][j] = matrix[row - 1 - j][i]
+                matrix[row - 1 - j][i] = matrix[row - 1 - i][col - 1 - j]
+                matrix[row - 1 - i][col - 1 - j] = matrix[j][col - 1 - i]
+                matrix[j][col - 1 - i] = tmp
