@@ -51,6 +51,12 @@ class Solution(object):
             root = node.right
 
     def inorderTraversal2(self, root):
+        """
+        :param root:
+        :return:
+
+        beats 45.21%
+        """
         class OpsElement:
             def __init__(self, ops, element):
                 self.__ops = ops
