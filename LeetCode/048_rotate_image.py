@@ -53,13 +53,13 @@ class Solution(object):
 
         in -place and 1 pass to exchange 4 points in clockwise
 
-        beats 64.54%
+        beats 64.23%
         """
         row = len(matrix)
         col = len(matrix[0])
 
-        for i in range(row / 2):
-            for j in range(i, col - 1):
+        for i in range(row // 2):
+            for j in range(i, col - 1 - i):
                 tmp = matrix[i][j]
                 matrix[i][j] = matrix[row - 1 - j][i]
                 matrix[row - 1 - j][i] = matrix[row - 1 - i][col - 1 - j]
