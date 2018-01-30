@@ -55,14 +55,8 @@ class Solution(object):
         beats 17.54%
         """
         len_nums = len(nums)
-        full_nums = [0] * (len_nums + 2)
-        full_nums[0] = full_nums[-1] = 1
-        for i, num in enumerate(nums):
-            full_nums[i + 1] = num
+        full_nums = [1] + nums + [1]
         scores = [[-1 for _ in range(len_nums + 2)] for _ in range(len_nums + 2)]
-        for row in range(len_nums):
-            for col in range(len_nums):
-                scores[row][col] = -1
 
         return self.get_scores(1, len_nums, scores, full_nums)
 
