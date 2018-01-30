@@ -63,9 +63,9 @@ class Solution(object):
                 return self.__element
 
         res = []
-        stack = []
+        stack = list()
         stack.append(OpsElement(0, root))
-        while not stack:
+        while stack:
             cur_ops_element = stack.pop()
             if cur_ops_element.get_element() is None:
                 continue
@@ -74,5 +74,5 @@ class Solution(object):
                 stack.append(OpsElement(1, cur_ops_element.get_element()))
                 stack.append(OpsElement(0, cur_ops_element.get_element().left))
             else:  # print
-                res.append(cur_ops_element.get_element())
+                res.append(cur_ops_element.get_element().val)
         return res
