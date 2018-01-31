@@ -1,13 +1,13 @@
 class Solution(object):
-    # @return a boolean
-    # beats 86.84%
     def isValid(self, s):
         """
         :type s: str
         :rtype: bool
+
+        beats 86.84%
         """
         stack = []
-        dict = {"]":"[", "}":"{", ")":"("}
+        dict = {"]": "[", "}": "{", ")": "("}
         for char in s:
             if char in dict.values():
                 stack.append(char)
