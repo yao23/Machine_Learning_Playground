@@ -4,6 +4,7 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution(object):
     # beats 90.86%
     def swapPairs(self, head):
