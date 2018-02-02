@@ -6,13 +6,14 @@ class ListNode(object):
 
 
 class Solution(object):
-    # in-place, iteratively
-    # beats 81.42%
     def mergeTwoLists(self, l1, l2):
         """
         :type l1: ListNode
         :type l2: ListNode
         :rtype: ListNode
+
+        in-place, iteratively
+        beats 81.42%
         """
         if None in (l1, l2):
             return l1 or l2
@@ -31,8 +32,14 @@ class Solution(object):
         cur.next = l1 or l2
         return dummy.next
 
-    # iteratively
     def mergeTwoLists1(self, l1, l2):
+        """
+        :param l1:
+        :param l2:
+        :return:
+
+        iteratively
+        """
         dummy = cur = ListNode(0)
         while l1 and l2:
             if l1.val < l2.val:
@@ -45,9 +52,14 @@ class Solution(object):
         cur.next = l1 or l2
         return dummy.next
 
-
-    # recursively
     def mergeTwoLists2(self, l1, l2):
+        """
+        :param l1:
+        :param l2:
+        :return:
+
+        recursively
+        """
         if not l1 or not l2:
             return l1 or l2
         if l1.val < l2.val:
