@@ -1,16 +1,18 @@
 # Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
 
 class Solution(object):
-    # beats 93.74%
     def reverseKGroup(self, head, k):
         """
         :type head: ListNode
         :type k: int
         :rtype: ListNode
+
+        beats 93.74%
         """
         dummy = jump = ListNode(0)
         dummy.next = l = r = head
