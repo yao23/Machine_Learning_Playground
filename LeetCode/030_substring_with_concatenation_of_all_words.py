@@ -15,12 +15,13 @@ class Solution(object):
                 if r - l == t:
                     ans.append(l)
 
-    # beats 82.05%
     def findSubstring(self, s, words):
         """
         :type s: str
         :type words: List[str]
         :rtype: List[int]
+
+        beats 82.05%
         """
         if not s or not words or not words[0]:
             return []
