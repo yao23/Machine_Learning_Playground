@@ -1,11 +1,13 @@
 import collections
 
+
 class Solution(object):
-    # beats 76.16%
     def isValidSudoku(self, board):
         """
         :type board: List[List[str]]
         :rtype: bool
+
+        beats 76.16%
         """
         seen = sum(([(c, i), (j, c), (i/3, j/3, c)]
                 for i in range(9) for j in range(9)
