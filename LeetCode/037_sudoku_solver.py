@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 96.07%
     def solveSudoku(self, board):
         """
         :type board: List[List[str]]
         :rtype: void Do not return anything, modify board in-place instead.
+
+        beats 96.07%
         """
         self.board = board
         self.val = self.PossibleVals()
