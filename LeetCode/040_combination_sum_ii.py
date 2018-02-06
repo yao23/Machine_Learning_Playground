@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 79.58%
     def combinationSum2(self, candidates, target):
         """
         :type candidates: List[int]
         :type target: int
         :rtype: List[List[int]]
+
+        beats 79.58%
         """
         candidates.sort()
         table = [None] + [set() for i in range(target)]
