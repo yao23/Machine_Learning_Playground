@@ -1,11 +1,11 @@
 class Solution(object):
-    # @return a boolean
-    # beats 64.11%
     def isMatch(self, s, p):
         """
         :type s: str
         :type p: str
         :rtype: bool
+
+        beats 64.11%
         """
         length = len(s)
         if len(p) - p.count('*') > length:
