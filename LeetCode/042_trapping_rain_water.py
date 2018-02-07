@@ -1,15 +1,13 @@
-# https://discuss.leetcode.com/topic/5125/sharing-my-simple-c-code-o-n-time-o-1-space
-# https://discuss.leetcode.com/topic/18720/8-lines-c-c-java-python-solution/3
-
-
 class Solution(object):
-    # @param {integer[]} height
-    # @return {integer}
     def trap(self, height):
         """
         :type height: List[int]
         :rtype: int
         beats 86.48%
+
+        https://discuss.leetcode.com/topic/5125/sharing-my-simple-c-code-o-n-time-o-1-space
+        https://discuss.leetcode.com/topic/18720/8-lines-c-c-java-python-solution/3
+
         """
         n = len(height)
         left, right, water, min_height = 0, n - 1, 0, 0
