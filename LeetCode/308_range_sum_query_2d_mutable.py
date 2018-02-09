@@ -1,11 +1,21 @@
 class NumMatrix(object):
-    # beats 83.86%
+    """
+    Your NumMatrix object will be instantiated and called as such:
+    obj = NumMatrix(matrix)
+    obj.update(row,col,val)
+    param_2 = obj.sumRegion(row1,col1,row2,col2)
+
+    https://leetcode.com/problems/range-sum-query-2d-mutable/discuss/75872/Python-94.5-Simple-sum-array-on-one-dimension-O(n)-for-both-update-and-sum
+
+    beats 83.86%
+    """
+
     def __init__(self, matrix):
         """
         :type matrix: List[List[int]]
         """
         for row in matrix:
-            for col in xrange(1, len(row)):
+            for col in range(1, len(row)):
                 row[col] += row[col - 1]
         self.matrix = matrix
 
@@ -22,7 +32,7 @@ class NumMatrix(object):
 
         diff = original - val
 
-        for y in xrange(col, len(self.matrix[0])):
+        for y in range(col, len(self.matrix[0])):
             self.matrix[row][y] -= diff
 
     def sumRegion(self, row1, col1, row2, col2):
@@ -33,14 +43,9 @@ class NumMatrix(object):
         :type col2: int
         :rtype: int
         """
-        sum = 0
-        for x in xrange(row1, row2 + 1):
-            sum += self.matrix[x][col2]
+        region_sum = 0
+        for x in range(row1, row2 + 1):
+            region_sum += self.matrix[x][col2]
             if col1 != 0:
-                sum -= self.matrix[x][col1 - 1]
-        return sum
-
-# Your NumMatrix object will be instantiated and called as such:
-# obj = NumMatrix(matrix)
-# obj.update(row,col,val)
-# param_2 = obj.sumRegion(row1,col1,row2,col2)
+                region_sum -= self.matrix[x][col1 - 1]
+        return region_sum
