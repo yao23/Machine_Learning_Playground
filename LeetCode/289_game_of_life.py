@@ -1,9 +1,13 @@
+import collections
+
+
 class Solution(object):
-    # beats 99.22%
     def gameOfLife(self, board):
         """
         :type board: List[List[int]]
         :rtype: void Do not return anything, modify board in-place instead.
+
+        beats 99.22%
         """
         live = {(i, j) for i, row in enumerate(board) for j, live in enumerate(row) if live}
         live = self.gameOfLifeInfinite(live)
