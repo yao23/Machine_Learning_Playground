@@ -13,6 +13,9 @@ class NumMatrix(object):
     def __init__(self, matrix):
         """
         :type matrix: List[List[int]]
+
+        element m[i][j] in self.matrix means sum of previous elements in this row,
+        namely sum(m[i][0] + m[i][1] + ... + m[i][j])
         """
         for row in matrix:
             for col in range(1, len(row)):
@@ -25,6 +28,8 @@ class NumMatrix(object):
         :type col: int
         :type val: int
         :rtype: void
+
+        original means the single element value in original matrix
         """
         original = self.matrix[row][col]
         if col != 0:
@@ -32,7 +37,7 @@ class NumMatrix(object):
 
         diff = original - val
 
-        for y in range(col, len(self.matrix[0])):
+        for y in range(col, len(self.matrix[0])):  # update elements in the row
             self.matrix[row][y] -= diff
 
     def sumRegion(self, row1, col1, row2, col2):
@@ -42,6 +47,10 @@ class NumMatrix(object):
         :type row2: int
         :type col2: int
         :rtype: int
+
+        region sum is the sum of range sum in every row from row1 to row2
+        as the above definition of self.matrix
+        each range sum could be calculated as (m[row][col2] - m[row][col1 - 1])
         """
         region_sum = 0
         for x in range(row1, row2 + 1):
