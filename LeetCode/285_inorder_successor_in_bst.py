@@ -5,19 +5,21 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # beats 17.30%
     def inorderSuccessor(self, root, p):
         """
         :type root: TreeNode
         :type p: TreeNode
         :rtype: TreeNode
+
+        beats 17.30%
         """
-        succ = None
+        successor = None
         while root:
             if p.val < root.val:
-                succ = root
+                successor = root
                 root = root.left
             else:
                 root = root.right
-        return succ
+        return successor
