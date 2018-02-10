@@ -15,8 +15,8 @@ class Solution(object):
         """
         if amount == 0:
             return 0
-        value1 = [0]
-        value2 = []
+        value1 = [0]  # current queue
+        value2 = []  # next queue
         nc = 0
         visited = [False] * (amount + 1)
         visited[0] = True
