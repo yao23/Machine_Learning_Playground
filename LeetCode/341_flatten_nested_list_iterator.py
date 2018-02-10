@@ -39,9 +39,9 @@ class NestedIterator(object):
         :rtype: int
         """
         self.hasNext()
-        nestedList, i = self.stack[-1]
+        nested_list, i = self.stack[-1]
         self.stack[-1][1] += 1
-        return nestedList[i].getInteger()
+        return nested_list[i].getInteger()
 
     def hasNext(self):
         """
@@ -49,11 +49,11 @@ class NestedIterator(object):
         """
         s = self.stack
         while s:
-            nestedList, i = s[-1]
-            if i == len(nestedList):
+            nested_list, i = s[-1]
+            if i == len(nested_list):
                 s.pop()
             else:
-                x = nestedList[i]
+                x = nested_list[i]
                 if x.isInteger():
                     return True
                 s[-1][1] += 1
