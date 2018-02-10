@@ -18,6 +18,8 @@ class Solution(object):
         Use dictionary d to keep track of (character, location) pair,
         where location is the rightmost location that the character appears at
 
+        similar: LC 3. Longest Substring without Repeating Characters
+
         beats 95.04%
         """
         d = {}
