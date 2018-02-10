@@ -26,6 +26,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
 
+        https://leetcode.com/problems/increasing-triplet-subsequence/discuss/78997/Generalization-in-Python
+
         bisect_left: insert position for equality
 
         beats 13.13%
@@ -53,3 +55,27 @@ class Solution(object):
             inc[i] = x
         return False
 
+    def increasingSubsequence(self, nums, k):
+        """
+        :param nums:
+        :param k:
+        :return:
+
+        for any k >= 0:
+        """
+        try:
+            inc = [float('inf')] * (k - 1)
+            for x in nums:
+                inc[bisect.bisect_left(inc, x)] = x
+            return k == 0
+        except:
+            return True
+
+    def increasingSubsequence1(self, nums, k):
+        inc = [float('inf')] * (k - 1)
+        for x in nums:
+            i = bisect.bisect_left(inc, x)
+            if i >= k - 1:
+                return True
+            inc[i] = x
+        return k == 0
