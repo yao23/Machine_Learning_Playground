@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 98.73%
     def longestIncreasingPath(self, matrix):
         """
         :type matrix: List[List[int]]
         :rtype: int
+
+        beats 98.73%
         """
         def dfs(i, j):
             if not dp[i][j]:
