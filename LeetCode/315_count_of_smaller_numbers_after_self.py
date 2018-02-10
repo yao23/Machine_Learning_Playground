@@ -1,5 +1,4 @@
 class Solution(object):
-    # beats 62.23%
     def countSmaller(self, nums):
         """
         :type nums: List[int]
@@ -7,6 +6,8 @@ class Solution(object):
 
         The smaller numbers on the right of a number are exactly those that jump from its right to its left during a
         stable sort. So I do merge sort with added tracking of those right-to-left jumps.
+        
+        beats 62.23%
         """
         def sort(enum):
             half = len(enum) / 2
@@ -55,7 +56,7 @@ class Solution(object):
         hash_table = {v: i for i, v in enumerate(sorted(set(nums)))}
 
         tree, r = SegmentTree(len(hash_table)), []
-        for i in xrange(len(nums) - 1, -1, -1):
+        for i in range(len(nums) - 1, -1, -1):
             r.append(tree.sum(0, hash_table[nums[i]] - 1))
             tree.update(hash_table[nums[i]], 1)
         return r[::-1]
@@ -72,7 +73,7 @@ class Solution(object):
         hash_table = {v: i for i, v in enumerate(sorted(set(nums)))}
 
         tree, res = BinaryIndexedTree(len(hash_table)), []
-        for i in xrange(len(nums) - 1, -1, -1):  # from right to left
+        for i in range(len(nums) - 1, -1, -1):  # from right to left
             res.append(tree.sum(hash_table[nums[i]]))
             tree.update(hash_table[nums[i]] + 1, 1)
         return res[::-1]
@@ -89,7 +90,7 @@ class Solution(object):
         tree = BinarySearchTree()
         return [
                    tree.insert(nums[i], tree.root)
-                   for i in xrange(len(nums) - 1, -1, -1)
+                   for i in range(len(nums) - 1, -1, -1)
                ][::-1]
 
     def countSmaller5(self, nums):
