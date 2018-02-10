@@ -43,6 +43,7 @@ class Solution(object):
 
         Assume dp[i] is the fewest number of coins making up amount i, then for every coin in coins,
         dp[i] = min(dp[i - coin] + 1).
+        dp[i] works as a cache, max_val is default value, otherwise is cached
 
         The time complexity is O(amount * coins.length) and the space complexity is O(amount)
 
@@ -58,4 +59,9 @@ class Solution(object):
         for i in range(1, amount + 1):
             dp[i] = min([dp[i - c] if i - c >= 0 else max_val for c in coins]) + 1
 
-        return [dp[amount], -1][dp[amount] == max_val]
+        # return [dp[amount], -1][dp[amount] == max_val]
+
+        if dp[amount] == max_val:
+            return -1
+        else:
+            return dp[amount]
