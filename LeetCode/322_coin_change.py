@@ -34,3 +34,24 @@ class Solution(object):
                         value2.append(new_val)
             value1, value2 = value2, []
         return -1
+
+    def coinChange1(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+
+        Assume dp[i] is the fewest number of coins making up amount i, then for every coin in coins,
+        dp[i] = min(dp[i - coin] + 1).
+
+        The time complexity is O(amount * coins.length) and the space complexity is O(amount)
+
+        beats 77.61%
+        """
+        max_val = float('inf')
+        dp = [0] + [int(max_val)] * amount
+
+        for i in range(1, amount + 1):
+            dp[i] = min([dp[i - c] if i - c >= 0 else max_val for c in coins]) + 1
+
+        return [dp[amount], -1][dp[amount] == max_val]
