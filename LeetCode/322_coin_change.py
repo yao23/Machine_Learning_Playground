@@ -46,6 +46,10 @@ class Solution(object):
 
         The time complexity is O(amount * coins.length) and the space complexity is O(amount)
 
+        [dp[amount], -1][dp[amount] == max_val] => [dp[amount], -1][0/1]
+        if dp[amount] == max_val: [dp[amount], -1][1] => -1
+        else: [dp[amount], -1][0] => dp[amount]
+
         beats 77.61%
         """
         max_val = float('inf')
