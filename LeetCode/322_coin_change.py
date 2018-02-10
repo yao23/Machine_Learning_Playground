@@ -51,6 +51,8 @@ class Solution(object):
         if dp[amount] == max_val: [dp[amount], -1][1] => -1
         else: [dp[amount], -1][0] => dp[amount]
 
+        https://leetcode.com/problems/coin-change/discuss/77372/Clean-dp-python-code
+
         beats 77.61%
         """
         max_val = float('inf')
