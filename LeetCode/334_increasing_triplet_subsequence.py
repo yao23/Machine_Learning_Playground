@@ -1,3 +1,6 @@
+import bisect
+
+
 class Solution(object):
     def increasingTriplet(self, nums):
         """
@@ -17,3 +20,18 @@ class Solution(object):
             else:
                 return True
         return False
+
+    def increasingTriplet1(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+
+        beats 13.13%
+        """
+        try:
+            inc = [float('inf')] * 2
+            for x in nums:
+                inc[bisect.bisect_left(inc, x)] = x
+            return False
+        except:
+            return True
