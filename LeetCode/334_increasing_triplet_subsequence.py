@@ -35,3 +35,19 @@ class Solution(object):
             return False
         except:
             return True
+
+    def increasingTriplet2(self, nums):
+        """
+        :param nums:
+        :return:
+
+        beats 21.82%
+        """
+        inc = [float('inf')] * 2
+        for x in nums:
+            i = bisect.bisect_left(inc, x)
+            if i >= 2:
+                return True
+            inc[i] = x
+        return False
+
