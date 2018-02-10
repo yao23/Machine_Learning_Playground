@@ -25,11 +25,12 @@
 
 
 class NestedIterator(object):
-    # beats 29.12%
     def __init__(self, nestedList):
         """
         Initialize your data structure here.
         :type nestedList: List[NestedInteger]
+
+        beats 29.12%
         """
         self.stack = [[nestedList, 0]]
 
