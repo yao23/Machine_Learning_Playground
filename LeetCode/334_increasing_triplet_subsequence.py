@@ -26,6 +26,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
 
+        bisect_left: insert position for equality
+
         beats 13.13%
         """
         try:
