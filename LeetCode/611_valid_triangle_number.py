@@ -68,7 +68,7 @@ class Solution(object):
                 j += 1
         return sol
 
-    def triangleNumber3(self, A):
+    def triangleNumber3(self, nums):
         """
         :type nums: List[int]
         :rtype: int
@@ -99,7 +99,7 @@ class Solution(object):
 
         beats 46.47%
         """
-        C = collections.Counter(A)
+        C = collections.Counter(nums)
         C.pop(0, None)
         B = sorted(C.keys())
         P = [0]
