@@ -1,8 +1,9 @@
 class Solution(object):
-    # beats 51.55%
     def reverseString(self, s):
         """
         :type s: str
         :rtype: str
+
+        beats 51.55%
         """
         return s[::-1]
