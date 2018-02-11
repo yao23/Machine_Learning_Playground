@@ -62,7 +62,8 @@ class Solution(object):
         deg: degree of array (maximum frequency of any one of its elements)
         min_len: minimum length to hold the continuous sub-array which has the degree
 
-        difference between first and last indices of an element is the degree and potential min length for the num
+        length of the value of specific num in the nums_map is the frequency of the number element
+        difference between first and last indices of an element is potential min length for the num
 
         beats 52.72%
         """
