@@ -1,5 +1,12 @@
+import random
+
+
 class Solution(object):
-    # beats 33.10%
+    """
+    https://leetcode.com/problems/shuffle-an-array/discuss/86053/Python-hack
+
+    beats 33.10%
+    """
     def __init__(self, nums):
         """
         :type nums: List[int]
