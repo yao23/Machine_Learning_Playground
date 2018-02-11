@@ -58,6 +58,12 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
 
+        nums_map: k as num, v as indices of num in the array
+        deg: degree of array (maximum frequency of any one of its elements)
+        min_len: minimum length to hold the continuous sub-array which has the degree
+
+        difference between first and last indices of an element is the degree and potential min length for the num
+
         beats 52.72%
         """
         nums_map, deg, min_len = collections.defaultdict(list), 0, float('inf')
