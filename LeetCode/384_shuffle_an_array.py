@@ -23,7 +23,8 @@ class Solution(object):
             ans[i], ans[j] = ans[j], ans[i]    # swap
         return ans
 
-class Solution(object):
+
+class Solution1(object):
     """
     https://leetcode.com/problems/shuffle-an-array/discuss/86053/Python-hack
 
@@ -49,6 +50,30 @@ class Solution(object):
         """
 
 
+class Solution2(object):
+
+    def __init__(self, nums):
+        """
+        :type nums: List[int]
+        :type size: int
+        """
+        self._array = nums
+
+    def reset(self):
+        """
+        Resets the array to its original configuration and return it.
+        :rtype: List[int]
+        """
+        return self._array
+
+    def shuffle(self):
+        """
+        Returns a random shuffling of the array.
+        :rtype: List[int]
+        """
+        shuffled_array = self._array[:]
+        random.shuffle(shuffled_array)
+        return shuffled_array
 
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(nums)
