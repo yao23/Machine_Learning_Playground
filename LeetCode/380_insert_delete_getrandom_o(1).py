@@ -51,6 +51,36 @@ class RandomizedSet(object):
         return self.nums[random.randint(0, len(self.nums) - 1)]
 
 
+class RandomizedSet2(object):
+    """
+    beats 45.13%
+    """
+    def __init__(self):
+        self.l = []
+        self.d = {}
+
+    def insert(self, val):
+        if val in self.d:
+            return False
+        i = len(self.d)
+        self.d[val] = i
+        if i < len(self.l):
+            self.l[i] = val
+        else:
+            self.l.append(val)
+        return True
+
+    def remove(self, val):
+        if val not in self.d:
+            return False
+        i, new_val = self.d[val], self.l[len(self.d) - 1]
+        self.l[i], self.d[new_val] = new_val, i
+        del self.d[val]
+        return True
+
+    def getRandom(self):
+        return self.l[random.randrange(len(self.d))]
+
 # Your RandomizedSet object will be instantiated and called as such:
 # obj = RandomizedSet()
 # param_1 = obj.insert(val)
