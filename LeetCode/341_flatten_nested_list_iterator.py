@@ -25,6 +25,17 @@
 
 
 class NestedIterator(object):
+    """
+    In my opinion an iterator shouldn't copy the entire data (which some solutions have done) but just iterate over
+    the original data structure.
+
+    I keep the current progress in a stack. My hasNext tries to find an integer. My next returns it and moves on.
+    I call hasNext in next because hasNext is optional. Some user of the iterator might call only next and
+    never hasNext, e.g., if they know how many integers are in the structure or if they want to handle the ending with
+    exception handling.
+
+    https://leetcode.com/problems/flatten-nested-list-iterator/discuss/80146/Real-iterator-in-Python-Java-C++
+    """
     def __init__(self, nestedList):
         """
         Initialize your data structure here.
