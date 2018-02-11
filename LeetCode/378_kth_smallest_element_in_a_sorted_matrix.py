@@ -49,3 +49,18 @@ class Solution(object):
             if j + 1 < len(matrix[0]):
                 heapq.heappush(heap, (matrix[i][j + 1], i, j + 1))
         return ret
+
+    def kthSmallest2(self, matrix, k):
+        """
+        :type matrix: List[List[int]]
+        :type k: int
+        :rtype: int
+
+        sorting
+
+        beats 59.18%
+        """
+        res_list = []
+        for row in matrix:
+            res_list += row
+        return sorted(res_list)[k - 1]
