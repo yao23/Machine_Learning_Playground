@@ -51,6 +51,36 @@ class RandomizedSet(object):
         return self.nums[random.randint(0, len(self.nums) - 1)]
 
 
+class RandomizedSet1(object):
+    """
+    https://leetcode.com/problems/insert-delete-getrandom-o1/discuss/85414/2-Python-implementations-using-dictionary-and-list-(Syned-and-Asyned)-with-explanationl
+
+    beats 85.79%
+    """
+    def __init__(self):
+        self.l = []
+        self.d = {}
+
+    def insert(self, val):
+        if val in self.d:
+            return False
+        self.d[val] = len(self.l)
+        self.l.append(val)
+        return True
+
+    def remove(self, val):
+        if val not in self.d:
+            return False
+        i, new_val = self.d[val], self.l[-1]
+        self.l[i], self.d[new_val] = new_val, i
+        del self.d[val]
+        self.l.pop()
+        return True
+
+    def getRandom(self):
+        return random.choice(self.l)
+
+
 class RandomizedSet2(object):
     """
     beats 45.13%
