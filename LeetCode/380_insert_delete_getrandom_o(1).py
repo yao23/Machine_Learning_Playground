@@ -1,11 +1,16 @@
 import random
 
-# We just keep track of the index of the added elements, so when we remove them, we copy the last one into it.
-# From Python docs (https://wiki.python.org/moin/TimeComplexity) we know that list.append() takes O(1),
-# both average and amortized. Dictionary get and set functions take O(1) average, so we are OK.
 
 class RandomizedSet(object):
-    # beats 78.97%
+    """
+    We just keep track of the index of the added elements, so when we remove them, we copy the last one into it.
+    From Python docs (https://wiki.python.org/moin/TimeComplexity) we know that list.append() takes O(1),
+    both average and amortized. Dictionary get and set functions take O(1) average, so we are OK.
+
+    https://leetcode.com/problems/insert-delete-getrandom-o1/discuss/85397/Simple-solution-in-Python
+
+    beats 78.97%
+    """
     def __init__(self):
         """
         Initialize your data structure here.
@@ -33,7 +38,8 @@ class RandomizedSet(object):
         if val in self.pos:
             idx, last = self.pos[val], self.nums[-1]
             self.nums[idx], self.pos[last] = last, idx
-            self.nums.pop(); self.pos.pop(val, 0)
+            self.nums.pop()
+            self.pos.pop(val, 0)
             return True
         return False
 
