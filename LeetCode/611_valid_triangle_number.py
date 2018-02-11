@@ -20,3 +20,24 @@ class Solution(object):
                 else:
                     start += 1
         return ans
+
+    def triangleNumber1(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+
+        https://leetcode.com/problems/valid-triangle-number/discuss/104187/Python-O(n2)-solution-526-ms
+
+        beats 27.14%
+        """
+        nums = sorted(nums)
+        total = 0
+        for i in range(len(nums) - 2):
+            if nums[i] == 0:
+                continue
+            end = i + 2
+            for j in range(i + 1, len(nums) - 1):
+                while end < len(nums) and nums[end] < (nums[i] + nums[j]):
+                    end += 1
+                total += end - j - 1
+        return total
