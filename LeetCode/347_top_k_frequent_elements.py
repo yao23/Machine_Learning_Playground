@@ -3,23 +3,33 @@ import heapq
 
 
 class Solution(object):
-    # similar: LC 692
-    # beats 71.68%
     def topKFrequent(self, nums, k):
         """
         :type nums: List[int]
         :type k: int
         :rtype: List[int]
+
+        Use Counter to extract the top k frequent elements
+        most_common(k) return a list of tuples, where the first item of the tuple is the element,
+        and the second item of the tuple is the count
+        Thus, the built-in zip function could be used to extract the first item from the tuples
+
+        similar: LC 692
+
+        beats 71.68%
         """
-        # Use Counter to extract the top k frequent elements
-        # most_common(k) return a list of tuples, where the first item of the tuple is the element,
-        # and the second item of the tuple is the count
-        # Thus, the built-in zip function could be used to extract the first item from the tuples
         return zip(*collections.Counter(nums).most_common(k))[0]
 
-    # dictionary + min heap
     def topKFrequent1(self, nums, k):
-        # beats 71.68%
+        """
+        :param nums:
+        :param k:
+        :return:
+
+        dictionary + min heap
+
+        beats 71.68%
+        """
         freq = {}
         freq_list = []
         for num in nums:
@@ -29,16 +39,22 @@ class Solution(object):
                 freq[num] = 1
 
         for key in freq.keys():
-            freq_list.append((-freq[key], key)) # -freq[key] is easier for sorting when heapify
+            freq_list.append((-freq[key], key))  # -freq[key] is easier for sorting when heapify
         heapq.heapify(freq_list)
-        topk = []
+        top_k = []
         for i in range(0, k):
-            topk.append(heapq.heappop(freq_list)[1])
-        return topk
+            top_k.append(heapq.heappop(freq_list)[1])
+        return top_k
 
-    # dictionary + quick select
     def topKFrequent2(nums, k):
-        # beats 63.71%
+        """
+        :param k:
+        :return:
+
+        dictionary + quick select
+
+        beats 63.71%
+        """
         def quick_select(left, right):
             pivot = left
             l, r = left, right
@@ -52,9 +68,9 @@ class Solution(object):
 
             if l + 1 == k:
                 return counts[:l + 1]
-            elif l + 1 < k:
+            elif l + 1 < k:  # right half
                 return quick_select(l + 1, right)
-            else:
+            else:  # left half
                 return quick_select(left, l - 1)
 
         if not nums:
@@ -74,6 +90,8 @@ class Solution(object):
         :type nums: List[int]
         :type k: int
         :rtype: List[int]
+
+        beats 31.81%
         """
         c = collections.Counter(nums)
         return heapq.nlargest(k, c, c.get)
