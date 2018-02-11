@@ -1,7 +1,12 @@
 import random
 
+
 class Solution(object):
-    # beats 70.84%
+    """
+    https://leetcode.com/problems/random-pick-index/discuss/88069/Simple-Python-solution
+
+    beats 70.84%
+    """
     def __init__(self, nums):
         """
 
