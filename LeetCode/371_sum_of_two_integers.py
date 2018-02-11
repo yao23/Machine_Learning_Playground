@@ -8,6 +8,8 @@ class Solution(object):
         https://leetcode.com/problems/sum-of-two-integers/discuss/84278/A-summary:-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently
         https://leetcode.com/problems/sum-of-two-integers/discuss/84282/Python-solution-with-no-%22+-*%22-completely-bit-manipulation-guaranteed
 
+        https://leetcode.com/problems/sum-of-two-integers/discuss/84290/Java-simple-easy-understand-solution-with-explanation
+
         beats 29.67%
         """
         # 32 bits integer max
