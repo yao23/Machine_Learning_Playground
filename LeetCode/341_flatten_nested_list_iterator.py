@@ -111,6 +111,45 @@ class NestedIterator1(object):
         else:
             return True
 
+
+class NestedIterator2(object):
+    """
+    https://leetcode.com/problems/flatten-nested-list-iterator/discuss/80142/8-line-Python-Solution
+
+    hasNext()
+    self.stack = self.stack[:-1] + top.getList()[::-1]
+
+    flattening the nested list and adding it back to the top of the stack
+
+    self.stack[:-1] is the stack except for the last element which is a list
+    top.getList()[::-1] he is getting the top of the stack, which is a list, flattening it and adding it back to
+    the top of the stack
+
+    beats 63.81%
+    """
+    def __init__(self, nestedList):
+        """
+        Initialize your data structure here.
+        :type nestedList: List[NestedInteger]
+        """
+        self.stack = nestedList[::-1]
+
+    def next(self):
+        """
+        :rtype: int
+        """
+        return self.stack.pop().getInteger()
+
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        while self.stack:
+            top = self.stack[-1]
+            if top.isInteger():
+                return True
+            self.stack = self.stack[:-1] + top.getList()[::-1]
+        return False
 # Your NestedIterator object will be instantiated and called as such:
 # i, v = NestedIterator(nestedList), []
 # while i.hasNext(): v.append(i.next())
