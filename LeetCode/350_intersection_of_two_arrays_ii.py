@@ -43,3 +43,32 @@ class Solution(object):
                 ret.append(i)
                 dict1[i] -= 1
         return ret
+
+    def intersect4(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[int]
+
+        https://leetcode.com/problems/intersection-of-two-arrays-ii/discuss/82247/Three-Python-Solutions
+
+        beats 60.14%
+        """
+        nums1, nums2 = sorted(nums1), sorted(nums2)
+        pt1 = pt2 = 0
+        res = []
+
+        while True:
+            try:
+                if nums1[pt1] > nums2[pt2]:
+                    pt2 += 1
+                elif nums1[pt1] < nums2[pt2]:
+                    pt1 += 1
+                else:
+                    res.append(nums1[pt1])
+                    pt1 += 1
+                    pt2 += 1
+            except IndexError:
+                break
+
+        return res
