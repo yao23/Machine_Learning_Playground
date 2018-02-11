@@ -41,3 +41,26 @@ class Solution(object):
                     end += 1
                 total += end - j - 1
         return total
+
+    def triangleNumber2(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+
+        https://leetcode.com/problems/valid-triangle-number/discuss/104179/Python-O(n2)
+
+        beats 84.76%
+        """
+        nums.sort()
+        nums = nums[::-1]
+        sol = 0
+        for i in range(len(nums) - 2):
+            j = i + 1
+            k = len(nums) - 1
+            while j < k:
+                diff = nums[i] - nums[j]
+                while nums[k] <= diff and k > j:
+                    k -= 1
+                sol += (k - j)
+                j += 1
+        return sol
