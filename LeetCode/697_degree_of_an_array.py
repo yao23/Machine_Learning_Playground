@@ -52,3 +52,20 @@ class Solution(object):
             if len(indices) == deg:
                 min_len = min(min_len, indices[-1] - indices[0] + 1)
         return min_len
+
+    def findShortestSubArray2(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+
+        beats 52.72%
+        """
+        nums_map, deg, min_len = collections.defaultdict(list), 0, float('inf')
+        for index, num in enumerate(nums):
+            nums_map[num].append(index)
+            if len(nums_map[num]) == deg:
+                min_len = min(min_len, nums_map[num][-1] - nums_map[num][0] + 1)
+            elif len(nums_map[num]) > deg:
+                deg = len(nums_map[num])
+                min_len = nums_map[num][-1] - nums_map[num][0] + 1
+        return min_len
