@@ -41,6 +41,8 @@ class Solution(object):
         :type k: int
         :rtype: int
 
+        https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/discuss/87799/Python-56ms-solution
+
         beats 63.47%
         """
         if len(s) < k:
@@ -74,3 +76,39 @@ class Solution(object):
             g_max = max(g_max, self.longestSubstring(s[interval[0]:interval[1]], k))
         return g_max
 
+    def longestSubstring3(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+
+        https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/discuss/111914/python-solution-beats-95
+
+        beats 37.44%
+        """
+        if len(s) < k:
+            return 0
+        if s == "":
+            return 0
+
+        dic = {}
+
+        for i in s:
+            dic[i] = dic.get(i, 0) + 1
+
+        bad_chars = []
+        for c, v in dic.items():
+            if v < k:
+                bad_chars.append(c)
+        if len(bad_chars) == 0:
+            return len(s)
+
+        max_s = 0
+        start = 0
+        for i in range(len(s)):
+            if s[i] in bad_chars:
+                max_s = max(max_s, self.longestSubstring(s[start:i], k))
+                start = i + 1
+
+        max_s = max(max_s, self.longestSubstring(s[start:], k))
+        return max_s
