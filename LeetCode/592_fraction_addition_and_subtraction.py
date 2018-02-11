@@ -1,4 +1,5 @@
 import re
+from fractions import Fraction
 
 
 class Solution(object):
@@ -61,3 +62,13 @@ class Solution(object):
             A /= g
             B /= g
         return '{0}/{1}'.format(A, B)
+
+    def fractionAddition2(self, expression):
+        """
+        :type expression: str
+        :rtype: str
+
+        beats 22.38%
+        """
+        result = sum(map(Fraction, expression.replace('+', ' +').replace('-', ' -').split()))
+        return '{0}/{1}'.format(result.numerator, result.denominator)
