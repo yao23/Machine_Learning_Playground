@@ -51,6 +51,11 @@ class Solution1(object):
 
 
 class Solution2(object):
+    """
+    https://leetcode.com/problems/shuffle-an-array/discuss/86000/Python.-Solution-in-a-few-lines
+
+    beats 31.94%
+    """
 
     def __init__(self, nums):
         """
