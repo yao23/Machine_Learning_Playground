@@ -29,6 +29,8 @@ class Solution(object):
 
         https://leetcode.com/problems/intersection-of-two-arrays-ii/discuss/82373/A-dictionary-based-solution-in-python
 
+        dictionary
+
         beats 75.88%
         """
         dict1 = dict()
@@ -52,6 +54,8 @@ class Solution(object):
 
         https://leetcode.com/problems/intersection-of-two-arrays-ii/discuss/82247/Three-Python-Solutions
 
+        two pointers
+
         beats 60.14%
         """
         nums1, nums2 = sorted(nums1), sorted(nums2)
@@ -70,5 +74,25 @@ class Solution(object):
                     pt2 += 1
             except IndexError:
                 break
+
+        return res
+
+    def intersect5(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[int]
+
+        Counter
+
+        beats 58.18%
+        """
+        counts = collections.Counter(nums1)
+        res = []
+
+        for num in nums2:
+            if counts[num] > 0:
+                res += num,
+                counts[num] -= 1
 
         return res
