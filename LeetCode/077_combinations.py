@@ -1,5 +1,6 @@
 from itertools import combinations
 
+
 class Solution(object):
     # beats 49.34%
     def combine(self, n, k):
