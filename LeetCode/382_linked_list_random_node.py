@@ -3,14 +3,22 @@
 #     def __init__(self, x):
 #         self.val = x
 #         self.next = None
+import random
+
 
 class Solution(object):
-    # beats 48.39%
+    """
+    https://leetcode.com/problems/linked-list-random-node/discuss/85718/Python-reservoir-sampling-solution-(when-the-length-of-linked-list-changes-dynamically)
+
+    https://www.geeksforgeeks.org/reservoir-sampling/
+    """
     def __init__(self, head):
         """
         @param head The linked list's head.
         Note that the head is guaranteed to be not null, so it contains at least one node.
         :type head: ListNode
+
+        beats 48.39%
         """
         self.head = head
 
