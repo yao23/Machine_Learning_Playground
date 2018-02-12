@@ -67,3 +67,51 @@ class Solution(object):
             return -1
         else:
             return dp[amount]
+
+    def coinChange2(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+
+        brute force
+
+        Time Limit Exceeded (TLE)
+        """
+        if coins is None or amount < 0:
+            return -1
+        if amount == 0:
+            return 0
+        coins.sort(reverse=True)
+        if amount < coins[-1]:
+            return -1
+        return self.help_func(coins, amount, 0, [])
+
+    def help_func(self, coins, amount, depth, res_list):
+        coins_len = len(coins)
+        print("depth: %d, amount: %d" % (depth, amount))
+        if depth == coins_len:
+            return -1
+        if amount == 0:
+            return len(res_list)
+        elif amount < 0:
+            return -1
+        else:
+            print("potential combination")
+            res = float('inf')
+            # for i in range(depth, coins_len):
+            i = depth
+            coin_nums = amount // coins[i]
+            for cur_coin_num in range(coin_nums, -1, -1):
+                print("coin:%d, cur_coin_num: %d" % (coins[i], cur_coin_num))
+                cur_amount = amount - coins[i] * cur_coin_num
+                tmp_res = self.help_func(coins, cur_amount, depth + 1, res_list + [coins[i]] * cur_coin_num)
+                if tmp_res == -1:
+                    print("failed")
+                    continue
+                else:
+                    print("tmp_res: %d" % tmp_res)
+                    return tmp_res
+                    res = min(tmp_res, res)
+                    print("res: %d" % res)
+            return -1  # if res == float('inf') else res
