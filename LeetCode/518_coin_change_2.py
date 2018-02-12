@@ -15,6 +15,21 @@ class Solution(object):
                     dp[j] += dp[j - i]
         return dp[amount]
 
+    def change1(self, amount, coins):
+        """
+        :type amount: int
+        :type coins: List[int]
+        :rtype: int
+
+        beats 34.72%
+        """
+        dp = [1] + [0] * amount
+        for c in coins:
+            for i in range(1, amount + 1):
+                if i >= c:
+                    dp[i] += dp[i - c]
+        return dp[-1]
+
     def change2(self, amount, coins):
         """
         :type amount: int
