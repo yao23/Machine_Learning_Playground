@@ -5,6 +5,22 @@ class Solution(object):
         :type coins: List[int]
         :rtype: int
 
+        beats 55.21%
+        """
+        dp = [0] * (amount + 1)
+        dp[0] = 1
+        for i in coins:
+            for j in range(1, amount + 1):
+                if j >= i:
+                    dp[j] += dp[j - i]
+        return dp[amount]
+
+    def change2(self, amount, coins):
+        """
+        :type amount: int
+        :type coins: List[int]
+        :rtype: int
+
         TLE for test case: 500, [3,5,7,8,9,10,11]
         """
         if amount < 0:
