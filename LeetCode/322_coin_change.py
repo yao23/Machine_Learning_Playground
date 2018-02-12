@@ -89,7 +89,6 @@ class Solution(object):
 
     def help_func(self, coins, amount, depth, res_list):
         coins_len = len(coins)
-        print("depth: %d, amount: %d" % (depth, amount))
         if depth == coins_len:
             return -1
         if amount == 0:
@@ -97,9 +96,6 @@ class Solution(object):
         elif amount < 0:
             return -1
         else:
-            print("potential combination")
-            res = float('inf')
-            # for i in range(depth, coins_len):
             i = depth
             coin_nums = amount // coins[i]
             for cur_coin_num in range(coin_nums, -1, -1):
@@ -107,11 +103,7 @@ class Solution(object):
                 cur_amount = amount - coins[i] * cur_coin_num
                 tmp_res = self.help_func(coins, cur_amount, depth + 1, res_list + [coins[i]] * cur_coin_num)
                 if tmp_res == -1:
-                    print("failed")
                     continue
                 else:
-                    print("tmp_res: %d" % tmp_res)
                     return tmp_res
-                    res = min(tmp_res, res)
-                    print("res: %d" % res)
-            return -1  # if res == float('inf') else res
+            return -1
