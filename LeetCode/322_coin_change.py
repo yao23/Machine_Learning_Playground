@@ -15,24 +15,24 @@ class Solution(object):
         """
         if amount == 0:
             return 0
-        value1 = [0]  # current queue
-        value2 = []  # next queue
-        nc = 0
+        cur_queue = [0]  # current queue
+        next_queue = []  # next queue
+        num_counter = 0
         visited = [False] * (amount + 1)
         visited[0] = True
-        while value1:
-            nc += 1
-            for v in value1:
+        while cur_queue:
+            num_counter += 1
+            for v in cur_queue:
                 for coin in coins:
                     new_val = v + coin
                     if new_val == amount:
-                        return nc
+                        return num_counter
                     elif new_val > amount:
                         continue
                     elif not visited[new_val]:
                         visited[new_val] = True
-                        value2.append(new_val)
-            value1, value2 = value2, []
+                        next_queue.append(new_val)
+            cur_queue, next_queue = next_queue, []
         return -1
 
     def coinChange1(self, coins, amount):
@@ -117,3 +117,47 @@ class Solution(object):
                 else:
                     return tmp_res
             return -1
+
+    def coinChange3(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+
+        BFS with explanation
+
+        """
+        # if coins is None or amount < 0:
+        #     return -1
+        # if amount == 0:
+        #     return 0
+        # coins.sort(reverse=True)
+        # if amount < coins[-1]:
+        #     return -1
+        cur_queue = coins
+        min_nums = [0] * (amount + 1)  # min num to make amount
+        for coin in coins:
+            if coin <= amount:
+                min_nums[coin] = 1
+                if coin == amount:
+                    return min_nums[coin]
+        num = 1
+        while cur_queue:
+            next_queue = []
+            all_larger_amount = True
+            for cur_amount in cur_queue:
+                for coin in coins:
+                    total_amount = cur_amount + coin
+                    if total_amount <= amount and min_nums[total_amount] == 0:
+                        min_nums[total_amount] = num
+                        all_larger_amount = False
+                        if total_amount == amount:
+                            return (min_nums[total_amount] + 1)
+                    if total_amount not in next_queue:
+                        next_queue.append(total_amount)
+            if all_larger_amount:
+                return -1
+            else:
+                cur_queue = list(next_queue)
+                num += 1
+        return -1
