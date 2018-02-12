@@ -5,6 +5,24 @@ class Solution(object):
         :type coins: List[int]
         :rtype: int
 
+        beats 93.06%
+        """
+        coins.sort()
+        dp = [1] + [0] * amount
+        for c in coins:
+            for i in range(c, amount+1):
+                if dp[i-c]:
+                    dp[i] += dp[i-c]
+        return dp[-1]
+
+    def change0(self, amount, coins):
+        """
+        :type amount: int
+        :type coins: List[int]
+        :rtype: int
+
+        https://leetcode.com/problems/coin-change-2/discuss/99210/python-O(n)-space-dp-solution
+
         beats 55.21%
         """
         dp = [0] * (amount + 1)
@@ -20,6 +38,8 @@ class Solution(object):
         :type amount: int
         :type coins: List[int]
         :rtype: int
+
+        https://leetcode.com/problems/coin-change-2/discuss/99235/Classic-problem-python-clean-DP-O(MN)
 
         beats 34.72%
         """
