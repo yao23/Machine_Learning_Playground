@@ -88,6 +88,17 @@ class Solution(object):
         return self.help_func(coins, amount, 0, [])
 
     def help_func(self, coins, amount, depth, res_list):
+        """
+        :param coins:
+        :param amount:
+        :param depth:
+        :param res_list:
+        :return:
+
+        use current largest coin as much as possible
+        back tracking to use less largest coin if cannot make the target amount
+        repeat above procedure for each coin from large to small
+        """
         coins_len = len(coins)
         if depth == coins_len:
             return -1
@@ -99,7 +110,6 @@ class Solution(object):
             i = depth
             coin_nums = amount // coins[i]
             for cur_coin_num in range(coin_nums, -1, -1):
-                print("coin:%d, cur_coin_num: %d" % (coins[i], cur_coin_num))
                 cur_amount = amount - coins[i] * cur_coin_num
                 tmp_res = self.help_func(coins, cur_amount, depth + 1, res_list + [coins[i]] * cur_coin_num)
                 if tmp_res == -1:
