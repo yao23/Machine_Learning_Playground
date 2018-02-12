@@ -152,7 +152,7 @@ class Solution(object):
                         min_nums[total_amount] = num
                         all_larger_amount = False
                         if total_amount == amount:
-                            return (min_nums[total_amount] + 1)
+                            return min_nums[total_amount] + 1
                     if total_amount not in next_queue:
                         next_queue.append(total_amount)
             if all_larger_amount:
