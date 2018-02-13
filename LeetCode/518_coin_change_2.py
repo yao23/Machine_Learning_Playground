@@ -23,6 +23,9 @@ class Solution(object):
 
         https://leetcode.com/problems/coin-change-2/discuss/99210/python-O(n)-space-dp-solution
 
+        Because coins' order does not matter. For the first example, in your case, dp[3] will be 3, which are '2+1',
+        '1+2', and '1+1+1'. It should be 2, which are '1+2' and '1+1+1'.
+
         beats 55.21%
         """
         dp = [0] * (amount + 1)
