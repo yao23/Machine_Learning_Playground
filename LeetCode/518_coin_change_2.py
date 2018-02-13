@@ -89,7 +89,6 @@ class Solution(object):
         back tracking to use less largest coin if cannot make the target amount
         repeat above procedure for each coin from large to small
         """
-        # print("depth: %d, amount: %d" % (depth, amount))
         coins_len = len(coins)
         if amount == 0:
             res[0] += 1
