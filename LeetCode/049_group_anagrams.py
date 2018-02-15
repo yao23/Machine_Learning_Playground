@@ -1,12 +1,13 @@
 class Solution(object):
-    # beats 26.12%
     def groupAnagrams(self, strs):
         """
         :type strs: List[str]
         :rtype: List[List[str]]
+
+        beats 26.12%
         """
         dic = {}
         for item in sorted(strs):
-            sortedItem = ''.join(sorted(item))
-            dic[sortedItem] = dic.get(sortedItem, []) + [item]
+            sorted_item = ''.join(sorted(item))
+            dic[sorted_item] = dic.get(sorted_item, []) + [item]
         return dic.values()
