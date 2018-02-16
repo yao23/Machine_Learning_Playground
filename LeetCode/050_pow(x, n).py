@@ -1,11 +1,12 @@
 class Solution(object):
-    # Recursive
-    # beats 61.24%
     def myPow(self, x, n):
         """
         :type x: float
         :type n: int
         :rtype: float
+
+        Recursive
+        beats 61.24%
         """
         if not n:
             return 1
@@ -15,13 +16,14 @@ class Solution(object):
             return x * self.myPow(x, n-1)
         return self.myPow(x*x, n/2)
 
-    # Iterative
-    # beats 18.70%
     def myPow1(self, x, n):
         """
         :type x: float
         :type n: int
         :rtype: float
+
+        Iterative
+        beats 18.70%
         """
         if n < 0:
             x = 1 / x
