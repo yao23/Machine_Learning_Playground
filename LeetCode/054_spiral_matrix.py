@@ -1,17 +1,19 @@
 class Solution(object):
-    # beats 38.89%
     def spiralOrder(self, matrix):
         """
         :type matrix: List[List[int]]
         :rtype: List[int]
+
+        beats 38.89%
         """
         return matrix and list(matrix.pop(0)) + self.spiralOrder(zip(*matrix)[::-1])
 
-    # beats 37.38%
     def spiralOrder1(self, matrix):
         """
         :type matrix: List[List[int]]
         :rtype: List[int]
+
+        beats 37.38%
         """
         ret = []
         while matrix:
@@ -26,8 +28,13 @@ class Solution(object):
                     ret.append(row.pop(0))
         return ret
 
-    # beats 53.16%
     def spiralOrder2(self, matrix):
+        """
+        :param matrix:
+        :return:
+
+        beats 53.16%
+        """
         res = []
         if not matrix or len(matrix) == 0:
             return res
@@ -37,6 +44,16 @@ class Solution(object):
         return res
 
     def helper(self, res, matrix, row, col, offset):
+        """
+        :param res:
+        :param matrix:
+        :param row:
+        :param col:
+        :param offset:
+        :return:
+
+        beats 53.16%
+        """
         if row == 0 or col == 0:  # none left
             return
         if row == 1:  # one row left
