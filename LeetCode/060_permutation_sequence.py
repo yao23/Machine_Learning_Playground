@@ -1,15 +1,14 @@
 import math
 
+
 class Solution(object):
-    # @param {integer} n
-    # @param {integer} k
-    # @return {string}
-    # beats 87.50%
     def getPermutation(self, n, k):
         """
         :type n: int
         :type k: int
         :rtype: str
+
+        beats 87.50%
         """
         numbers = range(1, n+1)
         permutation = ''
