@@ -4,18 +4,20 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution(object):
-    # beats 62.24%
     def rotateRight(self, head, k):
         """
         :type head: ListNode
         :type k: int
         :rtype: ListNode
+
+        beats 62.24%
         """
         if not head:
             return None
 
-        if head.next == None:
+        if head.next is None:
             return head
 
         pointer = head
@@ -30,21 +32,20 @@ class Solution(object):
         if k == 0 or rotateTimes == 0:
             return head
 
-        fastPointer = head
-        slowPointer = head
+        fast_pointer = head
+        slow_pointer = head
 
         for a in range (rotateTimes):
-            fastPointer = fastPointer.next
+            fast_pointer = fast_pointer.next
 
+        while fast_pointer.next is not None:
+            slow_pointer = slow_pointer.next
+            fast_pointer = fast_pointer.next
 
-        while fastPointer.next:
-            slowPointer = slowPointer.next
-            fastPointer = fastPointer.next
+        temp = slow_pointer.next
 
-        temp = slowPointer.next
-
-        slowPointer.next = None
-        fastPointer.next = head
+        slow_pointer.next = None
+        fast_pointer.next = head
         head = temp
 
         return head
