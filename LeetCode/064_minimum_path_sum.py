@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 97.97%
     def minPathSum(self, grid):
         """
         :type grid: List[List[int]]
         :rtype: int
+
+        beats 97.97%
         """
         m = len(grid)
         n = len(grid[0])
