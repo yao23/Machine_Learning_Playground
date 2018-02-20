@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 38.20%
     def plusOne(self, digits):
         """
         :type digits: List[int]
         :rtype: List[int]
+
+        beats 38.20%
         """
         num = 0
         for i in range(len(digits)):
