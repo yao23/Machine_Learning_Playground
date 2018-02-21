@@ -1,13 +1,11 @@
 class Solution(object):
-    # @param matrix, a list of lists of integers
-    # @param target, an integer
-    # @return a boolean
-    # beats 77.74%
     def searchMatrix(self, matrix, target):
         """
         :type matrix: List[List[int]]
         :type target: int
         :rtype: bool
+
+        beats 77.74%
         """
         if not matrix or target is None:
             return False
