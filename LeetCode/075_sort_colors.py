@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 96.67%
     def sortColors(self, nums):
         """
         :type nums: List[int]
         :rtype: void Do not return anything, modify nums in-place instead.
+
+        beats 96.67%
         """
         i = j = 0
         for k in xrange(len(nums)):
