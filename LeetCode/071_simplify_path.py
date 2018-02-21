@@ -1,11 +1,12 @@
 class Solution(object):
-    # beats 37.22%
     def simplifyPath(self, path):
         """
         :type path: str
         :rtype: str
+
+        beats 37.22%
         """
-        places = [p for p in path.split("/") if p!="." and p!=""]
+        places = [p for p in path.split("/") if p != "." and p != ""]
         stack = []
         for p in places:
             if p == "..":
