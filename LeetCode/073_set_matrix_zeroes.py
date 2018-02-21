@@ -1,11 +1,10 @@
 class Solution(object):
-    # @param {integer[][]} matrix
-    # @return {void} Do not return anything, modify matrix in-place instead.
-    # beats 67.92%
     def setZeroes(self, matrix):
         """
         :type matrix: List[List[int]]
         :rtype: void Do not return anything, modify matrix in-place instead.
+
+        beats 67.92%
         """
         m = len(matrix)
         if m == 0:
