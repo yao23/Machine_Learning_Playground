@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 66.79%
     def exist(self, board, word):
         """
         :type board: List[List[str]]
         :type word: str
         :rtype: bool
+
+        beats 66.79%
         """
         if not board:
             return False
@@ -14,8 +15,16 @@ class Solution(object):
                     return True
         return False
 
-    # check whether can find word, start at (i,j) position
     def dfs(self, board, i, j, word):
+        """
+        :param board:
+        :param i:
+        :param j:
+        :param word:
+        :return:
+
+        check whether can find word, start at (i,j) position
+        """
         if len(word) == 0:  # all the characters are checked
             return True
         if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]) or word[0] != board[i][j]:
