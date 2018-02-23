@@ -1,19 +1,25 @@
 class Solution(object):
-    # Iterative
-    # beats 59.50%
     def subsets(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
+
+        Iterative
+        beats 59.50%
         """
         res = [[]]
         for num in sorted(nums):
             res += [item+[num] for item in res]
         return res
 
-    # DFS recursively
     def subsets1(self, nums):
-        # beats 16.57%
+        """
+        :param nums:
+        :return:
+
+        DFS recursively
+        beats 16.57%
+        """
         res = []
         self.dfs(sorted(nums), 0, [], res)
         return res
@@ -23,8 +29,13 @@ class Solution(object):
         for i in xrange(index, len(nums)):
             self.dfs(nums, i + 1, path + [nums[i]], res)
 
-    # Bit Manipulation
     def subsets2(self, nums):
+        """
+        :param nums:
+        :return:
+
+        Bit Manipulation
+        """
         res = []
         nums.sort()
         for i in xrange(1 << len(nums)):
