@@ -4,6 +4,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
 
+        https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/discuss/27976/3-6-easy-lines-C++-Java-Python-Ruby
+
         beats 96.31%
         """
         i = 0
