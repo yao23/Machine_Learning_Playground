@@ -1,15 +1,17 @@
 # Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
 
 class Solution(object):
-    # beats 8.93%
     def deleteDuplicates(self, head):
         """
         :type head: ListNode
         :rtype: ListNode
+
+        beats 8.93%
         """
         dummy = pre = ListNode(0)
         dummy.next = head
