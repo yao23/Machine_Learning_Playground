@@ -4,12 +4,14 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution(object):
-    # beats 8.80%
     def deleteDuplicates(self, head):
         """
         :type head: ListNode
         :rtype: ListNode
+
+        beats 8.80%
         """
         cur = head
         while cur:
