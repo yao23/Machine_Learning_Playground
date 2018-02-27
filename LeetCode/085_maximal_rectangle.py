@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 75.80%
     def maximalRectangle(self, matrix):
         """
         :type matrix: List[List[str]]
         :rtype: int
+
+        beats 75.80%
         """
         if not matrix or not matrix[0]:
             return 0
