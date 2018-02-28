@@ -1,16 +1,18 @@
 # Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
 
 class Solution(object):
-    # beats 91.52%
     def partition(self, head, x):
         """
         :type head: ListNode
         :type x: int
         :rtype: ListNode
+
+        beats 91.52%
         """
         h1 = l1 = ListNode(0)
         h2 = l2 = ListNode(0)
