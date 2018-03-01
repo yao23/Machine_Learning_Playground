@@ -77,11 +77,7 @@ class ClotheMatchingSystem:
         """
         with open(self.expert_recommendation_path) as data_file, \
                 open(self.model_on_expert_data, 'a') as model_file:
-            # count = 0
             for line in data_file:
-                # count += 1
-                # if count > 3:
-                #     break
                 line_arr_1 = line.split(' ')
                 match_list = line_arr_1[1]
                 line_arr_2 = match_list.split(';')
@@ -89,7 +85,6 @@ class ClotheMatchingSystem:
                     clothes = clothes_list.split(',')
                     for clothe_id in clothes:
                         tmp_result = clothe_id.rstrip('\n') + ' ' + self.get_match_items(idx, line_arr_2)
-                        # print(tmp_result)
                         model_file.write(tmp_result + '\n')
 
     def test_items(self):
