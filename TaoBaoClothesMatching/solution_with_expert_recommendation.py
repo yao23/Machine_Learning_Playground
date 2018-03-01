@@ -53,20 +53,20 @@ class ClotheMatchingSystem:
                 else:
                     return result_list[:-1]
 
-    def get_match_items(self, index, clothes_list):
+    def get_match_items(self, index, match_list_arr):
         """
         :param index:
-        :param clothes_list:
+        :param match_list_arr:
         :return:
 
         get match items based on expert recommendation data
         """
         match_items = ''
-        for idx, clothes in enumerate(clothes_list):
+        for idx, match_item_ids in enumerate(match_list_arr):
             if idx == index:
                 continue
             else:
-                match_items = match_items + clothes.rstrip('\n') + ";"
+                match_items = match_items + match_item_ids.rstrip('\n') + ";"
         return match_items[:-1]
 
     def train_model_with_expert_data(self):
@@ -74,18 +74,22 @@ class ClotheMatchingSystem:
         :return:
 
         train model based on expert recommendation data
+
+        model format:
+        source item id         matched items
+        1                      5,6;7,8
         """
         with open(self.expert_recommendation_path) as data_file, \
                 open(self.model_on_expert_data, 'a') as model_file:
             for line in data_file:
-                line_arr_1 = line.split(' ')
-                match_list = line_arr_1[1]
-                line_arr_2 = match_list.split(';')
-                for idx, clothes_list in enumerate(line_arr_2):
-                    clothes = clothes_list.split(',')
-                    for clothe_id in clothes:
-                        tmp_result = clothe_id.rstrip('\n') + ' ' + self.get_match_items(idx, line_arr_2)
-                        model_file.write(tmp_result + '\n')
+                line_arr = line.split(' ')
+                match_list = line_arr[1]
+                match_list_arr = match_list.split(';')
+                for idx, match_item_ids in enumerate(match_list_arr):
+                    match_item_id_arr = match_item_ids.split(',')
+                    for match_item_id in match_item_id_arr:
+                        match_items_row = match_item_id.rstrip('\n') + ' ' + self.get_match_items(idx, match_list_arr)
+                        model_file.write(match_items_row + '\n')
 
     def test_items(self):
         """
