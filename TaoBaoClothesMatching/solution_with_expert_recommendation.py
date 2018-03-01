@@ -118,7 +118,6 @@ class ClotheMatchingSystem:
                         match_items_row_arr = match_items_row.split(' ')
                         item_id = int(match_items_row_arr[0])
                         if item_id == item_id_test:
-                            print(match_items_row)
                             tmp_result_file.write(match_items_row)
 
 
