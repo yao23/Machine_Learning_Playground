@@ -11,6 +11,9 @@ class ClotheMatchingSystem:
         self.example_result_path = './data/example_result.txt'
         self.purchase_data_path = './data/user_bought_history.txt'
         self.expert_recommendation_path = './data/dim_fashion_matchsets.txt'
+        self.model_on_expert_data = './model/model_on_expert_data.txt'
+
+        self.train_model_with_expert_data()
 
     def is_in_list(self, item_id, clothe_list):
         """
@@ -50,6 +53,45 @@ class ClotheMatchingSystem:
                 else:
                     return result_list[:-1]
 
+    def get_match_items(self, index, clothes_list):
+        """
+        :param index:
+        :param clothes_list:
+        :return:
+
+        get match items based on expert recommendation data
+        """
+        match_items = ''
+        for idx, clothes in enumerate(clothes_list):
+            if idx == index:
+                continue
+            else:
+                match_items = match_items + clothes.rstrip('\n') + ";"
+        return match_items[:-1]
+
+    def train_model_with_expert_data(self):
+        """
+        :return:
+
+        train model based on expert recommendation data
+        """
+        with open(self.expert_recommendation_path) as data_file, \
+                open(self.model_on_expert_data, 'a') as model_file:
+            # count = 0
+            for line in data_file:
+                # count += 1
+                # if count > 3:
+                #     break
+                line_arr_1 = line.split(' ')
+                match_list = line_arr_1[1]
+                line_arr_2 = match_list.split(';')
+                for idx, clothes_list in enumerate(line_arr_2):
+                    clothes = clothes_list.split(',')
+                    for clothe_id in clothes:
+                        tmp_result = clothe_id.rstrip('\n') + ' ' + self.get_match_items(idx, line_arr_2)
+                        # print(tmp_result)
+                        model_file.write(tmp_result + '\n')
+
     def test_items(self):
         """
         :return:
@@ -65,4 +107,4 @@ class ClotheMatchingSystem:
 
 
 clothes_matching_system = ClotheMatchingSystem()
-clothes_matching_system.test_items()  # 1417 is a test example, should return "160870;3118604"
+# clothes_matching_system.test_items()  # 1417 is a test example, should return "160870;3118604"
