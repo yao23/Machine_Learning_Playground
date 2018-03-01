@@ -1,8 +1,21 @@
 class ClotheMatchingSystem:
+    """
+    class which represents Taobao Clothes Matching System
+    """
     def __init__(self):
+        """
+        init method
+        """
         pass
 
     def is_in_list(self, item_id, clothe_list):
+        """
+        :param item_id:
+        :param clothe_list:
+        :return:
+
+        check item id is in clothes list or not
+        """
         clothes = clothe_list.split(",")
         for clothe_id in clothes:
             if item_id == int(clothe_id):
@@ -10,6 +23,12 @@ class ClotheMatchingSystem:
         return False
 
     def get_match_list(self, item_id):
+        """
+        :param item_id:
+        :return:
+
+        get match list with the given item id
+        """
         with open("./data/dim_fashion_matchsets.txt") as input_file:
             for line in input_file:
                 tmp_line_arr_1 = line.split(" ")
@@ -28,6 +47,11 @@ class ClotheMatchingSystem:
                     return result_list[:-1]
 
     def test_items(self):
+        """
+        :return:
+
+        test method to get matching list with item ids
+        """
         with open("./data/test_items.txt") as input_file:
             for line in input_file:
                 item_id = int(line)
