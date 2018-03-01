@@ -4,9 +4,13 @@ class ClotheMatchingSystem:
     """
     def __init__(self):
         """
-        init method
+        init method (data path)
         """
-        pass
+        self.test_item_path = './data/test_items.txt'
+        self.item_data_path = './data/dim_items.txt'
+        self.example_result_path = './data/example_result.txt'
+        self.purchase_data_path = './data/user_bought_history.txt'
+        self.expert_recommendation_path = './data/dim_fashion_matchsets.txt'
 
     def is_in_list(self, item_id, clothe_list):
         """
@@ -29,7 +33,7 @@ class ClotheMatchingSystem:
 
         get match list with the given item id
         """
-        with open('./data/dim_fashion_matchsets.txt') as input_file:
+        with open(self.expert_recommendation_path) as input_file:
             for line in input_file:
                 tmp_line_arr_1 = line.split(' ')
                 match_list = tmp_line_arr_1[1]
@@ -52,7 +56,7 @@ class ClotheMatchingSystem:
 
         test method to get matching list with item ids
         """
-        with open('./data/test_items.txt') as input_file:
+        with open(self.test_item_path) as input_file:
             for line in input_file:
                 item_id = int(line)
                 match_list = self.get_match_list(item_id)
