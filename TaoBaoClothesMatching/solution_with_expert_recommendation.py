@@ -12,8 +12,7 @@ class ClotheMatchingSystem:
         self.purchase_data_path = './data/user_bought_history.txt'
         self.expert_recommendation_path = './data/dim_fashion_matchsets.txt'
         self.model_on_expert_data = './model/model_on_expert_data.txt'
-
-        self.train_model_with_expert_data()
+        self.tmp_result_path = './data/tmp_result.txt'
 
     def is_in_list(self, item_id, clothe_list):
         """
@@ -104,6 +103,26 @@ class ClotheMatchingSystem:
                 if match_list:
                     print("item: %d, get matching list: %s" % (item_id, match_list))
 
+    def test_items_with_model(self):
+            """
+            :return:
+
+            test method to get matching list with item ids based on model with expert data
+            """
+            with open(self.test_item_path) as test_file, \
+                    open(self.model_on_expert_data) as model_file, \
+                        open(self.tmp_result_path, 'a') as tmp_result_file:
+                for line in test_file:
+                    item_id_test = int(line)
+                    for match_items_row in model_file:
+                        match_items_row_arr = match_items_row.split(' ')
+                        item_id = int(match_items_row_arr[0])
+                        if item_id == item_id_test:
+                            print(match_items_row)
+                            tmp_result_file.write(match_items_row)
+
 
 clothes_matching_system = ClotheMatchingSystem()
+# clothes_matching_system.train_model_with_expert_data()
 # clothes_matching_system.test_items()  # 1417 is a test example, should return "160870;3118604"
+clothes_matching_system.test_items_with_model()
