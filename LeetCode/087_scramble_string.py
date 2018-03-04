@@ -1,11 +1,11 @@
 class Solution(object):
-    # @return a boolean
-    # beats 77.78%
     def isScramble(self, s1, s2):
         """
         :type s1: str
         :type s2: str
         :rtype: bool
+
+        beats 77.78%
         """
         n, m = len(s1), len(s2)
         if n != m or sorted(s1) != sorted(s2):
