@@ -6,13 +6,13 @@ class ClotheMatchingSystem:
         """
         init method (data path)
         """
-        self.test_item_path = './data/test_items.txt'
-        self.item_data_path = './data/dim_items.txt'
-        self.example_result_path = './data/example_result.txt'
-        self.purchase_data_path = './data/user_bought_history.txt'
-        self.expert_recommendation_path = './data/dim_fashion_matchsets.txt'
+        self.test_item_path = './data/text_data/test_items.txt'
+        self.item_data_path = './data/text_data/items.txt'
+        self.example_result_path = './data/text_data/example_result.txt'
+        self.purchase_data_path = './data/text_data/bought_history.txt'
+        self.expert_recommendation_path = './data/text_data/match_set.txt'
         self.model_on_expert_data = './model/model_on_expert_data.txt'
-        self.tmp_result_path = './data/tmp_result.txt'
+        self.tmp_result_path = './data/text_data/tmp_result.txt'
 
     def is_in_list(self, item_id, clothe_list):
         """
