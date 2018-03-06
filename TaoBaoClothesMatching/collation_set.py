@@ -60,6 +60,7 @@ class CollationSet(object):
                     match_item_pairs.append([min(item_id, match_item_id), max(item_id, match_item_id)])
         return match_item_pairs
 
+
 if __name__ == '__main__':
     import util
 
