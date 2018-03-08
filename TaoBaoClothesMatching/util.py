@@ -62,7 +62,15 @@ def load_bought_history(bought_history_path):
             {user_id, BoughtHistory([1,2,3])}
     """
     # TODO: finish the codes here
-
+    purchase_history_dic = []
+    with open(bought_history_path) as input_file:
+        for line in input_file:
+            line_arr = line.split(' ')
+            match_list = line_arr[1]
+            match_list_arr = match_list.split(';')
+            collation_set = CollationSet(match_list_arr)
+            purchase_history_dic.append(collation_set)
+        return purchase_history_dic
 
 if __name__ == '__main__':
     print 'Bingo'
