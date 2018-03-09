@@ -60,6 +60,27 @@ class CollationSet(object):
                     match_item_pairs.append([min(item_id, match_item_id), max(item_id, match_item_id)])
         return match_item_pairs
 
+    def to_matched_item_cat_pair(self, item_info):
+        """ Convert collation set into a list of category pairs of matched item pairs.
+
+            Args:
+                item_info: a dictionary in which key is item_id, value is Item(item_id, category, image_path)
+
+            Return:
+                A list of category pairs. For example [[1,2], [3], [4,5,6]] is collation set,
+                [[cat(1),cat(3)], [cat(2), cat(3)], [cat(1), cat(4)], [cat(1), cat(5)], [cat(1), cat(6)], [cat(3),
+                  cat(4)], [cat(3), cat(5)], [cat(3), cat(6)]] here cat(item_id) is the category_id of item_id which
+                can be obtained from item_info.
+        """
+        # TODO: finish the codes here
+        match_item_pairs = self.to_matched_item_pairs()
+        match_item_cat_pairs = len(match_item_pairs)
+        for index, item_pair in enumerate(match_item_pairs):
+            item_cat_pair = [0] * 2
+            for idx, item_id in enumerate(item_pair):
+                item_cat_pair[idx] = item_info[item_id]
+            match_item_cat_pairs[index] = item_cat_pair
+
 
 if __name__ == '__main__':
     import util
