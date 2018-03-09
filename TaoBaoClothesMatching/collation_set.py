@@ -72,7 +72,6 @@ class CollationSet(object):
                   cat(4)], [cat(3), cat(5)], [cat(3), cat(6)]] here cat(item_id) is the category_id of item_id which
                 can be obtained from item_info.
         """
-        # TODO: finish the codes here
         match_item_pairs = self.to_matched_item_pairs()
         match_item_cat_pairs = len(match_item_pairs)
         for index, item_pair in enumerate(match_item_pairs):
