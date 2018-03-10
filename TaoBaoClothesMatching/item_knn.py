@@ -1,3 +1,4 @@
+import collections
 
 
 class ItemKNN(object):
@@ -22,6 +23,49 @@ class ItemKNN(object):
                 The above table is expected to be stored into a local file.
         """
         # TODO: finish codes here.
+        cat_pair_prob_dic = {}
+        cat_pair_count_dic = {}
+        cat_pair_set_dic = {}
+        for cat_pair in matched_category_pairs:
+            if cat_pair in cat_pair_count_dic:
+                cat_pair_count_dic[cat_pair] += 1
+            else:
+                cat_pair_count_dic[cat_pair] = 1
+            cat_one = cat_pair[0]
+            cat_two = cat_pair[1]
+            if cat_one in cat_pair_set_dic:
+                cat_pair_set = cat_pair_set_dic[cat_one]
+                if cat_two not in cat_pair_set:
+                    cat_pair_set.add(cat_two)
+                else:
+                    continue
+            else:
+                cat_pair_set = set()
+                cat_pair_set.add(cat_two)
+                cat_pair_set_dic[cat_one] = cat_pair_set
+
+        cat_pair_count = 0  # TODO: calculate original count (len(matched_category_pairs)) or this one?
+        for cat_id, cat_pair_set in cat_pair_set_dic.items():
+            if len(cat_pair_set) <= neigh_size:
+                for match_cat_id in cat_pair_set:
+                    cat_pair = (cat_id, match_cat_id)
+                    cat_pair_count += cat_pair_count_dic[cat_pair]
+                    cat_pair_prob_dic[cat_pair] = 0
+            else:
+                tmp_cat_pair_dic = {}
+                for match_cat_id in cat_pair_set:
+                    cat_pair = (cat_id, match_cat_id)
+                    tmp_cat_pair_dic[cat_pair] = cat_pair_count_dic[cat_pair]
+                tmp_cat_pair_counter = collections.Counter(tmp_cat_pair_dic)
+                for cat_pair, cat_pair_count in tmp_cat_pair_counter.most_common(neigh_size):
+                    cat_pair_count += cat_pair_count_dic[cat_pair]
+                    cat_pair_prob_dic[cat_pair] = 0
+
+        for cat_pair in cat_pair_prob_dic:
+            cat_pair_prob_dic[cat_pair] = cat_pair_count_dic[cat_pair] / cat_pair_count
+
+        # TODO: write to local file
+        return cat_pair_prob_dic
 
     @staticmethod
     def learn_item_relationship(purchased_item_pairs, neigh_size=20):
