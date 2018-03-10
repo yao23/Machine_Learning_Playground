@@ -8,7 +8,8 @@ class ItemKNN(object):
 
             Args:
                 matched_category_pairs: a list of matched category pairs obtained from collation set.
-                neigh_size: neighborhood size, for each source category, we only need to keep its more relevant top neigh_size category.
+                neigh_size: neighborhood size, for each source category, we only need to keep its more relevant top
+                            neigh_size category.
 
             Return:
                 a table with three columns like
@@ -27,8 +28,9 @@ class ItemKNN(object):
         """ Learn item matching relationship from purchased history, and store them into a local file.
 
             Args:
-                purchased item paris: a list of purchased item pairs obtained from item purchased histogry.
-                neigh_size: neighborhood size, for each source item, we only need to keep its more relevant top neigh_size items.
+                purchased item paris: a list of purchased item pairs obtained from item purchased history.
+                neigh_size: neighborhood size, for each source item, we only need to keep its more relevant top
+                            neigh_size items.
 
             Return:
                 a table with three columns like
