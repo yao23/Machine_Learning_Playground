@@ -87,3 +87,46 @@ class ItemKNN(object):
                 The above table is expected to be stored into a local file.
         """
         # TODO: finish codes here.
+        item_pair_prob_dic = {}
+        item_pair_count_dic = {}
+        item_pair_set_dic = {}
+        for item_pair in purchased_item_pairs:
+            if item_pair in item_pair_count_dic:
+                item_pair_count_dic[item_pair] += 1
+            else:
+                item_pair_count_dic[item_pair] = 1
+            item_one = item_pair[0]
+            item_two = item_pair[1]
+            if item_one in item_pair_set_dic:
+                item_pair_set = item_pair_set_dic[item_one]
+                if item_two not in item_pair_set:
+                    item_pair_set.add(item_two)
+                else:
+                    continue
+            else:
+                item_pair_set = set()
+                item_pair_set.add(item_two)
+                item_pair_set_dic[item_one] = item_pair_set
+
+        item_pair_count = 0  # TODO: calculate original count (len(purchased_item_pairs)) or this one?
+        for item_id, item_pair_set in item_pair_set_dic.items():
+            if len(item_pair_set) <= neigh_size:
+                for match_cat_id in item_pair_set:
+                    item_pair = (item_id, match_cat_id)
+                    item_pair_count += item_pair_count_dic[item_pair]
+                    item_pair_prob_dic[item_pair] = 0
+            else:
+                tmp_item_pair_dic = {}
+                for match_cat_id in item_pair_set:
+                    item_pair = (item_id, match_cat_id)
+                    tmp_item_pair_dic[item_pair] = item_pair_count_dic[item_pair]
+                tmp_cat_pair_counter = collections.Counter(tmp_item_pair_dic)
+                for item_pair, item_pair_count in tmp_cat_pair_counter.most_common(neigh_size):
+                    item_pair_count += item_pair_count_dic[item_pair]
+                    item_pair_prob_dic[item_pair] = 0
+
+        for item_pair in item_pair_prob_dic:
+            item_pair_prob_dic[item_pair] = item_pair_count_dic[item_pair] / item_pair_count
+
+        # TODO: write to local file
+        return item_pair_prob_dic
