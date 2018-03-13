@@ -2,6 +2,7 @@
 
 import itertools
 
+
 class PurchaseHistory(object):
     def __init__(self, _user_id, _items):
         self._user_id = _user_id
