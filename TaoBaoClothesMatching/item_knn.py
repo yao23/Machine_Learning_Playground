@@ -127,8 +127,10 @@ class ItemKNN(object):
                     item_pair_count += item_pair_count_dic[item_pair]
                     item_pair_prob_dic[item_pair] = 0
 
-        for item_pair in item_pair_prob_dic:
-            item_pair_prob_dic[item_pair] = item_pair_count_dic[item_pair] / item_pair_count
+        with open(constant.ITEM_RELATIONSHIP_FILE, 'a') as model_file:
+            for item_pair in item_pair_prob_dic:
+                probability = item_pair_count_dic[item_pair] / item_pair_count
+                item_pair_prob_dic[item_pair] = probability
+                model_file.write(item_pair[0] + ' ' + item_pair[1] + ' ' + str(probability) + '\n')
 
-        # TODO: write to local file
         return item_pair_prob_dic
