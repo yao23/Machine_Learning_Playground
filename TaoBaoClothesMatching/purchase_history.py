@@ -62,7 +62,7 @@ class PurchaseHistory(object):
         return item_pairs
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     print 'Bingo'
     purchased_history = PurchaseHistory(_user_id='0001', _items=['1', '2', '3'])
     print purchased_history.to_item_pairs()

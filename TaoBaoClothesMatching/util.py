@@ -72,6 +72,7 @@ def load_bought_history(bought_history_path):
             purchase_history_dic.append(collation_set)
         return purchase_history_dic
 
+
 if __name__ == '__main__':
     print 'Bingo'
     # TODO: write some codes to test each function or write independent test class
