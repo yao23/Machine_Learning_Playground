@@ -24,3 +24,7 @@ COMMA = ','
 SLASH = '/'
 SEMICOLON = ';'
 ITEM_IMAGE_SUFFIX = '.jpg'
+
+CATEGORY_MATCHING_FILE = '../model/category_matching_relationship.txt'
+
+ITEM_RELATIONSHIP_FILE = '../model/item_relationship.txt'

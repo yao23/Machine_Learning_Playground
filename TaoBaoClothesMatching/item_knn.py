@@ -1,5 +1,5 @@
 import collections
-
+import constant
 
 class ItemKNN(object):
 
@@ -61,10 +61,12 @@ class ItemKNN(object):
                     cat_pair_count += cat_pair_count_dic[cat_pair]
                     cat_pair_prob_dic[cat_pair] = 0
 
-        for cat_pair in cat_pair_prob_dic:
-            cat_pair_prob_dic[cat_pair] = cat_pair_count_dic[cat_pair] / cat_pair_count
+        with open(constant.CATEGORY_MATCHING_FILE, 'a') as model_file:
+            for cat_pair in cat_pair_prob_dic:
+                probability = cat_pair_count_dic[cat_pair] / cat_pair_count
+                cat_pair_prob_dic[cat_pair] = probability
+                model_file.write(cat_pair[0] + ' ' + cat_pair[1] + ' ' + str(probability) + '\n')
 
-        # TODO: write to local file
         return cat_pair_prob_dic
 
     @staticmethod
