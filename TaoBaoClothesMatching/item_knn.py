@@ -1,6 +1,7 @@
 import collections
 import constant
 
+
 class ItemKNN(object):
 
     @staticmethod
@@ -22,7 +23,6 @@ class ItemKNN(object):
 
                 The above table is expected to be stored into a local file.
         """
-        # TODO: finish codes here.
         cat_pair_prob_dic = {}
         cat_pair_count_dic = {}
         cat_pair_set_dic = {}
@@ -44,7 +44,7 @@ class ItemKNN(object):
                 cat_pair_set.add(cat_two)
                 cat_pair_set_dic[cat_one] = cat_pair_set
 
-        cat_pair_count = 0  # TODO: calculate original count (len(matched_category_pairs)) or this one?
+        cat_pair_count = 0
         for cat_id, cat_pair_set in cat_pair_set_dic.items():
             if len(cat_pair_set) <= neigh_size:
                 for match_cat_id in cat_pair_set:
@@ -88,7 +88,6 @@ class ItemKNN(object):
 
                 The above table is expected to be stored into a local file.
         """
-        # TODO: finish codes here.
         item_pair_prob_dic = {}
         item_pair_count_dic = {}
         item_pair_set_dic = {}
@@ -110,7 +109,7 @@ class ItemKNN(object):
                 item_pair_set.add(item_two)
                 item_pair_set_dic[item_one] = item_pair_set
 
-        item_pair_count = 0  # TODO: calculate original count (len(purchased_item_pairs)) or this one?
+        item_pair_count = 0
         for item_id, item_pair_set in item_pair_set_dic.items():
             if len(item_pair_set) <= neigh_size:
                 for match_cat_id in item_pair_set:
