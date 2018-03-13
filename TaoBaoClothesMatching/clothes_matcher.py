@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 import constant
+import collections
 
 
 class ClothesMatcher(object):
@@ -23,7 +24,8 @@ class ItemKNNMatcher(ClothesMatcher):
         """ Load trained model from local file
 
         """
-        self.item_relationship_dic = []
+        self.item_pair_prob_dic = {}
+        self.item_relationship_dic = {}
         with open(constant.ITEM_RELATIONSHIP_FILE) as input_file:
             for line in input_file:
                 line_arr = line.split(' ')
@@ -36,6 +38,7 @@ class ItemKNNMatcher(ClothesMatcher):
                     match_item_set = set()
                     match_item_set.add(match_item_id)
                     self.item_relationship_dic[item_id] = match_item_set
+                self.item_pair_prob_dic[(item_id, match_item_id)] = line_arr[2]
 
     def find_matched_clothes(self, source_item, k):
         """ Given a source item id, find its most matched k items.
@@ -49,6 +52,10 @@ class ItemKNNMatcher(ClothesMatcher):
             if len(match_item_set) <= k:
                 return list(match_item_set)
             else:
-                return list(match_item_set[:k+1])
+                tmp_item_pair_prob_dic = {}
+                for match_item_id in match_item_set:
+                    item_pair = (source_item, match_item_id)
+                    tmp_item_pair_prob_dic[item_pair] = self.item_pair_prob_dic[item_pair]
+                return list(collections.Counter(tmp_item_pair_prob_dic).most_common(k))
         else:
             return []
