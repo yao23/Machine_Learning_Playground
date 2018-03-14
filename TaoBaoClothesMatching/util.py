@@ -27,7 +27,15 @@ def load_item_info(item_info_path, item_image_folders):
         Returns:
             {item_id: ITEM(id, cat_id, image_path)}
     """
-    # TODO: finish the codes here
+    item_dict = {}
+    with open(item_info_path) as input_file:
+        for line in input_file:
+            line_arr = line.split(' ')
+            item_id = line_arr[0]
+            category_id = line_arr[1]
+            image_path = item_image_folders[item_id]  # TODO: format of item_image_folders? (assume dictionary now)
+            item_dict[item_id] = Item(item_id, category_id, image_path)
+        return item_dict
 
 
 def load_collation_set(collation_set_path):
