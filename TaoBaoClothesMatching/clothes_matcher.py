@@ -1,6 +1,8 @@
 from abc import ABCMeta, abstractmethod
 import constant
 import collections
+import util
+import item_knn
 
 
 class ClothesMatcher(object):
@@ -24,6 +26,10 @@ class ItemKNNMatcher(ClothesMatcher):
         """ Load trained model from local file
 
         """
+        self.item_dict = util.load_item_info(constant.ITEM_INFO_FILE, constant.ITEM_IMAGE_PATHS)
+        self.collation_set_list = util.load_collation_set(constant.COLLATION_SET_FILE)
+        self.purchase_history_dic = util.load_bought_history(constant.BOUGHT_HISTORY)
+
         self.item_pair_prob_dic = {}
         self.item_relationship_dic = {}
         with open(constant.ITEM_RELATIONSHIP_FILE) as input_file:
@@ -47,6 +53,19 @@ class ItemKNNMatcher(ClothesMatcher):
                 source_item: source item id
                 k: number of matched items
         """
+        matched_category_pairs = []
+        for collation_set in self.collation_set_list:
+            matched_category_pairs.append(collation_set.to_matched_item_cat_pair(self.item_dict))
+        cat_pair_prob_dic = item_knn.ItemKNN.learn_category_matching_relationship(matched_category_pairs, k)
+
+        purchased_item_pairs = []
+        for user_id, purchase_history in self.purchase_history_dic:
+            purchased_item_pairs.append(purchase_history.to_item_pairs())
+        item_pair_prob_dic = item_knn.ItemKNN.learn_item_relationship(purchased_item_pairs, k)
+
+        item = self.item_dict[source_item]
+        category_id = item.get_cat_id()
+
         if source_item in self.item_relationship_dic:
             match_item_set = self.item_relationship_dic[source_item]
             if len(match_item_set) <= k:
