@@ -41,7 +41,7 @@ def load_collation_set(collation_set_path):
                 [CollationSet([[1,2],[3],[4]]), CollationSet([[1],[9],[5]]), ....]
     """
     collation_set_list = []
-    with open(constant.COLLATION_SET_FILE) as input_file:
+    with open(collation_set_path) as input_file:
         for line in input_file:
             line_arr = line.split(' ')
             match_list = line_arr[1]
