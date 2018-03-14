@@ -74,7 +74,7 @@ class ItemKNN(object):
         """ Learn item matching relationship from purchased history, and store them into a local file.
 
             Args:
-                purchased item paris: a list of purchased item pairs obtained from item purchased history.
+                purchased_item_pairs: a list of purchased item pairs obtained from item purchased history.
                 neigh_size: neighborhood size, for each source item, we only need to keep its more relevant top
                             neigh_size items.
 
