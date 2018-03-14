@@ -50,6 +50,7 @@ def load_collation_set(collation_set_path):
             collation_set_list.append(collation_set)
         return collation_set_list
 
+
 def load_bought_history(bought_history_path):
     """ Load bought history records.
 
@@ -60,7 +61,6 @@ def load_bought_history(bought_history_path):
             a dictionary of purchased history. For example
             {user_id, BoughtHistory([1,2,3])}
     """
-    # TODO: finish the codes here
     purchase_history_dic = []
     with open(bought_history_path) as input_file:
         for line in input_file:
