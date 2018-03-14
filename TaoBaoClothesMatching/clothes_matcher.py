@@ -64,17 +64,51 @@ class ItemKNNMatcher(ClothesMatcher):
         item_pair_prob_dic = item_knn.ItemKNN.learn_item_relationship(purchased_item_pairs, k)
 
         item = self.item_dict[source_item]
-        category_id = item.get_cat_id()
+        target_cat_id = item.get_cat_id()
 
-        if source_item in self.item_relationship_dic:
-            match_item_set = self.item_relationship_dic[source_item]
-            if len(match_item_set) <= k:
-                return list(match_item_set)
+        # get most k relevant category
+        match_category_list = []
+        for cat_pair, probability in cat_pair_prob_dic:
+            if target_cat_id == cat_pair[0]:
+                match_category_list.append(cat_pair[1])
             else:
-                tmp_item_pair_prob_dic = {}
-                for match_item_id in match_item_set:
-                    item_pair = (source_item, match_item_id)
-                    tmp_item_pair_prob_dic[item_pair] = self.item_pair_prob_dic[item_pair]
-                return list(collections.Counter(tmp_item_pair_prob_dic).most_common(k))
+                continue
+        # get most k relevant item
+        if len(match_category_list) > 0:
+            match_item_set = set()
+            match_category_dic = {}
+            for item_pair, probability in item_pair_prob_dic:
+                source_cat_id = self.item_dict[item_pair[0]].get_cat_id()
+                if target_cat_id == source_cat_id:
+                    match_cat_id = self.item_dict[item_pair[1]].get_cat_id()
+                    if source_item != item_pair[1] and match_cat_id in match_category_list:
+                        if match_cat_id in match_category_dic:
+                            cur_item_pair = match_category_dic[match_cat_id]
+                            if probability > self.item_pair_prob_dic[cur_item_pair]:
+                                match_category_dic[match_cat_id] = item_pair
+                            else:
+                                continue
+                        else:
+                            match_category_dic[match_cat_id] = item_pair
+                else:
+                    continue
+            for match_cat_id, item_pair in match_category_dic:
+                match_item_id = item_pair[1]
+                if match_item_id in match_item_set:
+                    continue
+                else:
+                    match_item_set.add(match_item_id)
+            return list(match_item_set)
         else:
-            return []
+            if source_item in self.item_relationship_dic:
+                match_item_set = self.item_relationship_dic[source_item]
+                if len(match_item_set) <= k:
+                    return list(match_item_set)
+                else:
+                    tmp_item_pair_prob_dic = {}
+                    for match_item_id in match_item_set:
+                        item_pair = (source_item, match_item_id)
+                        tmp_item_pair_prob_dic[item_pair] = self.item_pair_prob_dic[item_pair]
+                    return list(collections.Counter(tmp_item_pair_prob_dic).most_common(k))
+            else:
+                return []
