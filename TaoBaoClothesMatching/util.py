@@ -40,7 +40,6 @@ def load_collation_set(collation_set_path):
             a list of collation sets. For example
                 [CollationSet([[1,2],[3],[4]]), CollationSet([[1],[9],[5]]), ....]
     """
-    # TODO: finish the codes here
     collation_set_list = []
     with open(constant.COLLATION_SET_FILE) as input_file:
         for line in input_file:
