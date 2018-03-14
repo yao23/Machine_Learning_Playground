@@ -14,7 +14,13 @@ def load_item_image(item_image_folders):
         Returns:
             a dictionary of {item_id: item image path}
     """
-    # TODO: finish the codes here
+    item_image_dict = {}
+    for image_folder in item_image_folders:  # TODO: assume image_folder is like "../data/image_data/img1"
+        folder_arr = image_folder.split(constant.SLASH)
+        image_name = folder_arr[-1]
+        item_id = int(image_name[3:])
+        item_image_dict[item_id] = image_folder + constant.ITEM_IMAGE_SUFFIX
+    return item_image_dict
 
 
 def load_item_info(item_info_path, item_image_folders):
@@ -27,15 +33,16 @@ def load_item_info(item_info_path, item_image_folders):
         Returns:
             {item_id: ITEM(id, cat_id, image_path)}
     """
+    item_image_dict = load_item_image(item_image_folders)
     item_dict = {}
     with open(item_info_path) as input_file:
         for line in input_file:
             line_arr = line.split(' ')
             item_id = line_arr[0]
             category_id = line_arr[1]
-            image_path = item_image_folders[item_id]  # TODO: format of item_image_folders? (assume dictionary now)
+            image_path = item_image_dict[item_id]
             item_dict[item_id] = Item(item_id, category_id, image_path)
-        return item_dict
+    return item_dict
 
 
 def load_collation_set(collation_set_path):
