@@ -25,7 +25,6 @@ class PurchaseHistory(object):
                 outputs of co-purchased item pairs are
                 [[1, 2], [1, 3], [2, 3]]
         """
-        # TODO: finish the codes here
         item_pairs = []
         item_set = set()
         for idx, item_id in enumerate(self._items):

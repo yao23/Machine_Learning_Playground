@@ -80,10 +80,10 @@ def load_bought_history(bought_history_path):
     with open(bought_history_path) as input_file:
         for line in input_file:
             line_arr = line.split(' ')
-            match_list = line_arr[1]
-            match_list_arr = match_list.split(';')
-            collation_set = CollationSet(match_list_arr)
-            purchase_history_dic.append(collation_set)
+            user_id = line_arr[0]
+            item_id = line_arr[1]
+            purchase_history = PurchaseHistory(user_id, [item_id])
+            purchase_history_dic[user_id] = purchase_history
         return purchase_history_dic
 
 
