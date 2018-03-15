@@ -2,7 +2,6 @@ from abc import ABCMeta, abstractmethod
 import constant
 import collections
 import util
-import item_knn
 
 
 class ClothesMatcher(object):
@@ -30,6 +29,7 @@ class ItemKNNMatcher(ClothesMatcher):
         self.collation_set_list = util.load_collation_set(constant.COLLATION_SET_FILE)
         self.purchase_history_dic = util.load_bought_history(constant.BOUGHT_HISTORY)
 
+        self.cat_pair_prob_dic = self.load_category_model()
         self.item_pair_prob_dic, self.item_relationship_dic = self.load_item_model()
 
     def find_matched_clothes(self, source_item, k):
@@ -39,17 +39,12 @@ class ItemKNNMatcher(ClothesMatcher):
                 source_item: source item id
                 k: number of matched items
         """
-        matched_category_pairs = []
-        for collation_set in self.collation_set_list:
-            matched_category_pairs.append(collation_set.to_matched_item_cat_pair(self.item_dict))
-        cat_pair_prob_dic = item_knn.ItemKNN.learn_category_matching_relationship(matched_category_pairs, k)
-
         item = self.item_dict[source_item]
         target_cat_id = item.get_cat_id()
 
         # get most k relevant category
         match_category_list = []
-        for cat_pair, probability in cat_pair_prob_dic:
+        for cat_pair, probability in self.cat_pair_prob_dic:
             if target_cat_id == cat_pair[0]:
                 match_category_list.append(cat_pair[1])
             else:
@@ -94,13 +89,28 @@ class ItemKNNMatcher(ClothesMatcher):
             else:
                 return []
 
+    def load_category_model(self):
+        """ Load category relationship model in local file
+
+            :return:
+                cat_pair_prob_dic: dictionary with category pair as key and probability as value
+        """
+        cat_pair_prob_dic = {}
+        with open(constant.CATEGORY_MATCHING_FILE) as input_file:
+            for line in input_file:
+                line_arr = line.split(' ')
+                item_id = line_arr[0]
+                match_item_id = line_arr[1]
+                cat_pair_prob_dic[(item_id, match_item_id)] = line_arr[2]
+        return cat_pair_prob_dic
+
     def load_item_model(self):
         """ Load item relationship model in local file
 
-        :return:
-            item_pair_prob_dic: dictionary with item pair as key and probability as value
+            :return:
+                item_pair_prob_dic: dictionary with item pair as key and probability as value
 
-            item_relationship_dic: dictionary with item id as key and matched item set as value
+                item_relationship_dic: dictionary with item id as key and matched item set as value
         """
         item_pair_prob_dic = {}
         item_relationship_dic = {}
