@@ -79,6 +79,7 @@ class CollationSet(object):
             for idx, item_id in enumerate(item_pair):
                 item_cat_pair[idx] = item_info[item_id].get_cat_id()
             match_item_cat_pairs[index] = item_cat_pair
+        return match_item_cat_pairs
 
 
 if __name__ == '__main__':
