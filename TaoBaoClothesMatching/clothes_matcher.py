@@ -128,3 +128,11 @@ class ItemKNNMatcher(ClothesMatcher):
                     item_relationship_dic[item_id] = match_item_set
                 item_pair_prob_dic[(item_id, match_item_id)] = line_arr[2]
         return item_pair_prob_dic, item_relationship_dic
+
+
+if __name__ == '__main__':
+    print 'Bingo'
+    source_item = 1417
+    k = 5
+    item_knn_matcher = ItemKNNMatcher()
+    item_knn_matcher.find_matched_clothes(source_item, k)
