@@ -30,21 +30,7 @@ class ItemKNNMatcher(ClothesMatcher):
         self.collation_set_list = util.load_collation_set(constant.COLLATION_SET_FILE)
         self.purchase_history_dic = util.load_bought_history(constant.BOUGHT_HISTORY)
 
-        self.item_pair_prob_dic = {}
-        self.item_relationship_dic = {}
-        with open(constant.ITEM_RELATIONSHIP_FILE) as input_file:
-            for line in input_file:
-                line_arr = line.split(' ')
-                item_id = line_arr[0]
-                match_item_id = line_arr[1]
-                if item_id in self.item_relationship_dic:
-                    match_item_set = self.item_relationship_dic[item_id]
-                    match_item_set.add(match_item_id)
-                else:
-                    match_item_set = set()
-                    match_item_set.add(match_item_id)
-                    self.item_relationship_dic[item_id] = match_item_set
-                self.item_pair_prob_dic[(item_id, match_item_id)] = line_arr[2]
+        self.item_pair_prob_dic, self.item_relationship_dic = self.load_item_model()
 
     def find_matched_clothes(self, source_item, k):
         """ Given a source item id, find its most matched k items.
@@ -57,11 +43,6 @@ class ItemKNNMatcher(ClothesMatcher):
         for collation_set in self.collation_set_list:
             matched_category_pairs.append(collation_set.to_matched_item_cat_pair(self.item_dict))
         cat_pair_prob_dic = item_knn.ItemKNN.learn_category_matching_relationship(matched_category_pairs, k)
-
-        purchased_item_pairs = []
-        for user_id, purchase_history in self.purchase_history_dic:
-            purchased_item_pairs.append(purchase_history.to_item_pairs())
-        item_pair_prob_dic = item_knn.ItemKNN.learn_item_relationship(purchased_item_pairs, k)
 
         item = self.item_dict[source_item]
         target_cat_id = item.get_cat_id()
@@ -77,7 +58,7 @@ class ItemKNNMatcher(ClothesMatcher):
         if len(match_category_list) > 0:
             match_item_set = set()
             match_category_dic = {}
-            for item_pair, probability in item_pair_prob_dic:
+            for item_pair, probability in self.item_pair_prob_dic:
                 source_cat_id = self.item_dict[item_pair[0]].get_cat_id()
                 if target_cat_id == source_cat_id:
                     match_cat_id = self.item_dict[item_pair[1]].get_cat_id()
@@ -112,3 +93,28 @@ class ItemKNNMatcher(ClothesMatcher):
                     return list(collections.Counter(tmp_item_pair_prob_dic).most_common(k))
             else:
                 return []
+
+    def load_item_model(self):
+        """ Load item relationship model in local file
+
+        :return:
+            item_pair_prob_dic: dictionary with item pair as key and probability as value
+
+            item_relationship_dic: dictionary with item id as key and matched item set as value
+        """
+        item_pair_prob_dic = {}
+        item_relationship_dic = {}
+        with open(constant.ITEM_RELATIONSHIP_FILE) as input_file:
+            for line in input_file:
+                line_arr = line.split(' ')
+                item_id = line_arr[0]
+                match_item_id = line_arr[1]
+                if item_id in item_relationship_dic:
+                    match_item_set = item_relationship_dic[item_id]
+                    match_item_set.add(match_item_id)
+                else:
+                    match_item_set = set()
+                    match_item_set.add(match_item_id)
+                    item_relationship_dic[item_id] = match_item_set
+                item_pair_prob_dic[(item_id, match_item_id)] = line_arr[2]
+        return item_pair_prob_dic, item_relationship_dic
