@@ -23,23 +23,11 @@ class CollationSet(object):
                 outputs of matched item pairs are
                 [[1, 3], [2, 3], [1, 4], [1, 5], [1, 6], [3, 4], [3, 5], [3, 6]]
         """
-        # TODO: finish the codes here
         match_item_pairs = []
         for idx, match_item_id_arr in enumerate(self._collation_set):
             for match_item_id in match_item_id_arr:
                 match_item_pairs.append(self.get_match_items(idx, match_item_id, self._collation_set))
         return match_item_pairs
-
-        # with open(constant.COLLATION_SET_FILE) as input_file:
-        #     for line in input_file:
-        #         line_arr = line.split(' ')
-        #         match_list = line_arr[1]
-        #         match_list_arr = match_list.split(';')
-        #         for idx, match_item_ids in enumerate(match_list_arr):
-        #             match_item_id_arr = match_item_ids.split(',')
-        #             for match_item_id in match_item_id_arr:
-        #                 matched_item_pairs.append(self.get_match_items(idx, match_item_id, match_list_arr))
-        # return match_item_pairs
 
     def get_match_items(self, index, item_id, match_list_arr):
         """
