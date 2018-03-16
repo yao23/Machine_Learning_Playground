@@ -9,11 +9,11 @@
 # Please check where your files and change these values of these constants.
 #
 
-ITEM_INFO_FILE = '../data/text_data/items.txt'
+ITEM_INFO_FILE = './data/text_data/items.txt'
 
-COLLATION_SET_FILE = '../data/text_data/match_set.txt'
+COLLATION_SET_FILE = './data/text_data/match_set.txt'
 
-BOUGHT_HISTORY = '../data/text_data/bought_history.txt'
+BOUGHT_HISTORY = './data/text_data/bought_history.txt'
 
 ITEM_IMAGE_PATHS = ['../data/image_data/img1',
                     '../data/image_data/img2',
@@ -25,6 +25,6 @@ SLASH = '/'
 SEMICOLON = ';'
 ITEM_IMAGE_SUFFIX = '.jpg'
 
-CATEGORY_MATCHING_FILE = '../model/category_matching_relationship.txt'
+CATEGORY_MATCHING_FILE = './model/category_matching_relationship.txt'
 
-ITEM_RELATIONSHIP_FILE = '../model/item_relationship.txt'
+ITEM_RELATIONSHIP_FILE = './model/item_relationship.txt'
