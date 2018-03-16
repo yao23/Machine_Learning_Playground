@@ -44,8 +44,9 @@ class CollationSet(object):
                 continue
             else:
                 for match_item_id in match_item_ids:
-                    match_item_id = int(match_item_id)
-                    match_item_pairs.append([min(item_id, match_item_id), max(item_id, match_item_id)])
+                    if match_item_id:
+                        match_item_id = int(match_item_id)
+                        match_item_pairs.append([min(item_id, match_item_id), max(item_id, match_item_id)])
         return match_item_pairs
 
     def to_matched_item_cat_pair(self, item_info):
