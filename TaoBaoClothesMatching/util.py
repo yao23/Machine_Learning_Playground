@@ -18,7 +18,7 @@ def load_item_image(item_image_folders):
     for image_folder in item_image_folders:  # TODO: assume image_folder is like "../data/image_data/img1"
         folder_arr = image_folder.split(constant.SLASH)
         image_name = folder_arr[-1]
-        item_id = int(image_name[3:])
+        item_id = image_name[3:]
         item_image_dict[item_id] = image_folder + constant.ITEM_IMAGE_SUFFIX
     return item_image_dict
 
@@ -40,7 +40,10 @@ def load_item_info(item_info_path, item_image_folders):
             line_arr = line.split(' ')
             item_id = line_arr[0]
             category_id = line_arr[1]
-            image_path = item_image_dict[item_id]
+            if item_id in item_image_dict:
+                image_path = item_image_dict[item_id]
+            else:
+                image_path = ''
             item_dict[item_id] = Item(item_id, category_id, image_path)
     return item_dict
 
@@ -76,7 +79,7 @@ def load_bought_history(bought_history_path):
             a dictionary of purchased history. For example
             {user_id, BoughtHistory([1,2,3])}
     """
-    purchase_history_dic = []
+    purchase_history_dic = {}
     with open(bought_history_path) as input_file:
         for line in input_file:
             line_arr = line.split(' ')
