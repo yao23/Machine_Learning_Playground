@@ -15,10 +15,10 @@ COLLATION_SET_FILE = './data/text_data/match_set.txt'
 
 BOUGHT_HISTORY = './data/text_data/bought_history.txt'
 
-ITEM_IMAGE_PATHS = ['../data/image_data/img1',
-                    '../data/image_data/img2',
-                    '../data/image_data/img3',
-                    '../data/image_data/img4']
+ITEM_IMAGE_PATHS = ['./data/image_data/img1',
+                    './data/image_data/img2',
+                    './data/image_data/img3',
+                    './data/image_data/img4']
 
 COMMA = ','
 SLASH = '/'
