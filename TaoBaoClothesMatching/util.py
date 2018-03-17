@@ -95,5 +95,30 @@ def load_bought_history(bought_history_path):
 
 if __name__ == '__main__':
     print 'Bingo'
-    # TODO: write some codes to test each function or write independent test class
-    # like http://docs.python-guide.org/en/latest/writing/tests/
+    item_info = load_item_info(constant.ITEM_INFO_FILE, constant.ITEM_IMAGE_PATHS)
+    hist = load_bought_history(constant.BOUGHT_HISTORY)
+    print hist['11322059'].to_valid_item_pairs(item_info)
+
+    """
+    item_info = read_item_info(constant.ITEM_FILE, constant.ITEM_IMAGE_PATHS)
+    collations = read_match_set2(constant.MATCH_SET_FILE)
+
+    cat_markov_chain = {}
+    for collation in collations:
+        match_set = MatchSet(collation)
+        item_pair = match_set.to_collation_pairs()
+        for first, second in item_pair:
+            if item_info.has_key(first) and item_info.has_key(second):
+                first_cat = item_info[first].get_item_cat_id()
+                second_cat = item_info[second].get_item_cat_id()
+                if first_cat > second_cat:
+                    tmp = second_cat
+                    second_cat = first
+                    first_cat = tmp
+                item_pair = first_cat + '-' + second_cat
+                if cat_markov_chain.has_key(item_pair):
+                    cat_markov_chain[item_pair] = cat_markov_chain[item_pair] + 1
+                else:
+                    cat_markov_chain[item_pair] = 1
+    print cat_markov_chain
+    """
