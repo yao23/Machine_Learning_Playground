@@ -1,5 +1,6 @@
 import collections
 import constant
+import os
 
 
 class ItemKNN(object):
@@ -118,6 +119,9 @@ class ItemKNN(object):
 
     @staticmethod
     def output_pair_relationship_model(pair_probability_dic, pair_count_dic, pair_count, model_file_path=''):
+        if os.path.exists(model_file_path):
+            os.remove(model_file_path)
+
         with open(model_file_path, 'a') as model_file:
             for pair in pair_probability_dic:
                 probability = 1.0 * pair_count_dic[pair] / pair_count
