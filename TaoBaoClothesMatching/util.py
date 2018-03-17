@@ -15,7 +15,7 @@ def load_item_image(item_image_folders):
             a dictionary of {item_id: item image path}
     """
     item_image_dict = {}
-    for image_folder in item_image_folders:  # TODO: assume image_folder is like "../data/image_data/img1"
+    for image_folder in item_image_folders:
         image_paths = glob.glob(image_folder + '/*' + constant.ITEM_IMAGE_SUFFIX)
         for item_path in image_paths:
             image_name_with_suffix = item_path.split(constant.SLASH)[-1]
