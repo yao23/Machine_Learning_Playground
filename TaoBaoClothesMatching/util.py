@@ -63,8 +63,11 @@ def load_collation_set(collation_set_path):
         for line in input_file:
             line_arr = line.split(' ')
             match_list = line_arr[1]
-            match_list_arr = match_list.split(';')
-            collation_set = CollationSet(match_list_arr)
+            match_list_arr = match_list.split(constant.SEMICOLON)
+            match_set_list = [None] * len(match_list_arr)
+            for index, match_set in enumerate(match_list_arr):
+                match_set_list[index] = match_set.split(constant.COMMA)
+            collation_set = CollationSet(match_set_list)
             collation_set_list.append(collation_set)
         return collation_set_list
 

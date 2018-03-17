@@ -43,10 +43,14 @@ class CollationSet(object):
             if idx == index:
                 continue
             else:
+                print("match_item_ids: %s" % match_item_ids)
                 for match_item_id in match_item_ids:
-                    if match_item_id:
+                    print("match_item_id: %s" % match_item_id)
+                    if match_item_id and len(match_item_id) > 0:
                         match_item_id = int(match_item_id)
                         match_item_pairs.append([min(item_id, match_item_id), max(item_id, match_item_id)])
+                    else:
+                        continue
         return match_item_pairs
 
     def to_matched_item_cat_pair(self, item_info):
@@ -62,7 +66,7 @@ class CollationSet(object):
                 can be obtained from item_info.
         """
         match_item_pairs = self.to_matched_item_pairs()
-        match_item_cat_pairs = len(match_item_pairs)
+        match_item_cat_pairs = [None] * len(match_item_pairs)
         for index, item_pair in enumerate(match_item_pairs):
             item_cat_pair = [0] * 2
             for idx, item_id in enumerate(item_pair):

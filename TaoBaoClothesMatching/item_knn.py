@@ -153,6 +153,7 @@ if __name__ == '__main__':
 
     match_cat_pairs = []
     for match_set in match_sets:
+        print("match set: %s" % match_set.to_matched_item_pairs())
         match_cat_pairs.extend(match_set.to_matched_item_cat_pair(item_info))
     ItemKNN.learn_category_matching_relationship(match_cat_pairs)
 
