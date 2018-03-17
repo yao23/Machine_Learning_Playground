@@ -114,10 +114,13 @@ class ItemKNN(object):
                     pair_count += pair_count_dic[pair]
                     pair_probability_dic[pair] = 0
 
+        return ItemKNN.output_pair_relationship_model(pair_probability_dic, pair_count_dic, pair_count, model_file_path)
+
+    @staticmethod
+    def output_pair_relationship_model(pair_probability_dic, pair_count_dic, pair_count, model_file_path=''):
         with open(model_file_path, 'a') as model_file:
             for pair in pair_probability_dic:
                 probability = 1.0 * pair_count_dic[pair] / pair_count
                 pair_probability_dic[pair] = probability
                 model_file.write(pair[0] + ' ' + pair[1] + ' ' + str(probability) + '\n')
-
         return pair_probability_dic
