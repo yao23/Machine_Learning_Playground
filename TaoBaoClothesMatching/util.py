@@ -16,10 +16,12 @@ def load_item_image(item_image_folders):
     """
     item_image_dict = {}
     for image_folder in item_image_folders:  # TODO: assume image_folder is like "../data/image_data/img1"
-        folder_arr = image_folder.split(constant.SLASH)
-        image_name = folder_arr[-1]
-        item_id = image_name[3:]
-        item_image_dict[item_id] = image_folder + constant.ITEM_IMAGE_SUFFIX
+        image_paths = glob.glob(image_folder + '/*' + constant.ITEM_IMAGE_SUFFIX)
+        for item_path in image_paths:
+            image_name_with_suffix = item_path.split(constant.SLASH)[-1]
+            if len(image_name_with_suffix) >= 4 and image_name_with_suffix[-4:] == constant.ITEM_IMAGE_SUFFIX:
+                item_id = image_name_with_suffix[:-4]
+                item_image_dict[item_id] = item_path
     return item_image_dict
 
 
