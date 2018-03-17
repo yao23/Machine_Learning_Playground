@@ -82,12 +82,15 @@ class ItemKNN(object):
         pair_count_dic = {}
         pair_set_dic = {}
         for pair in pairs:
-            if pair in pair_count_dic:
-                pair_count_dic[pair] += 1
-            else:
-                pair_count_dic[pair] = 1
             pair_element_one = pair[0]
             pair_element_two = pair[1]
+            if pair in pair_count_dic:
+                pair_count_dic[pair] += 1
+                pair_count_dic[(pair_element_two, pair_element_one)] += 1
+            else:
+                pair_count_dic[pair] = 1
+                pair_count_dic[(pair_element_two, pair_element_one)] = 1
+
             if pair_element_one in pair_set_dic:
                 pair_set = pair_set_dic[pair_element_one]
                 if pair_element_two not in pair_set:
@@ -98,6 +101,17 @@ class ItemKNN(object):
                 pair_set = set()
                 pair_set.add(pair_element_two)
                 pair_set_dic[pair_element_one] = pair_set
+
+            if pair_element_two in pair_set_dic:
+                pair_set = pair_set_dic[pair_element_two]
+                if pair_element_one not in pair_set:
+                    pair_set.add(pair_element_one)
+                else:
+                    continue
+            else:
+                pair_set = set()
+                pair_set.add(pair_element_one)
+                pair_set_dic[pair_element_two] = pair_set
 
         pair_count = 0
         for element_id, pair_set in pair_set_dic.items():
