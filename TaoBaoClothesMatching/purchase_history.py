@@ -60,6 +60,23 @@ class PurchaseHistory(object):
                     item_pairs.append(item_pair)
         return item_pairs
 
+    def to_valid_item_pairs(self, item_info):
+        """ Get valid item pairs in purchase history
+
+        :param item_info:
+        :return:
+        """
+        if len(self._items) <= 10:
+            pairs = list(itertools.combinations(self._items, 2))
+            valid_item_pair = []
+            for first, second in pairs:
+                if first in item_info and second in item_info and \
+                        item_info[first].get_cat_id() != item_info[second].get_cat_id():
+                    valid_item_pair.append((min(first, second), max(first, second)))
+            return valid_item_pair
+        else:
+            return []
+
 
 if __name__ == '__main__':
     print 'Bingo'

@@ -1,6 +1,7 @@
 import collections
 import constant
 import os
+import util
 
 
 class ItemKNN(object):
@@ -128,3 +129,26 @@ class ItemKNN(object):
                 pair_probability_dic[pair] = probability
                 model_file.write(pair[0] + ' ' + pair[1] + ' ' + str(probability) + '\n')
         return pair_probability_dic
+
+
+if __name__ == '__main__':
+    item_info = util.load_item_info(constant.ITEM_INFO_FILE, constant.ITEM_IMAGE_PATHS)
+
+    # learn category matching relationship model
+    match_sets = util.load_collation_set(constant.COLLATION_SET_FILE)
+
+    match_cat_pairs = []
+    for match_set in match_sets:
+        match_cat_pairs.extend(match_set.to_matched_cat_pairs(item_info))
+    ItemKNN.learn_category_matching_relationship(match_cat_pairs)
+
+    # learn item matching relationship model
+    purchase_history = util.load_bought_history(constant.BOUGHT_HISTORY)
+    match_item_pairs = []
+    count = 1
+    for items_from_one_user in purchase_history.values():
+        match_item_pairs.extend(items_from_one_user.to_valid_item_pairs(item_info))
+        count = count + 1
+        if count >= 100000:
+            break
+    ItemKNN.learn_item_relationship(match_item_pairs)
