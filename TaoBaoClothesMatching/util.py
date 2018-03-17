@@ -38,13 +38,16 @@ def load_item_info(item_info_path, item_image_folders):
     with open(item_info_path) as input_file:
         for line in input_file:
             line_arr = line.split(' ')
-            item_id = line_arr[0]
-            category_id = line_arr[1]
-            if item_id in item_image_dict:
-                image_path = item_image_dict[item_id]
+            if len(line_arr) >= 3:
+                item_id = line_arr[0]
+                category_id = line_arr[1]
+                if item_id in item_image_dict:
+                    image_path = item_image_dict[item_id]
+                else:
+                    image_path = ''
+                item_dict[item_id] = Item(item_id, category_id, image_path)
             else:
-                image_path = ''
-            item_dict[item_id] = Item(item_id, category_id, image_path)
+                continue
     return item_dict
 
 
