@@ -88,8 +88,11 @@ def load_bought_history(bought_history_path):
             line_arr = line.split(' ')
             user_id = line_arr[0]
             item_id = line_arr[1]
-            purchase_history = PurchaseHistory(user_id, [item_id])
-            purchase_history_dic[user_id] = purchase_history
+            if user_id in purchase_history_dic:
+                purchase_history_dic[user_id].add_one_item(item_id)
+            else:
+                purchase_history = PurchaseHistory(user_id, [item_id])
+                purchase_history_dic[user_id] = purchase_history
         return purchase_history_dic
 
 
