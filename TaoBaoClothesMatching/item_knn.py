@@ -84,11 +84,12 @@ class ItemKNN(object):
         for pair in pairs:
             pair_element_one = pair[0]
             pair_element_two = pair[1]
-            if pair in pair_count_dic:
-                pair_count_dic[pair] += 1
+            pair_tuple = (pair_element_one, pair_element_two)
+            if pair_tuple in pair_count_dic:
+                pair_count_dic[pair_tuple] += 1
                 pair_count_dic[(pair_element_two, pair_element_one)] += 1
             else:
-                pair_count_dic[pair] = 1
+                pair_count_dic[pair_tuple] = 1
                 pair_count_dic[(pair_element_two, pair_element_one)] = 1
 
             if pair_element_one in pair_set_dic:
