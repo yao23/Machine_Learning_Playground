@@ -26,7 +26,7 @@ def load_item_image(item_image_folders):
 
 
 def load_item_info(item_info_path, item_image_folders):
-    """ Item info.
+    """ Load item info.
 
         Args:
            item_info_path: path of item information file.
