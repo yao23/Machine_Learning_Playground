@@ -29,7 +29,7 @@ class ItemKNN(object):
         return None
 
     @staticmethod
-    def learn_item_relationship(purchased_item_pairs, neigh_size=20):
+    def learn_item_relationship(purchased_item_pairs, neigh_size=200):
         """ Learn item matching relationship from purchased history, and store them into a local file.
 
             Args:

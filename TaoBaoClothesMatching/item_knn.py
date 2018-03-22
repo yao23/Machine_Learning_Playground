@@ -28,7 +28,7 @@ class ItemKNN(object):
         return ItemKNN.learn_pair_relationship_model(matched_category_pairs, neigh_size, constant.CATEGORY_MATCHING_FILE)
 
     @staticmethod
-    def learn_item_relationship(purchased_item_pairs, neigh_size=20):
+    def learn_item_relationship(purchased_item_pairs, neigh_size=200):
         """ Learn item matching relationship from purchased history, and store them into a local file.
 
             Args:
