@@ -1,5 +1,4 @@
 class Solution(object):
-    # beats 70.08%
     def merge(self, nums1, m, nums2, n):
         """
         :type nums1: List[int]
@@ -7,6 +6,8 @@ class Solution(object):
         :type nums2: List[int]
         :type n: int
         :rtype: void Do not return anything, modify nums1 in-place instead.
+
+        beats 70.08%
         """
         while m > 0 and n > 0:
             if nums1[m-1] >= nums2[n-1]:
