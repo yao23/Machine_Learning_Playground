@@ -1,6 +1,6 @@
 class Solution(object):
     # @return a list of integers
-    '''
+    """
     from up to down, then left to right
 
     0   1   11  110
@@ -12,8 +12,9 @@ class Solution(object):
     i = 0:      [0, 1]
     i = 1:      [0, 1, 3, 2]
     i = 2:      [0, 1, 3, 2, 6, 7, 5, 4]
-    '''
+
     # beats 6.34%
+    """
     def grayCode(self, n):
         """
         :type n: int
