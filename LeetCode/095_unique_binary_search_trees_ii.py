@@ -7,11 +7,12 @@ class TreeNode(object):
 
 
 class Solution(object):
-    # beats 97.40%
     def generateTrees(self, n):
         """
         :type n: int
         :rtype: List[TreeNode]
+
+        beats 97.40%
         """
         if n == 0:
             return []
