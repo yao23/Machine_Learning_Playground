@@ -1,10 +1,11 @@
 class Solution(object):
-    # Recursive
-    # beats 94.46%
     def restoreIpAddresses(self, s):
         """
         :type s: str
         :rtype: List[str]
+
+        Recursive
+        beats 94.46%
         """
         ans = []
         self.helper(ans, s, 4, [])
@@ -21,12 +22,13 @@ class Solution(object):
                     continue
                 self.helper(ans, s[i + 1:], k - 1, temp + [s[:i + 1]])
 
-    # Iterative
-    # beats 74.83%
     def restoreIpAddresses1(self, s):
         """
         :type s: str
         :rtype: List[str]
+
+        Iterative
+        beats 74.83%
         """
         res = []
         S = [([], s)]
