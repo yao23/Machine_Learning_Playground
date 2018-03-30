@@ -1,12 +1,13 @@
 class Solution(object):
-    # DP, O(n) space
-    # beats 80.27%
     def isInterleave(self, s1, s2, s3):
         """
         :type s1: str
         :type s2: str
         :type s3: str
         :rtype: bool
+
+        DP, O(n) space
+        beats 80.27%
         """
         dp_row, dp_col, dp_len = len(s1), len(s2), len(s3)
         if dp_row + dp_col != dp_len:
@@ -20,14 +21,15 @@ class Solution(object):
                 dp[j] = (dp[j] and s1[i - 1] == s3[i - 1 + j]) or (dp[j - 1] and s2[j - 1] == s3[i - 1 + j])
         return dp[-1]
 
-    # DFS
-    # beats 97.99%
     def isInterleave1(self, s1, s2, s3):
         """
         :type s1: str
         :type s2: str
         :type s3: str
         :rtype: bool
+
+        DFS
+        beats 97.99%
         """
         dp_row, dp_col, dp_len = len(s1), len(s2), len(s3)
         if dp_row + dp_col != dp_len:
@@ -45,14 +47,15 @@ class Solution(object):
                 visited.add((x, y + 1))
         return False
 
-    # BFS
-    # beats 97.99%
     def isInterleave2(self, s1, s2, s3):
         """
         :type s1: str
         :type s2: str
         :type s3: str
         :rtype: bool
+
+        BFS
+        beats 97.99%
         """
         dp_row, dp_col, dp_len = len(s1), len(s2), len(s3)
         if dp_row + dp_col != dp_len:
