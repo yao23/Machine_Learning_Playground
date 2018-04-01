@@ -1,17 +1,22 @@
+import sys
+
+
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 
 class Solution(object):
-    # average O(lgn) space (worst case O(n) space), iteratively, one-pass
-    # beats 53.87%
     def recoverTree(self, root):
         """
         :type root: TreeNode
         :rtype: void Do not return anything, modify root in-place instead.
+
+        average O(lgn) space (worst case O(n) space), iteratively, one-pass
+        beats 53.87%
         """
         res, stack, first, second = None, [], None, None
         while True:
@@ -31,12 +36,13 @@ class Solution(object):
             root = node.right
         first.val, second.val = second.val, first.val
 
-    # average O(n+lgn) space, worst case O(2n) space, recursively, two-pass
-    # beats 24.84%
     def recoverTree1(self, root):
         """
         :type root: TreeNode
         :rtype: void Do not return anything, modify root in-place instead.
+
+        average O(n+lgn) space, worst case O(2n) space, recursively, two-pass
+        beats 24.84%
         """
         res = []
         self.helper(root, res)
@@ -54,12 +60,13 @@ class Solution(object):
             res.append(root)
             self.helper(root.right, res)
 
-    # average O(lgn) space (worst case, O(n) space), recursively, one-pass
-    # beats 39.68%
     def recoverTree2(self, root):
         """
         :type root: TreeNode
         :rtype: void Do not return anything, modify root in-place instead.
+
+        average O(lgn) space (worst case, O(n) space), recursively, one-pass
+        beats 39.68%
         """
         self.prevNode = TreeNode(-sys.maxsize - 1)
         self.first, self.second = None, None
