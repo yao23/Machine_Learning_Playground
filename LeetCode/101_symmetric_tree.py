@@ -5,38 +5,41 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # Recursive
-    # beats 93.89%
     def isSymmetric(self, root):
         """
         :type root: TreeNode
         :rtype: bool
+
+        Recursive
+        beats 93.89%
         """
         if root is None:
             return True
         else:
-            return self.isMirror(root.left, root.right)
+            return self.is_mirror(root.left, root.right)
 
-    def isMirror(self, left, right):
+    def is_mirror(self, left, right):
         if left is None and right is None:
             return True
         if left is None or right is None:
             return False
 
         if left.val == right.val:
-            outPair = self.isMirror(left.left, right.right)
-            inPiar = self.isMirror(left.right, right.left)
-            return outPair and inPiar
+            out_pair = self.is_mirror(left.left, right.right)
+            in_piar = self.is_mirror(left.right, right.left)
+            return out_pair and in_piar
         else:
             return False
 
-    # Iterative
-    # beats 64.90%
     def isSymmetric1(self, root):
         """
         :type root: TreeNode
         :rtype: bool
+
+        Iterative
+        beats 64.90%
         """
         if root is None:
             return True
