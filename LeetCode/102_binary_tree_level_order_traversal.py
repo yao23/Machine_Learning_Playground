@@ -5,12 +5,14 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # beats 43.37%
     def levelOrder(self, root):
         """
         :type root: TreeNode
         :rtype: List[List[int]]
+
+        beats 43.37%
         """
         ans, level = [], [root]
         while root and level:
