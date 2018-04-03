@@ -28,8 +28,8 @@ class Solution(object):
 
         if left.val == right.val:
             out_pair = self.is_mirror(left.left, right.right)
-            in_piar = self.is_mirror(left.right, right.left)
-            return out_pair and in_piar
+            in_pair = self.is_mirror(left.right, right.left)
+            return out_pair and in_pair
         else:
             return False
 
