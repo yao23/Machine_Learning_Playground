@@ -7,10 +7,11 @@
 
 
 class Solution(object):
-    # beats 10.60%
     def maxDepth(self, root):
         """
         :type root: TreeNode
         :rtype: int
+
+        beats 10.60%
         """
         return 1 + max(map(self.maxDepth, (root.left, root.right))) if root else 0
