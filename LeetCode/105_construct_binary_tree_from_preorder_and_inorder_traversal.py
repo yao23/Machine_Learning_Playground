@@ -10,12 +10,13 @@ class Solution(object):
     """
     Construct a binary tree from preorder and inorder traversal list
     """
-    # beats 60.76%
     def buildTree(self, preorder, inorder):
         """
         :type preorder: List[int]
         :type inorder: List[int]
         :rtype: TreeNode
+
+        beats 60.76%
         """
         if inorder:
             ind = inorder.index(preorder.pop(0))
