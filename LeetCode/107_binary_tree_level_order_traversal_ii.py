@@ -7,13 +7,15 @@
 
 import collections
 
+
 class Solution(object):
-    # bfs + queue
-    # beats 15.87%
     def levelOrderBottom(self, root):
         """
         :type root: TreeNode
         :rtype: List[List[int]]
+
+        bfs + queue
+        beats 15.87%
         """
         queue, res = collections.deque([(root, 0)]), []
         while queue:
