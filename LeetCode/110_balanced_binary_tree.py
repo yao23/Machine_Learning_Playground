@@ -5,13 +5,15 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # Recursive
-    # beats 80.21%
     def isBalanced(self, root):
         """
         :type root: TreeNode
         :rtype: bool
+
+        Recursive
+        beats 80.21%
         """
 
         def check(root):
@@ -25,12 +27,13 @@ class Solution(object):
 
         return check(root) != -1
 
-    # Iterative
-    # beats 97.16%
     def isBalanced1(self, root):
         """
         :type root: TreeNode
         :rtype: bool
+
+        Iterative
+        beats 97.16%
         """
         stack, node, last, depths = [], root, None, {}
         while stack or node:
