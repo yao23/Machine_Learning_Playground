@@ -5,12 +5,14 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # beats 24.17%
     def minDepth(self, root):
         """
         :type root: TreeNode
         :rtype: int
+
+        beats 24.17%
         """
         if not root:
             return 0
