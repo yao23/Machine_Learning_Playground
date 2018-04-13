@@ -5,16 +5,18 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # @param root, a tree node
-    # @param sum, an integer
-    # @return a boolean
-    # beats 93.59%
     def hasPathSum(self, root, sum):
         """
         :type root: TreeNode
         :type sum: int
         :rtype: bool
+
+        @param root, a tree node
+        @param sum, an integer
+        @return a boolean
+        beats 93.59%
         """
         if not root:
             return False
