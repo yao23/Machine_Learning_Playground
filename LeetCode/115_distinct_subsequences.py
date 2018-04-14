@@ -1,11 +1,12 @@
 class Solution(object):
-    # O(n) space
-    # beats 70.80%
     def numDistinct(self, s, t):
         """
         :type s: str
         :type t: str
         :rtype: int
+
+        O(n) space
+        beats 70.80%
         """
         l1, l2 = len(s)+1, len(t)+1
         cur = [0] * l2
@@ -16,13 +17,14 @@ class Solution(object):
                 cur[j] = pre[j] + pre[j-1]*(s[i-1] == t[j-1])
         return cur[-1]
 
-    # O(m*n) space
-    # beats 4.40%
     def numDistinct1(self, s, t):
         """
         :type s: str
         :type t: str
         :rtype: int
+
+        O(m*n) space
+        beats 4.40%
         """
         l1, l2 = len(s) + 1, len(t) + 1
         dp = [[1] * l2 for _ in xrange(l1)]
