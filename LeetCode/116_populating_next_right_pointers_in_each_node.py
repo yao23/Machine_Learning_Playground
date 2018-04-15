@@ -6,11 +6,17 @@
 #         self.right = None
 #         self.next = None
 
+
 class Solution:
-    # @param root, a tree link node
-    # @return nothing
-    # beats 90.89%
     def connect(self, root):
+        """
+        :param root:
+        :return:
+
+        @param root, a tree link node
+        @return nothing
+        beats 90.89%
+        """
         while root and root.left:
             next = root.left
             while root:
