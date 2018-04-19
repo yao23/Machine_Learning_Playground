@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 28.77%
     def getRow(self, rowIndex):
         """
         :type rowIndex: int
         :rtype: List[int]
+
+        beats 28.77%
         """
         row = [1]
         for _ in range(rowIndex):
