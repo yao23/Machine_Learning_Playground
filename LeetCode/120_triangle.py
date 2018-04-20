@@ -1,10 +1,11 @@
 class Solution(object):
-    # O(n*n/2) space, top-down
-    # beats 39.32%
     def minimumTotal(self, triangle):
         """
         :type triangle: List[List[int]]
         :rtype: int
+
+        O(n*n/2) space, top-down
+        beats 39.32%
         """
         if not triangle:
             return
@@ -20,8 +21,13 @@ class Solution(object):
                     res[i][j] = min(res[i-1][j-1], res[i-1][j]) + triangle[i][j]
         return min(res[-1])
 
-    # Modify the original triangle, top-down
     def minimumTotal2(self, triangle):
+        """
+        :param triangle:
+        :return:
+
+        Modify the original triangle, top-down
+        """
         if not triangle:
             return
         for i in xrange(1, len(triangle)):
@@ -34,8 +40,13 @@ class Solution(object):
                     triangle[i][j] += min(triangle[i - 1][j - 1], triangle[i - 1][j])
         return min(triangle[-1])
 
-    # Modify the original triangle, bottom-up
     def minimumTotal3(self, triangle):
+        """
+        :param triangle:
+        :return:
+
+        Modify the original triangle, bottom-up
+        """
         if not triangle:
             return
         for i in xrange(len(triangle) - 2, -1, -1):
@@ -43,9 +54,14 @@ class Solution(object):
                 triangle[i][j] += min(triangle[i + 1][j], triangle[i + 1][j + 1])
         return triangle[0][0]
 
-    # bottom-up, O(n) space
-    # beats 56.20%
     def minimumTotal0(self, triangle):
+        """
+        :param triangle:
+        :return:
+
+        bottom-up, O(n) space
+        beats 56.20%
+        """
         if not triangle:
             return
         res = triangle[-1]
