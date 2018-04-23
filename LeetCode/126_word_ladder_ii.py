@@ -2,18 +2,15 @@ import collections
 
 
 class Solution(object):
-    # @param start, a string
-    # @param end, a string
-    # @param dict, a set of string
-    # @return a list of lists of string
-    # beats 84.21%
-    # https://discuss.leetcode.com/topic/112221/clear-and-modular-solution-of-python-beats-90
     def findLadders(self, beginWord, endWord, wordList):
         """
         :type beginWord: str
         :type endWord: str
         :type wordList: List[str]
         :rtype: List[List[str]]
+
+        beats 84.21%
+        https://discuss.leetcode.com/topic/112221/clear-and-modular-solution-of-python-beats-90
         """
 
         def add_path(tree, start, end, is_forward):
