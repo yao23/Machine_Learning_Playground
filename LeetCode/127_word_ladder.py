@@ -2,7 +2,6 @@ from collections import deque
 
 
 class Solution(object):
-    # beats 68.80%
     def ladderLength(self, beginWord, endWord, wordList):
         """
         :type beginWord: str
@@ -12,6 +11,8 @@ class Solution(object):
 
         use underscore to replace each character in the wordList to save time than replace with letters from a to z
         https://leetcode.com/problems/word-ladder/discuss/40723/
+
+        beats 68.80%
         """
 
         def construct_dict(word_list):
