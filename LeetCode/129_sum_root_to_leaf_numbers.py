@@ -7,13 +7,15 @@
 
 import collections
 
+
 class Solution(object):
-    # recursively
-    # beats 30.29%
     def sumNumbers(self, root):
         """
         :type root: TreeNode
         :rtype: int
+
+        recursively
+        beats 30.29%
         """
         self.res = 0
         self.dfs(root, 0)
@@ -30,8 +32,13 @@ class Solution(object):
             if not root.left and not root.right:
                 self.res += value*10 + root.val
 
-    # dfs + stack
     def sumNumbers1(self, root):
+        """
+        :param root:
+        :return:
+
+        dfs + stack
+        """
         if not root:
             return 0
         stack, res = [(root, root.val)], 0
@@ -46,8 +53,13 @@ class Solution(object):
                     stack.append((node.left, value * 10 + node.left.val))
         return res
 
-    # bfs + queue
     def sumNumbers2(self, root):
+        """
+        :param root:
+        :return:
+
+        bfs + queue
+        """
         if not root:
             return 0
         queue, res = collections.deque([(root, root.val)]), 0
