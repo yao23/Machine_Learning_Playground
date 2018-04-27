@@ -1,13 +1,15 @@
 class Solution(object):
-    # Phase 1: "Save" every O-region touching the border, changing its cells to 'S'.
-    # Phase 2: Change every 'S' on the board to 'O' and everything else to 'X'.
-    # beats 97.42%
     def solve(self, board):
         """
         :type board: List[List[str]]
         :rtype: void Do not return anything, modify board in-place instead.
+
+        Phase 1: "Save" every O-region touching the border, changing its cells to 'S'.
+        Phase 2: Change every 'S' on the board to 'O' and everything else to 'X'.
+        beats 97.42%
         """
-        if not any(board): return
+        if not any(board):
+            return
 
         m, n = len(board), len(board[0])
         save = [ij for k in range(m+n) for ij in ((0, k), (m-1, k), (k, 0), (k, n-1))]
