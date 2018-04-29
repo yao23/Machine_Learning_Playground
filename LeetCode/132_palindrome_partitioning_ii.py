@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 100.00%
     def minCut(self, s):
         """
         :type s: str
         :rtype: int
+
+        beats 100.00%
         """
         # acceleration
         if s == s[::-1]: return 0
