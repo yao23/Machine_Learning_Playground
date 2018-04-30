@@ -1,7 +1,4 @@
 class Solution(object):
-    # @param {integer[]} ratings
-    # @return {integer}
-    # beats 47.64%
     def candy(self, ratings):
         """
         :type ratings: List[int]
@@ -9,6 +6,10 @@ class Solution(object):
 
         use two pass scan from left to right and vice versa to keep the candy level up to now
         similar to like the Trapping Rain Water question
+
+        @param {integer[]} ratings
+        @return {integer}
+        beats 47.64%
         """
         res = [1] * len(ratings)  # also compatible with [] input
         left_base = right_base = 1
@@ -74,4 +75,3 @@ class Solution(object):
             if down >= prev:
                 cur_sum += (down - prev + 1)
         return cur_sum
-
