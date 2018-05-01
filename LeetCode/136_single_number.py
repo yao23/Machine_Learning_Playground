@@ -1,9 +1,13 @@
+import operator
+
+
 class Solution(object):
-    # beats 23.04%
     def singleNumber1(self, nums):
         """
         :type nums: List[int]
         :rtype: int
+
+        beats 23.04%
         """
         dic = {}
         for num in nums:
