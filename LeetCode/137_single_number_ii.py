@@ -10,5 +10,5 @@ class Solution(object):
         """
         a = set(nums)
         a = sum(a) * 3 - sum(nums)
-        a = a/2
+        a = a / 2
         return a
