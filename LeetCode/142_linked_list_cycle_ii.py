@@ -4,14 +4,14 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution(object):
-    # @param head, a ListNode
-    # @return a list node
-    # beats 55.64%
     def detectCycle(self, head):
         """
         :type head: ListNode
         :rtype: ListNode
+
+        beats 55.64%
         """
         try:
             fast = head.next
