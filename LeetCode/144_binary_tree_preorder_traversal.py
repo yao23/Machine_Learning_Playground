@@ -5,12 +5,14 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # beats 4.79%
     def preorderTraversal(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
+
+        beats 4.79%
         """
         ret = []
         stack = [root]
