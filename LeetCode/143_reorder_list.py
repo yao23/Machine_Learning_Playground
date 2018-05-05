@@ -4,14 +4,14 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution(object):
-    # @param head, a ListNode
-    # @return nothing
-    # beats 40.65%
     def reorderList(self, head):
         """
         :type head: ListNode
         :rtype: void Do not return anything, modify head in-place instead.
+
+        beats 40.65%
         """
         if head is None:
             return
