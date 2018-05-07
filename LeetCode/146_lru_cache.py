@@ -7,11 +7,12 @@ class LinkedNode:
 
 
 class LRUCache(object):
-    # https://discuss.leetcode.com/topic/14591/python-dict-double-linkedlist/5
-    # beats 73.27%
     def __init__(self, capacity):
         """
         :type capacity: int
+
+        https://discuss.leetcode.com/topic/14591/python-dict-double-linkedlist/5
+        beats 73.27%
         """
         self.capacity = capacity
         self.head = LinkedNode(None, 'head')
@@ -44,14 +45,14 @@ class LRUCache(object):
             self.deleteNode(self.data[key])
 
         # create new node
-        newNode = LinkedNode(key, value)
-        self.data[key] = newNode
+        new_node = LinkedNode(key, value)
+        self.data[key] = new_node
 
         # if over limit, delete oldest node
         if len(self.data) > self.capacity:
             self.deleteNode(self.head.next)
 
-        self.insertNew(newNode)
+        self.insertNew(new_node)
 
     def insertNew(self, newNode):
         # insert new node into last position
