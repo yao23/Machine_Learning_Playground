@@ -1,8 +1,9 @@
 # Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
 
 class Solution(object):
     def merge(self, h1, h2):
@@ -16,11 +17,12 @@ class Solution(object):
         tail.next = h1 or h2
         return dummy.next
 
-    # beats 15.77%
     def sortList(self, head):
         """
         :type head: ListNode
         :rtype: ListNode
+
+        beats 15.77%
         """
         if not head or not head.next:
             return head
