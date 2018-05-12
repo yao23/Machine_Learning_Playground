@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 99.47%
     def findMin(self, nums):
         """
         :type nums: List[int]
         :rtype: int
+
+        beats 99.47%
         """
         i = 0
         j = len(nums) - 1
