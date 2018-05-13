@@ -7,11 +7,12 @@ class TreeNode(object):
 
 
 class Solution(object):
-    # beats 24.21%
     def upsideDownBinaryTree(self, root):
         """
         :type root: TreeNode
         :rtype: TreeNode
+
+        beats 24.21%
         """
         if not root or not root.left:
             return root
@@ -25,7 +26,12 @@ class Solution(object):
         return root
 
     def upsideDownBinaryTree1(self, root):
-        # beats 55.79%
+        """
+        :param root:
+        :return:
+
+        beats 55.79%
+        """
         if not root or not root.left:
             return root
 
