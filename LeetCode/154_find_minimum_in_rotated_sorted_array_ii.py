@@ -1,12 +1,13 @@
 class Solution(object):
-    # beats 44.10%
     def findMin(self, nums):
         """
         :type nums: List[int]
         :rtype: int
+
+        beats 44.10%
         """
         beg = 0
-        end = len(nums)-1
+        end = len(nums) - 1
         while beg <= end:
             while beg < end and nums[beg] == nums[beg + 1]:
                 beg += 1
@@ -15,11 +16,10 @@ class Solution(object):
             if beg == end:
                 return nums[beg]
 
-            mid = (beg+end)/2
+            mid = (beg + end) / 2
             if nums[mid] > nums[end]:
                 beg = mid + 1
             else:
                 end = mid
-
 
         return nums[beg]
