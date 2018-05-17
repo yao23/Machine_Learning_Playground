@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 25.80%
     def lengthOfLongestSubstringTwoDistinct(self, s):
         """
         :type s: str
         :rtype: int
+
+        beats 25.80%
         """
         distinct = {}  # char: pos
         maxlen = 0
