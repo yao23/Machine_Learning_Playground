@@ -7,7 +7,7 @@ class Solution(object):
         beats 25.80%
         """
         distinct = {}  # char: pos
-        maxlen = 0
+        max_len = 0
         left = 0
 
         for right, char in enumerate(s):
@@ -15,8 +15,8 @@ class Solution(object):
                 left = min(distinct.values()) + 1
                 self.remove_lowest_char(distinct)
             distinct[char] = right
-            maxlen = max(maxlen, right - left + 1)
-        return maxlen
+            max_len = max(max_len, right - left + 1)
+        return max_len
 
     def remove_lowest_char(self, distinct):
         lowest_pos = min(distinct.values())
