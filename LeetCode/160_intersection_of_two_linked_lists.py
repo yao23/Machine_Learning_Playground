@@ -4,19 +4,19 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution(object):
-    # @param two ListNodes
-    # @return the intersected ListNode
-    # beats 83.48%
     def getIntersectionNode(self, headA, headB):
         """
-        :type head1, head1: ListNode
+        :type: ListNode
         :rtype: ListNode
+
+        beats 83.48%
         """
         if headA is None or headB is None:
             return None
 
-        pa = headA # 2 pointers
+        pa = headA  # 2 pointers
         pb = headB
 
         while pa is not pb:
