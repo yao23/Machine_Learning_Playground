@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 74.68%
     def isOneEditDistance(self, s, t):
         """
         :type s: str
         :type t: str
         :rtype: bool
+
+        beats 74.68%
         """
         for i in range(min(len(s), len(t))):
             if s[i] != t[i]:
