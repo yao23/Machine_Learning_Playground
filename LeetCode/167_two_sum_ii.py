@@ -1,17 +1,18 @@
 class Solution(object):
-    # beats 37.57%
     def twoSum(self, numbers, target):
         """
         :type numbers: List[int]
         :type target: int
         :rtype: List[int]
+
+        beats 37.57%
         """
-        l, r = 0, len(numbers)-1
-        while l < r:
-            s = numbers[l] + numbers[r]
+        left, right = 0, len(numbers)-1
+        while left < right:
+            s = numbers[left] + numbers[right]
             if s == target:
-                return [l+1, r+1]
+                return [left + 1, right + 1]
             elif s < target:
-                l += 1
+                left += 1
             else:
-                r -= 1
+                right -= 1
