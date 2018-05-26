@@ -1,10 +1,11 @@
 class TwoSum(object):
-    # beats 7.42%
-    # initialize your data structure here
     def __init__(self):
+        """
+        beats 7.42%
+        initialize your data structure here
+        """
         self.table = dict()
 
-    # @return nothing
     def add(self, number):
         """
         Add the number to an internal data structure..
@@ -13,8 +14,6 @@ class TwoSum(object):
         """
         self.table[number] = self.table.get(number, 0) + 1;
 
-    # @param value, an integer
-    # @return a Boolean
     def find(self, value):
         """
         Find if there exists any pair of numbers which sum is equal to the value.
