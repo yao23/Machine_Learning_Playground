@@ -5,27 +5,31 @@
 #         self.left = None
 #         self.right = None
 
+
 class BSTIterator(object):
-    # beats 28.34%
-    # @param root, a binary search tree's root node
     def __init__(self, root):
         """
         :type root: TreeNode
+
+        @param root, a binary search tree's root node
+        beats 28.34%
         """
         self.stack = list()
         self.pushAll(root)
 
-    # @return a boolean, whether we have a next smallest number
     def hasNext(self):
         """
         :rtype: bool
+
+        @return a boolean, whether we have a next smallest number
         """
         return self.stack
 
-    # @return an integer, the next smallest number
     def next(self):
         """
         :rtype: int
+
+        @return an integer, the next smallest number
         """
         tmpNode = self.stack.pop()
         self.pushAll(tmpNode.right)
