@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 27.10%
     def reverseWords(self, str):
         """
         :type str: List[str]
         :rtype: void Do not return anything, modify str in-place instead.
+
+        beats 27.10%
         """
         str.reverse()
 
