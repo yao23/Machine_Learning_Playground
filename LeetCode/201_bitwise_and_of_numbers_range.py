@@ -4,8 +4,9 @@ class Solution(object):
         :type m: int
         :type n: int
         :rtype: int
+
+        beats 62.55%
         """
-        # beats 62.55%
         i = 0
         while m != n:
             m >>= 1
