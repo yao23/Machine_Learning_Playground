@@ -5,15 +5,17 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # Recursive, combine right and left
-    # Compute the right view of both right and left left subtree,
-    # then combine them. For very unbalanced trees, this can be O(n^2), though.
-    # beats 79.79%
     def rightSideView(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
+
+        Recursive, combine right and left
+        Compute the right view of both right and left left subtree,
+        then combine them. For very unbalanced trees, this can be O(n^2), though.
+        beats 79.79%
         """
         if not root:
             return []
@@ -21,10 +23,15 @@ class Solution(object):
         left = self.rightSideView(root.left)
         return [root.val] + right + left[len(right):]
 
-    # Recursive, first come first serve
-    # DFS-traverse the tree right-to-left,
-    # add values to the view whenever we first reach a new record depth. This is O(n).
     def rightSideView1(self, root):
+        """
+        :param root:
+        :return:
+
+        Recursive, first come first serve
+        DFS-traverse the tree right-to-left,
+        add values to the view whenever we first reach a new record depth. This is O(n).
+        """
         def collect(node, depth):
             if node:
                 if depth == len(view):
@@ -36,9 +43,14 @@ class Solution(object):
         collect(root, 0)
         return view
 
-    # Iterative, level-by-level
-    # Traverse the tree level by level and add the last value of each level to the view. This is O(n).
     def rightSideView2(self, root):
+        """
+        :param root:
+        :return:
+
+        Iterative, level-by-level
+        Traverse the tree level by level and add the last value of each level to the view. This is O(n).
+        """
         view = []
         if root:
             level = [root]
