@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 44.70%
     def isIsomorphic(self, s, t):
         """
         :type s: str
         :type t: str
         :rtype: bool
+
+        beats 44.70%
         """
         d1, d2 = [0 for _ in xrange(256)], [0 for _ in xrange(256)]
         for i in xrange(len(s)):
