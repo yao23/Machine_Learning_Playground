@@ -4,13 +4,15 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution(object):
-    # Iterative
-    # beats 94.04%
     def reverseList(self, head):
         """
         :type head: ListNode
         :rtype: ListNode
+
+        Iterative
+        beats 94.04%
         """
         prev = None
         while head:
@@ -20,12 +22,13 @@ class Solution(object):
             prev = curr
         return prev
 
-    # Recursive
-    # beats 29.29%
     def reverseList1(self, head):
         """
         :type head: ListNode
         :rtype: ListNode
+
+        Recursive
+        beats 29.29%
         """
         return self._reverse(head)
 
