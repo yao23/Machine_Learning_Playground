@@ -2,17 +2,20 @@ import collections
 
 
 class TrieNode:
-    # Initialize your data structure here.
     def __init__(self):
+        """
+        Initialize your data structure here.
+        """
         self.children = collections.defaultdict(TrieNode)
         self.is_word = False
 
 
 class Trie(object):
-    # beats 20.32%
     def __init__(self):
         """
         Initialize your data structure here.
+
+        beats 20.32%
         """
         self.root = TrieNode()
 
