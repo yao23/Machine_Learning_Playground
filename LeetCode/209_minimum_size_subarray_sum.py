@@ -4,8 +4,9 @@ class Solution(object):
         :type s: int
         :type nums: List[int]
         :rtype: int
+
+        beats 85.23%
         """
-        # beats 85.23%
         total = left = 0
         result = len(nums) + 1
         for right, n in enumerate(nums):
