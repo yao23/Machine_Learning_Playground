@@ -1,5 +1,10 @@
+import collections
+
+
 class WordDictionary(object):
-    # beats 89.10%
+    """
+    beats 89.10%
+    """
     def __init__(self):
         self.word_dict = collections.defaultdict(list)
 
@@ -31,7 +36,7 @@ class WordDictionary(object):
                 return True
         return False
 
-    # Your WordDictionary object will be instantiated and called as such:
+# Your WordDictionary object will be instantiated and called as such:
 # obj = WordDictionary()
 # obj.addWord(word)
 # param_2 = obj.search(word)
