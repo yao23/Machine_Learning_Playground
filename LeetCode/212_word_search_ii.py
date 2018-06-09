@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 81.75%
     def findWords(self, board, words):
         """
         :type board: List[List[str]]
         :type words: List[str]
         :rtype: List[str]
+
+        beats 81.75%
         """
         trie = {}
         for w in words:
