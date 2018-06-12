@@ -1,12 +1,14 @@
 import heapq
 
+
 class Solution(object):
-    # beats 5.81%
     def findKthLargest(self, nums, k):
         """
         :type nums: List[int]
         :type k: int
         :rtype: int
+
+        beats 5.81%
         """
         # convert the kth largest to smallest
         return self.findKthSmallest(nums, len(nums)+1-k)
@@ -21,8 +23,15 @@ class Solution(object):
             else:
                 return nums[pos]
 
-    # choose the right-most element as pivot
     def partition(self, nums, l, r):
+        """
+        :param nums:
+        :param l:
+        :param r:
+        :return:
+
+        choose the right-most element as pivot
+        """
         low = l
         while l < r:
             if nums[l] < nums[r]:
@@ -32,12 +41,24 @@ class Solution(object):
         nums[low], nums[r] = nums[r], nums[low]
         return low
 
-    # O(nlgn) time
     def findKthLargest1(self, nums, k):
+        """
+        :param nums:
+        :param k:
+        :return:
+
+        O(nlgn) time
+        """
         return sorted(nums, reverse=True)[k - 1]
 
-    # O(nk) time, bubble sort idea, TLE
     def findKthLargest2(self, nums, k):
+        """
+        :param nums:
+        :param k:
+        :return:
+
+        O(nk) time, bubble sort idea, TLE
+        """
         for i in xrange(k):
             for j in xrange(len(nums) - i - 1):
                 if nums[j] > nums[j + 1]:
@@ -45,8 +66,14 @@ class Solution(object):
                     nums[j], nums[j + 1] = nums[j + 1], nums[j]
         return nums[len(nums) - k]
 
-    # O(nk) time, selection sort idea
     def findKthLargest3(self, nums, k):
+        """
+        :param nums:
+        :param k:
+        :return:
+
+        O(nk) time, selection sort idea
+        """
         for i in xrange(len(nums), len(nums) - k, -1):
             tmp = 0
             for j in xrange(i):
@@ -55,8 +82,14 @@ class Solution(object):
             nums[tmp], nums[i - 1] = nums[i - 1], nums[tmp]
         return nums[len(nums) - k]
 
-    # O(k+(n-k)lgk) time, min-heap
     def findKthLargest4(self, nums, k):
+        """
+        :param nums:
+        :param k:
+        :return:
+
+        O(k+(n-k)lgk) time, min-heap
+        """
         heap = []
         for num in nums:
             heapq.heappush(heap, num)
@@ -64,6 +97,12 @@ class Solution(object):
             heapq.heappop(heap)
         return heapq.heappop(heap)
 
-    # O(k+(n-k)lgk) time, min-heap
     def findKthLargest5(self, nums, k):
+        """
+        :param nums:
+        :param k:
+        :return:
+
+        O(k+(n-k)lgk) time, min-heap
+        """
         return heapq.nlargest(k, nums)[k - 1]
