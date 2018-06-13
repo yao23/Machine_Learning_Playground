@@ -12,8 +12,14 @@ class Solution(object):
         """
         return [c for c in combinations(range(1, 10), k) if sum(c) == n]
 
-    # Recursive
     def combinationSum3_1(self, k, n):
+        """
+        :param k:
+        :param n:
+        :return:
+
+        Recursive
+        """
         def combs(k, n, cap):
             if not k:
                 return [[]] * (not n)
@@ -23,8 +29,14 @@ class Solution(object):
 
         return combs(k, n, 10)
 
-    # Iterative
     def combinationSum3_2(self, k, n):
+        """
+        :param k:
+        :param n:
+        :return:
+
+        Iterative
+        """
         combs = [[]]
         for _ in range(k):
             combs = [[first] + comb
@@ -32,8 +44,14 @@ class Solution(object):
                      for first in range(1, comb[0] if comb else 10)]
         return [c for c in combs if sum(c) == n]
 
-    # Reduce
     def combinationSum3_3(self, k, n):
+        """
+        :param k:
+        :param n:
+        :return:
+
+        Reduce
+        """
         return [c for c in
                 reduce(lambda combs, _: [[first] + comb
                                          for comb in combs
