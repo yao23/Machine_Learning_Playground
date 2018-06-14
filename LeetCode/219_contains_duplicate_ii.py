@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 15.63%
     def containsNearbyDuplicate(self, nums, k):
         """
         :type nums: List[int]
         :type k: int
         :rtype: bool
+
+        beats 15.63%
         """
         dic = {}
         for i, v in enumerate(nums):
