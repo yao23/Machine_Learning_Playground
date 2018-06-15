@@ -1,11 +1,12 @@
 class Solution(object):
-    # beats 87.70%
     def containsNearbyAlmostDuplicate(self, nums, k, t):
         """
         :type nums: List[int]
         :type k: int
         :type t: int
         :rtype: bool
+
+        beats 87.70%
         """
         if t < 0: return False
         n = len(nums)
