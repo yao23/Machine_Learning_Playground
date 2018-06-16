@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 47.64%
     def maximalSquare(self, matrix):
         """
         :type matrix: List[List[str]]
         :rtype: int
+
+        beats 47.64%
         """
         for i in range(len(matrix)):
             for j in range(len(matrix[i])):
@@ -12,11 +13,12 @@ class Solution(object):
                     matrix[i][j] = min(matrix[i-1][j], matrix[i-1][j-1], matrix[i][j-1]) + 1
         return len(matrix) and max(map(max, matrix)) ** 2
 
-    # beats 54.25%
     def maximalSquare1(self, A):
         """
         :type matrix: List[List[str]]
         :rtype: int
+
+        beats 54.25%
         """
         area = 0
         if A:
