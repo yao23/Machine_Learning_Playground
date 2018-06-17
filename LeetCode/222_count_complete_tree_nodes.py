@@ -5,23 +5,25 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # @param {TreeNode} root
-    # @return {integer}
     def countNodes(self, root):
         """
         :type root: TreeNode
         :rtype: int
+
+        @param {TreeNode} root
+        @return {integer}
+        beats 81.94%
         """
-        # beats 81.94%
         if not root:
             return 0
-        leftDepth = self.getDepth(root.left)
-        rightDepth = self.getDepth(root.right)
-        if leftDepth == rightDepth:
-            return pow(2, leftDepth) + self.countNodes(root.right)
+        left_depth = self.getDepth(root.left)
+        right_depth = self.getDepth(root.right)
+        if left_depth == right_depth:
+            return pow(2, left_depth) + self.countNodes(root.right)
         else:
-            return pow(2, rightDepth) + self.countNodes(root.left)
+            return pow(2, right_depth) + self.countNodes(root.left)
 
     def getDepth(self, root):
         if not root:
