@@ -10,7 +10,8 @@ class Solution(object):
         :type G: int
         :type H: int
         :rtype: int
+
+        beats 73.31%
         """
-        # beats 73.31%
-        overlap = max(min(C,G)-max(A,E), 0)*max(min(D,H)-max(B,F), 0)
-        return (A-C)*(B-D) + (E-G)*(F-H) - overlap
+        overlap = max(min(C, G) - max(A, E), 0) * max(min(D, H) -max(B, F), 0)
+        return (A - C) * (B - D) + (E - G) * (F - H) - overlap
