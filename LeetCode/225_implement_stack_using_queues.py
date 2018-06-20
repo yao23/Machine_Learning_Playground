@@ -1,9 +1,12 @@
 import collections
+
+
 class MyStack(object):
-    # beats 35.88%
     def __init__(self):
         """
         Initialize your data structure here.
+
+        beats 35.88%
         """
         self._queue = collections.deque()
 
