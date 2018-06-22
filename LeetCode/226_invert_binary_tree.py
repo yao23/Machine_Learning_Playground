@@ -5,12 +5,14 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # beats 13.40%
     def invertTree(self, root):
         """
         :type root: TreeNode
         :rtype: TreeNode
+
+        beats 13.40%
         """
         if root:
             invert = self.invertTree
