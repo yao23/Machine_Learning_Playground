@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 49.67%
     def summaryRanges(self, nums):
         """
         :type nums: List[int]
         :rtype: List[str]
+
+        beats 49.67%
         """
         ranges, r = [], []
         for n in nums:
@@ -13,11 +14,12 @@ class Solution(object):
             r[1:] = n,
         return ['->'.join(map(str, r)) for r in ranges]
 
-    # beats 4.92%
     def summaryRanges1(self, nums):
         """
         :type nums: List[int]
         :rtype: List[str]
+
+        beats 4.92%
         """
         ranges = []
         for n in nums:
@@ -26,11 +28,12 @@ class Solution(object):
             ranges[-1][1:] = n,
         return ['->'.join(map(str, r)) for r in ranges]
 
-    # beats 4.92%
     def summaryRanges2(self, nums):
         """
         :type nums: List[int]
         :rtype: List[str]
+
+        beats 4.92%
         """
         ranges = r = []
         for n in nums:
