@@ -1,8 +1,9 @@
 class MyQueue(object):
-    # beats 10.61%
     def __init__(self):
         """
         initialize your data structure here.
+
+        beats 10.61%
         """
         self.input = []
         self.output = []
