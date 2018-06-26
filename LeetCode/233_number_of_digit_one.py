@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 27.91%
     def countDigitOne(self, n):
         """
         :type n: int
         :rtype: int
+
+        beats 27.91%
         """
         if n <= 0:
             return 0
