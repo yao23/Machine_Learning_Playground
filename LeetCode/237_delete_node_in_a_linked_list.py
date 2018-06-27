@@ -4,12 +4,14 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution(object):
-    # beats 11.43%
     def deleteNode(self, node):
         """
         :type node: ListNode
         :rtype: void Do not return anything, modify node in-place instead.
+
+        beats 11.43%
         """
         node.val = node.next.val
         node.next = node.next.next
