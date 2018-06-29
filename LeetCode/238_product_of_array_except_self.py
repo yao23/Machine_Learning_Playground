@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 95.35%
     def productExceptSelf(self, nums):
         """
         :type nums: List[int]
         :rtype: List[int]
+
+        beats 95.35%
         """
         p = 1
         n = len(nums)
