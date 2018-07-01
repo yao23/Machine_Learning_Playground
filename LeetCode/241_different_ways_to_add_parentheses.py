@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 72.26%
     def diffWaysToCompute(self, input):
         """
         :type input: str
         :rtype: List[int]
+
+        beats 72.26%
         """
         if input.isdigit():
             return [int(input)]
