@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 54.83%
     def isAnagram(self, s, t):
         """
         :type s: str
         :type t: str
         :rtype: bool
+
+        beats 54.83%
         """
         dic1, dic2 = {}, {}
         for item in s:
