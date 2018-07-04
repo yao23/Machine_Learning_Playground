@@ -1,8 +1,9 @@
 class WordDistance(object):
-    # beats 24.33%
     def __init__(self, words):
         """
         :type words: List[str]
+
+        beats 24.33%
         """
         self.d = {}
         for i, w in enumerate(words):
