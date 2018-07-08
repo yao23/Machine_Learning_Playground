@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 81.54%
     def findStrobogrammatic(self, n):
         """
         :type n: int
         :rtype: List[str]
+
+        beats 81.54%
         """
         evenMidCandidate = ["11", "69", "88", "96", "00"]
         oddMidCandidate = ["0", "1", "8"]
