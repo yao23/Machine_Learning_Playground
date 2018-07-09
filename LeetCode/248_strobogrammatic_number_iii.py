@@ -1,13 +1,11 @@
 class Solution(object):
-    # @param {string} low
-    # @param {string} high
-    # @return {integer}
-    # beats 53.36%
     def strobogrammaticInRange(self, low, high):
         """
         :type low: str
         :type high: str
         :rtype: int
+
+        beats 53.36%
         """
         maps = {"0": "0", "1": "1", "6": "9", "8": "8", "9": "6"}
         cl, ch = len(low), len(high)
