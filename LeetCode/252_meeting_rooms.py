@@ -4,12 +4,14 @@
 #         self.start = s
 #         self.end = e
 
+
 class Solution(object):
-    # beats 42.09%
     def canAttendMeetings(self, intervals):
         """
         :type intervals: List[Interval]
         :rtype: bool
+
+        beats 42.09%
         """
         intervals.sort(key=lambda x: x.start)
 
