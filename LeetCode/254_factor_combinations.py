@@ -1,10 +1,11 @@
 class Solution(object):
-    # Iterative:
-    # beats 70.72%
     def getFactors(self, n):
         """
         :type n: int
         :rtype: List[List[int]]
+
+        Iterative:
+        beats 70.72%
         """
         todo, combis = [(n, 2, [])], []
         while todo:
@@ -16,12 +17,13 @@ class Solution(object):
                 i += 1
         return combis
 
-    # Recursive:
-    # beats 91.99%
     def getFactors1(self, n):
         """
         :type n: int
         :rtype: List[List[int]]
+
+        Recursive:
+        beats 91.99%
         """
 
         def factor(n, i, combi, combis):
