@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 38.79%
     def minCost(self, costs):
         """
         :type costs: List[List[int]]
         :rtype: int
+
+        beats 38.79%
         """
         size = len(costs)
         if size == 0:
