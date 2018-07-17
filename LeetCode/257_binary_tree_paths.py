@@ -7,13 +7,15 @@
 
 import collections
 
+
 class Solution(object):
-    # dfs recursively
-    # beats 31.80%
     def binaryTreePaths(self, root):
         """
         :type root: TreeNode
         :rtype: List[str]
+
+        dfs recursively
+        beats 31.80%
         """
         if not root:
             return []
@@ -29,8 +31,13 @@ class Solution(object):
         if root.right:
             self.dfs(root.right, ls + str(root.val) + "->", res)
 
-    # dfs + stack
     def binaryTreePaths1(self, root):
+        """
+        :param root:
+        :return:
+
+        dfs + stack
+        """
         if not root:
             return []
         res, stack = [], [(root, "")]
@@ -44,8 +51,13 @@ class Solution(object):
                 stack.append((node.left, ls + str(node.val) + "->"))
         return res
 
-    # bfs + queue
     def binaryTreePaths2(self, root):
+        """
+        :param root:
+        :return:
+
+        bfs + queue
+        """
         if not root:
             return []
         res, queue = [], collections.deque([(root, "")])
