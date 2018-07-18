@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 77.24%
     def addDigits(self, num):
         """
         :type num: int
         :rtype: int
+
+        beats 77.24%
         """
         if num == 0:
             return 0
