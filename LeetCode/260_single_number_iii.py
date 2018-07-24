@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 82.88%
     def singleNumber(self, nums):
         """
         :type nums: List[int]
         :rtype: List[int]
+
+        beats 82.88%
         """
         xor = 0
         a = 0
