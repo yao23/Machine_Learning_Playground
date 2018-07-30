@@ -12,7 +12,7 @@ class Solution(object):
         for num in nums:
             xor ^= num
         mask = 1
-        while(xor&mask == 0):
+        while xor & mask == 0:
             mask = mask << 1
         for num in nums:
             if num&mask:
