@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 38.32%
     def isUgly(self, num):
         """
         :type num: int
         :rtype: bool
+
+        beats 38.32%
         """
         if num <= 0:
             return False
