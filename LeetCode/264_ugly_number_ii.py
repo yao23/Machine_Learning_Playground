@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 81.39%
     def nthUglyNumber(self, n):
         """
         :type n: int
         :rtype: int
+
+        beats 81.39%
         """
         ugly = [1]
         i2, i3, i5 = 0, 0, 0
