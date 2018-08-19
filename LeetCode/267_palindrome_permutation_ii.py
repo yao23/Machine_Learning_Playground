@@ -1,8 +1,16 @@
 from collections import Counter
 
+
 class Solution(object):
-    # beats 63.83%
     def combinations(self, chars, res, path=[]):
+        """
+        :param chars:
+        :param res:
+        :param path:
+        :return:
+
+        beats 63.83%
+        """
         if not chars:
             res.append(path)
             return
