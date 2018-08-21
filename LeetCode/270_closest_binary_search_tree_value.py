@@ -5,13 +5,15 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # beats 50.47%
     def closestValue(self, root, target):
         """
         :type root: TreeNode
         :type target: float
         :rtype: int
+
+        beats 50.47%
         """
         a = root.val
         kid = root.left if target < a else root.right
