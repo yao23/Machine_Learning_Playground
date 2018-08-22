@@ -1,10 +1,11 @@
 class Codec:
-    # beats 82.20%
     def encode(self, strs):
         """Encodes a list of strings to a single string.
 
         :type strs: List[str]
         :rtype: str
+
+        beats 82.20%
         """
         return ''.join('%d:' % len(s) + s for s in strs)
 
