@@ -5,14 +5,16 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # beats 60.27%
     def closestKValues(self, root, target, k):
         """
         :type root: TreeNode
         :type target: float
         :type k: int
         :rtype: List[int]
+
+        beats 60.27%
         """
 
         # Helper, takes a path and makes it the path to the next node
