@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 84.03%
     def numberToWords(self, num):
         """
         :type num: int
         :rtype: str
+
+        beats 84.03%
         """
         to19 = 'One Two Three Four Five Six Seven Eight Nine Ten Eleven Twelve ' \
                'Thirteen Fourteen Fifteen Sixteen Seventeen Eighteen Nineteen'.split()
