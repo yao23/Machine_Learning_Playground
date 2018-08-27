@@ -2,13 +2,16 @@
 # @param version, an integer
 # @return a bool
 # def isBadVersion(version):
+import bisect
+
 
 class Solution(object):
-    # beats 8.16%
     def firstBadVersion(self, n):
         """
         :type n: int
         :rtype: int
+
+        beats 8.16%
         """
         class Wrap:
             def __getitem__(self, i):
