@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 29.34%
     def numWays(self, n, k):
         """
         :type n: int
         :type k: int
         :rtype: int
+
+        beats 29.34%
         """
         if n == 0:
             return 0
