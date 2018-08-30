@@ -1,6 +1,11 @@
+import itertools
+
+
 class ZigzagIterator(object):
-    # With a list of remaining downcounter + iterator pairs:
-    # beats 87.23%
+    """
+    With a list of remaining downcounter + iterator pairs:
+    beats 87.23%
+    """
     def __init__(self, v1, v2):
         """
         Initialize your data structure here.
@@ -24,6 +29,7 @@ class ZigzagIterator(object):
         """
         return bool(self.data)
 
+
 class ZigzagIterator1(object):
     # With a generator expression and a down counter:
     def __init__(self, v1, v2):
@@ -36,6 +42,7 @@ class ZigzagIterator1(object):
 
     def hasNext(self):
         return self.n > 0
+
 
 class ZigzagIterator2(object):
     # With a generator function and a down counter:
