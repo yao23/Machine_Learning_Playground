@@ -1,11 +1,12 @@
 class Solution(object):
-    # beats 78.90%
     def wallsAndGates(self, rooms):
         """
         :type rooms: List[List[int]]
         :rtype: void Do not return anything, modify rooms in-place instead.
 
         BFS (start from gate who is r in the code and represented as 0)
+
+        beats 78.90%
         """
         q = [(i, j) for i, row in enumerate(rooms) for j, r in enumerate(row) if not r]
         for i, j in q:
