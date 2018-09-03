@@ -22,12 +22,14 @@
 # Store the next value outside the iterator.
 # When next is called return the stored value and populate with next value from iterator.
 
+
 class PeekingIterator(object):
-    # beats 95.62%
     def __init__(self, iterator):
         """
         Initialize your data structure here.
         :type iterator: Iterator
+
+        beats 95.62%
         """
         self.iter = iterator
         self.temp = self.iter.next() if self.iter.hasNext() else None
