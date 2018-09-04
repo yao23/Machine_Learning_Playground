@@ -1,8 +1,12 @@
+import collections
+
+
 class ValidWordAbbr(object):
-    # beats 45.93%
     def __init__(self, dictionary):
         """
         :type dictionary: List[str]
+
+        beats 45.93%
         """
         self.dic = collections.defaultdict(set)
         for s in dictionary:
