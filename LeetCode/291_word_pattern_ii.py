@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 74.32%
     def wordPatternMatch(self, pattern, str):
         """
         :type pattern: str
         :type str: str
         :rtype: bool
+
+        beats 74.32%
         """
         return self.dfs(pattern, str, {})
 
