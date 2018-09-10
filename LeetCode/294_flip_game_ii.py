@@ -1,9 +1,13 @@
+import re
+
+
 class Solution(object):
-    # beats 98.88%
     def canWin(self, s):
         """
         :type s: str
         :rtype: bool
+
+        beats 98.88%
         """
         memo = {}
         def can(piles):
