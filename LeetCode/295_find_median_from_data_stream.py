@@ -1,10 +1,12 @@
 from heapq import *
 
+
 class MedianFinder(object):
-    # beats 50.85%
     def __init__(self):
         """
         initialize your data structure here.
+
+        beats 50.85%
         """
         self.heaps = [], []
 
