@@ -1,12 +1,13 @@
 class Solution(object):
-    # beats 95.87%
     def minTotalDistance(self, grid):
         """
         :type grid: List[List[int]]
         :rtype: int
+
+        beats 95.87%
         """
         row_sum = map(sum, grid)
-        col_sum = map(sum, zip(*grid)) # syntax sugar learned from stefan :-)
+        col_sum = map(sum, zip(*grid))  # syntax sugar learned from stefan :-)
 
         def minTotalDistance1D(vec):
             i, j = -1, len(vec)
