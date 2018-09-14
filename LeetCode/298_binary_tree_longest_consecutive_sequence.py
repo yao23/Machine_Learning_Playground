@@ -5,12 +5,14 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # beats 83.41%
     def longestConsecutive(self, root):
         """
         :type root: TreeNode
         :rtype: int
+
+        beats 83.41%
         """
         if not root:
             return 0
