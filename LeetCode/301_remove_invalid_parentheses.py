@@ -1,10 +1,11 @@
 class Solution(object):
-    # `self` check
-    # beats 35.33%
     def removeInvalidParentheses(self, s):
         """
         :type s: str
         :rtype: List[str]
+
+        `self` check
+        beats 35.33%
         """
 
         def isvalid(s):
@@ -25,12 +26,13 @@ class Solution(object):
                 return valid
             level = {s[:i] + s[i + 1:] for s in level for i in range(len(s))}
 
-    # `eval` check
-    # beats 9.32%
     def removeInvalidParentheses1(self, s):
         """
         :type s: str
         :rtype: List[str]
+
+        `eval` check
+        beats 9.32%
         """
         level = {s}
         while True:
@@ -45,12 +47,13 @@ class Solution(object):
                 return valid
             level = {s[:i] + s[i+1:] for s in level for i in range(len(s))}
 
-    # mix above two
-    # beats 7.71%
     def removeInvalidParentheses2(self, s):
         """
         :type s: str
         :rtype: List[str]
+
+        mix above two
+        beats 7.71%
         """
 
         def isvalid(s):
@@ -67,11 +70,12 @@ class Solution(object):
                 return valid
             level = {s[:i] + s[i + 1:] for s in level for i in range(len(s))}
 
-    # beats 13.23%
     def removeInvalidParentheses3(self, s):
         """
         :type s: str
         :rtype: List[str]
+
+        beats 13.23%
         """
 
         def isvalid(s):
