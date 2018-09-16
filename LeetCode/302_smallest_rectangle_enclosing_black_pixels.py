@@ -1,11 +1,12 @@
 class Solution(object):
-    # beats 73.33%
     def minArea(self, image, x, y):
         """
         :type image: List[List[str]]
         :type x: int
         :type y: int
         :rtype: int
+
+        beats 73.33%
         """
         top = self.searchRows(image, 0, x, True)
         bottom = self.searchRows(image, x + 1, len(image), False)
