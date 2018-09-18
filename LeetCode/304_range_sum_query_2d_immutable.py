@@ -1,8 +1,9 @@
 class NumMatrix(object):
-    # beats 39.02%
     def __init__(self, matrix):
         """
         :type matrix: List[List[int]]
+
+        beats 39.02%
         """
         if matrix is None or not matrix:
             return
