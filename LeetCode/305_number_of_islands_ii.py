@@ -1,11 +1,12 @@
 class Solution(object):
-    # beats 47.58%
     def numIslands2(self, m, n, positions):
         """
         :type m: int
         :type n: int
         :type positions: List[List[int]]
         :rtype: List[int]
+
+        beats 47.58%
         """
         ans = []
         islands = UnionFind()
