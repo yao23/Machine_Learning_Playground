@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 17.86%
     def isAdditiveNumber(self, num):
         """
         :type num: str
         :rtype: bool
+
+        beats 17.86%
         """
         if len(num) < 3:
             return False
