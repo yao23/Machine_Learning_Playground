@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 74.04%
     def maxProfit(self, prices):
         """
         :type prices: List[int]
         :rtype: int
+
+        beats 74.04%
         """
         if len(prices) < 2:
             return 0
