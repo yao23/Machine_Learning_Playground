@@ -1,6 +1,10 @@
 class NumArray(object):
-    # beats 76.75%
     def __init__(self, nums):
+        """
+        :param nums:
+
+        beats 76.75%
+        """
         self.n = len(nums)
         self.a, self.c = nums, [0] * (self.n + 1)
         for i in range(self.n):
@@ -26,11 +30,13 @@ class NumArray(object):
             i -= (i & -i)
         return res
 
+
 class NumArray1(object):
-    # beats 22.88%
     def __init__(self, nums):
         """
         :type nums: List[int]
+
+        beats 22.88%
         """
         self.update = nums.__setitem__
         self.sumRange = lambda i, j: sum(nums[i:j + 1])
