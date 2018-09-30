@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 99.28%
     def findMinHeightTrees(self, n, edges):
         """
         :type n: int
         :type edges: List[List[int]]
         :rtype: List[int]
+
+        beats 99.28%
         """
         if n == 1: return [0]
         adj = [set() for _ in xrange(n)]
