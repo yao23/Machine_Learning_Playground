@@ -1,12 +1,15 @@
 import heapq
+import itertools
+
 
 class Solution(object):
-    # beats 84.85%
     def nthSuperUglyNumber(self, n, primes):
         """
         :type n: int
         :type primes: List[int]
         :rtype: int
+
+        beats 84.85%
         """
         uglies = [1]
         merged = heapq.merge(*map(lambda p: (u*p for u in uglies), primes))
@@ -14,12 +17,13 @@ class Solution(object):
         map(uglies.append, itertools.islice(uniqed, n-1))
         return uglies[-1]
 
-    # beats 85.23%
     def nthSuperUglyNumber1(self, n, primes):
         """
         :type n: int
         :type primes: List[int]
         :rtype: int
+
+        beats 85.23%
         """
         uglies = [1]
 
