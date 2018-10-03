@@ -7,12 +7,14 @@
 
 import collections
 
+
 class Solution(object):
-    # beats 47.63%
     def verticalOrder(self, root):
         """
         :type root: TreeNode
         :rtype: List[List[int]]
+
+        beats 47.63%
         """
         cols = collections.defaultdict(list)
         queue = [(root, 0)]
