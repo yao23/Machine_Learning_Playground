@@ -1,10 +1,11 @@
 # https://discuss.leetcode.com/topic/31561/some-python-solutions
 class Solution(object):
-    # beats 82.59%
     def removeDuplicateLetters(self, s):
         """
         :type s: str
         :rtype: str
+
+        beats 82.59%
         """
         rindex = {c: i for i, c in enumerate(s)}
         result = ''
@@ -15,11 +16,12 @@ class Solution(object):
                 result += c
         return result
 
-    # beats 70.31%
     def removeDuplicateLetters1(self, s):
         """
         :type s: str
         :rtype: str
+
+        beats 70.31%
         """
         result = ''
         while s:
@@ -29,11 +31,12 @@ class Solution(object):
             s = s[s.index(c):].replace(c, '')
         return result
 
-    # beats 43.69%
     def removeDuplicateLetters2(self, s):
         """
         :type s: str
         :rtype: str
+
+        beats 43.69%
         """
         for c in sorted(set(s)):
             suffix = s[s.index(c):]
