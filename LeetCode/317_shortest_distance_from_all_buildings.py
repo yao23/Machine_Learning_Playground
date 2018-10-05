@@ -1,9 +1,13 @@
+import collections
+
+
 class Solution(object):
-    # beats 87.20%
     def shortestDistance(self, grid):
         """
         :type grid: List[List[int]]
         :rtype: int
+
+        beats 87.20%
         """
         if not grid or not grid[0]: return -1
         M, N, buildings = len(grid), len(grid[0]), sum(val for line in grid for val in line if val == 1)
