@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 94.42%
     def maxProduct(self, words):
         """
         :type words: List[str]
         :rtype: int
+
+        beats 94.42%
         """
         d = {}
         for w in words:
