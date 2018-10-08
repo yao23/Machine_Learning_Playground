@@ -1,8 +1,9 @@
 class Solution(object):
-    # beats 34.56%
     def bulbSwitch(self, n):
         """
         :type n: int
         :rtype: int
+
+        beats 34.56%
         """
-        return int(n**(0.5))
+        return int(n ** 0.5)
