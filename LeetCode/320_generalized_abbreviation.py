@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 76.68%
     def generateAbbreviations(self, word):
         """
         :type word: str
         :rtype: List[str]
+
+        beats 76.68%
         """
         def helper(word, pos, cur, count, result):
             if len(word) == pos:
