@@ -1,11 +1,12 @@
 class Solution(object):
-    # beats 67.26%
     def maxNumber(self, nums1, nums2, k):
         """
         :type nums1: List[int]
         :type nums2: List[int]
         :type k: int
         :rtype: List[int]
+
+        beats 67.26%
         """
         def prep(nums, k):
             drop = len(nums) - k
