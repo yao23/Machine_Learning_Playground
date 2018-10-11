@@ -1,11 +1,12 @@
 class Solution(object):
-    # DFS
-    # beats 69.65%
     def countComponents(self, n, edges):
         """
         :type n: int
         :type edges: List[List[int]]
         :rtype: int
+
+        DFS
+        beats 69.65%
         """
 
         def dfs(n, g, visited):
@@ -29,13 +30,14 @@ class Solution(object):
 
         return ret
 
-    # BFS
-    # beats 75.99%
     def countComponents1(self, n, edges):
         """
         :type n: int
         :type edges: List[List[int]]
         :rtype: int
+
+        BFS
+        beats 75.99%
         """
         g = {x: [] for x in xrange(n)}
         for x, y in edges:
@@ -53,13 +55,14 @@ class Solution(object):
 
         return ret
 
-    # Union Find
-    # beats 65.65%
     def countComponents2(self, n, edges):
         """
         :type n: int
         :type edges: List[List[int]]
         :rtype: int
+
+        Union Find
+        beats 65.65%
         """
 
         def find(x):
