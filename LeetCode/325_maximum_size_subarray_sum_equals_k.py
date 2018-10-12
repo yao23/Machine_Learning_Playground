@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 33.69%
     def maxSubArrayLen(self, nums, k):
         """
         :type nums: List[int]
         :type k: int
         :rtype: int
+
+        beats 33.69%
         """
         ans, acc = 0, 0  # answer and the accumulative value of nums
         mp = {0: -1}  # key is acc value, and value is the index
