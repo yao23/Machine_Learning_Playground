@@ -1,15 +1,17 @@
 class Solution(object):
-    # beats 92.86%
     def countRangeSum(self, nums, lower, upper):
         """
         :type nums: List[int]
         :type lower: int
         :type upper: int
         :rtype: int
+
+        beats 92.86%
         """
         first = [0]
         for num in nums:
             first.append(first[-1] + num)
+
         def sort(lo, hi):
             mid = (lo + hi) / 2
             if mid == lo:
