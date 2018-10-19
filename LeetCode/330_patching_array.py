@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 26.27%
     def minPatches(self, nums, n):
         """
         :type nums: List[int]
         :type n: int
         :rtype: int
+
+        beats 26.27%
         """
         miss, i, added = 1, 0, 0
         while miss <= n:
