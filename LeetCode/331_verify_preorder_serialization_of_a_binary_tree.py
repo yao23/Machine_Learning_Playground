@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 98.42%
     def isValidSerialization(self, preorder):
         """
         :type preorder: str
         :rtype: bool
+
+        beats 98.42%
         """
         # remember how many empty slots we have
         # non-null nodes occupy one slot but create two new slots
@@ -21,7 +22,7 @@ class Solution(object):
 
             # a null node?
             if node == '#':
-                # ocuppy slot
+                # occupy slot
                 slot -= 1
             else:
                 # create new slot
