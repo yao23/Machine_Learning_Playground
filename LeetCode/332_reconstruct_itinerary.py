@@ -1,12 +1,14 @@
 import collections
 
+
 class Solution(object):
-    # Recursive
-    # beats 87.08%
     def findItinerary(self, tickets):
         """
         :type tickets: List[List[str]]
         :rtype: List[str]
+
+        Recursive
+        beats 87.08%
         """
         targets = collections.defaultdict(list)
         for a, b in sorted(tickets)[::-1]:
@@ -19,12 +21,13 @@ class Solution(object):
         visit('JFK')
         return route[::-1]
 
-    # Iterative
-    # beats 72.35%
     def findItinerary1(self, tickets):
         """
         :type tickets: List[List[str]]
         :rtype: List[str]
+
+        Iterative
+        beats 72.35%
         """
         targets = collections.defaultdict(list)
         for a, b in sorted(tickets)[::-1]:
