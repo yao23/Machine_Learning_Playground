@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 58.11%
     def isSelfCrossing(self, x):
         """
         :type x: List[int]
         :rtype: bool
+
+        beats 58.11%
         """
         b = c = d = e = 0
         for a in x:
