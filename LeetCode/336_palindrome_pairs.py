@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 40.22%
     def palindromePairs(self, words):
         """
         :type words: List[str]
         :rtype: List[List[int]]
+
+        beats 40.22%
         """
         def is_palindrome(check):
             return check == check[::-1]
