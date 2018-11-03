@@ -1,11 +1,13 @@
 import re
 
+
 class Solution(object):
-    # beats 97.78%
     def reverseVowels(self, s):
         """
         :type s: str
         :rtype: str
+
+        beats 97.78%
         """
         vowels = set(list("aeiouAEIOU"))
         s = list(s)
@@ -21,11 +23,12 @@ class Solution(object):
                 ptr_2 -= 1
         return ''.join(s)
 
-    # beats 76.44%
     def reverseVowels1(self, s):
         """
         :type s: str
         :rtype: str
+
+        beats 76.44%
         """
         vowels = re.findall('(?i)[aeiou]', s)
         return re.sub('(?i)[aeiou]', lambda m: vowels.pop(), s)
