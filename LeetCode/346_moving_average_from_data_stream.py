@@ -1,11 +1,13 @@
 import collections
 
+
 class MovingAverage(object):
-    # beats 56.30%
     def __init__(self, size):
         """
         Initialize your data structure here.
         :type size: int
+
+        beats 56.30%
         """
         self.queue = collections.deque(maxlen=size)
 
