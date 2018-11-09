@@ -1,12 +1,16 @@
 import re
+import itertools
+
 
 class Solution(object):
-    # beats 51.88%
     def numberOfPatterns(self, m, n, patterns=[['']]):
         """
+        :param patterns:
         :type m: int
         :type n: int
         :rtype: int
+
+        beats 51.88%
         """
         while len(patterns) <= n:
             bad = '[^2]*(13|31)|[^4]*(17|71)|[^8]*(79|97)|[^6]*(39|93)|[^5]*(19|28|37|46|64|73|82|91)'
