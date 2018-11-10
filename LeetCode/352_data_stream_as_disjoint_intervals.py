@@ -1,14 +1,19 @@
+import heapq
+
+
 # Definition for an interval.
-# class Interval(object):
-#     def __init__(self, s=0, e=0):
-#         self.start = s
-#         self.end = e
+class Interval(object):
+    def __init__(self, s=0, e=0):
+        self.start = s
+        self.end = e
+
 
 class SummaryRanges(object):
-    # beats 40.34%
     def __init__(self):
         """
         Initialize your data structure here.
+
+        beats 40.34%
         """
         self.intervals = []
 
