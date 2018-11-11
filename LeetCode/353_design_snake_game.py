@@ -1,7 +1,7 @@
 import collections
 
+
 class SnakeGame(object):
-    # beats 70.89%
     def __init__(self, width, height, food):
         """
         Initialize your data structure here.
@@ -12,6 +12,8 @@ class SnakeGame(object):
         :type width: int
         :type height: int
         :type food: List[List[int]]
+
+        beats 70.89%
         """
         self.snake = collections.deque([[0, 0]])  # snake head is at the front
         self.width = width
@@ -28,17 +30,17 @@ class SnakeGame(object):
         :type direction: str
         :rtype: int
         """
-        newHead = [self.snake[0][0] + self.direct[direction][0], self.snake[0][1] + self.direct[direction][1]]
+        new_head = [self.snake[0][0] + self.direct[direction][0], self.snake[0][1] + self.direct[direction][1]]
 
         # notice that the newHead can be equal to self.snake[-1]
-        if (newHead[0] < 0 or newHead[0] >= self.height) or (newHead[1] < 0 or newHead[1] >= self.width) \
-                or (newHead in self.snake and newHead != self.snake[-1]): return -1
+        if (new_head[0] < 0 or new_head[0] >= self.height) or (new_head[1] < 0 or new_head[1] >= self.width) \
+                or (new_head in self.snake and new_head != self.snake[-1]): return -1
 
-        if self.food and self.food[0] == newHead:  # eat food
-            self.snake.appendleft(newHead)  # just make the food be part of snake
+        if self.food and self.food[0] == new_head:  # eat food
+            self.snake.appendleft(new_head)  # just make the food be part of snake
             self.food.popleft()  # delete the food that's already eaten
         else:  # not eating food: append head and delete tail
-            self.snake.appendleft(newHead)
+            self.snake.appendleft(new_head)
             self.snake.pop()
 
         return len(self.snake) - 1
