@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 46.47%
     def maxEnvelopes(self, envelopes):
         """
         :type envelopes: List[List[int]]
         :rtype: int
+
+        beats 46.47%
         """
         def liss(envelopes):
             def lmip(envelopes, tails, k):
