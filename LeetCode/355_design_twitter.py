@@ -1,8 +1,14 @@
+import itertools
+import collections
+import heapq
+
+
 class Twitter(object):
-    # beats 87.84%
     def __init__(self):
         """
         Initialize your data structure here.
+
+        beats 87.84%
         """
         self.timer = itertools.count(step=-1)
         self.tweets = collections.defaultdict(collections.deque)
