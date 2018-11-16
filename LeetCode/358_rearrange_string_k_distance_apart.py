@@ -1,13 +1,15 @@
 import collections
 import heapq
 
+
 class Solution(object):
-    # beats 48.46%
     def rearrangeString(self, s, k):
         """
         :type s: str
         :type k: int
         :rtype: str
+
+        beats 48.46%
         """
         if k == 0:
             return s
