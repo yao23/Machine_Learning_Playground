@@ -1,8 +1,9 @@
 class Logger(object):
-    # beats 82.14%
     def __init__(self):
         """
         Initialize your data structure here.
+
+        beats 82.14%
         """
         self.ok = {}
 
