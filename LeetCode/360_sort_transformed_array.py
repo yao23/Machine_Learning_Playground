@@ -1,5 +1,4 @@
 class Solution(object):
-    # beats 52.17%
     def sortTransformedArray(self, nums, a, b, c):
         """
         :type nums: List[int]
@@ -7,6 +6,8 @@ class Solution(object):
         :type b: int
         :type c: int
         :rtype: List[int]
+
+        beats 52.17%
         """
         nums = [x*x*a + x*b + c for x in nums]
         ret = [0] * len(nums)
@@ -18,6 +19,6 @@ class Solution(object):
                 p1 += 1
             else:
                 ret[i] = nums[p2]
-                p2 -=1
+                p2 -= 1
             i += d
         return ret
