@@ -1,8 +1,9 @@
 class HitCounter(object):
-    # beats 97.42%
     def __init__(self):
         """
         Initialize your data structure here.
+
+        beats 97.42%
         """
         from collections import deque
 
