@@ -2,12 +2,13 @@ import bisect
 
 
 class Solution(object):
-    # beats 34.69%
     def maxSumSubmatrix(self, matrix, k):
         """
         :type matrix: List[List[int]]
         :type k: int
         :rtype: int
+
+        beats 34.69%
         """
         m = len(matrix)
         n = len(matrix[0]) if m else 0
