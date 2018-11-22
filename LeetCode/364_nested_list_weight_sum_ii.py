@@ -41,12 +41,14 @@
 #        :rtype List[NestedInteger]
 #        """
 
+
 class Solution(object):
-    # beats 87.59%
     def depthSumInverse(self, nestedList):
         """
         :type nestedList: List[NestedInteger]
         :rtype: int
+
+        beats 87.59%
         """
         cur_level = nestedList
         stack = []
