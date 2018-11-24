@@ -1,3 +1,5 @@
+import collections
+
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):
@@ -5,12 +7,14 @@
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-    # beats 82.69%
     def findLeaves(self, root):
         """
         :type root: TreeNode
         :rtype: List[List[int]]
+
+        beats 82.69%
         """
         def order(root, dic):
             if not root:
