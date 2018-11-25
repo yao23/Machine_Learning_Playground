@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 15.65%
     def isPerfectSquare(self, num):
         """
         :type num: int
         :rtype: bool
+
+        beats 15.65%
         """
         r = num
         while r*r > num:
