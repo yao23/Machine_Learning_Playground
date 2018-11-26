@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 97.62%
     def largestDivisibleSubset(self, nums):
         """
         :type nums: List[int]
         :rtype: List[int]
+
+        beats 97.62%
         """
         S = {-1: set()}
         for x in sorted(nums):
