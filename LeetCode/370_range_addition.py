@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 18.26%
     def getModifiedArray(self, length, updates):
         """
         :type length: int
         :type updates: List[List[int]]
         :rtype: List[int]
+
+        beats 18.26%
         """
         res = [0] * (length + 1)
         for u in updates:
