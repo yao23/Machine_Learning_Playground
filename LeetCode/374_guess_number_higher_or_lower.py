@@ -1,14 +1,22 @@
-# The guess API is already defined for you.
-# @param num, your guess
-# @return -1 if my number is lower, 1 if my number is higher, otherwise return 0
-# def guess(num):
+def guess(num):
+    """
+    :param num:
+    :return:
+
+    The guess API is already defined for you.
+    @param num, your guess
+    @return -1 if my number is lower, 1 if my number is higher, otherwise return 0
+    """
+    return num
+
 
 class Solution(object):
-    # beats 50.00%
     def guessNumber(self, n):
         """
         :type n: int
         :rtype: int
+
+        beats 50.00%
         """
         l, r = 1, n
         while l + 1 < r:
