@@ -1,10 +1,11 @@
 class PhoneDirectory(object):
-    # beats 48.62%
     def __init__(self, maxNumbers):
         """
         Initialize your data structure here
         @param maxNumbers - The maximum numbers that can be stored in the phone directory.
         :type maxNumbers: int
+
+        beats 48.62%
         """
         self.available = set(range(maxNumbers))
 
