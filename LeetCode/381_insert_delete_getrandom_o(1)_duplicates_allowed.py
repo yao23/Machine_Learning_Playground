@@ -1,10 +1,13 @@
 import random
+import collections
+
 
 class RandomizedCollection(object):
-    # beats 97.26%
     def __init__(self):
         """
         Initialize your data structure here.
+
+        beats 97.26%
         """
         self.vals, self.idxs = [], collections.defaultdict(set)
 
