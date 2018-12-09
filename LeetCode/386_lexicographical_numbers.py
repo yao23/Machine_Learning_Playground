@@ -1,19 +1,20 @@
 class Solution(object):
-    # beats 75.53%
     def lexicalOrder(self, n):
         """
         :type n: int
         :rtype: List[int]
+
+        beats 75.53%
         """
-        highDigit = 1
-        while highDigit * 10 <= n:
-            highDigit *= 10
-        higherDigit = highDigit * 10
-        withKeys = []
+        high_digit = 1
+        while high_digit * 10 <= n:
+            high_digit *= 10
+        higher_digit = high_digit * 10
+        with_keys = []
         for i in xrange(1, n+1):
             key = i
-            while key < highDigit:
+            while key < high_digit:
                 key *= 10
-            withKeys.append(key * higherDigit + i)
-        withKeys.sort()
-        return [ki % higherDigit for ki in withKeys]
+            with_keys.append(key * higher_digit + i)
+        with_keys.sort()
+        return [ki % higher_digit for ki in with_keys]
