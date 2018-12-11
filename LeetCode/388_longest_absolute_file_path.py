@@ -1,17 +1,18 @@
 class Solution(object):
-    # beats 95.12%
     def lengthLongestPath(self, input):
         """
         :type input: str
         :rtype: int
+
+        beats 95.12%
         """
-        maxlen = 0
-        pathlen = {0: 0}
+        max_len = 0
+        path_len = {0: 0}
         for line in input.splitlines():
             name = line.lstrip('\t')
             depth = len(line) - len(name)
             if '.' in name:
-                maxlen = max(maxlen, pathlen[depth] + len(name))
+                max_len = max(max_len, path_len[depth] + len(name))
             else:
-                pathlen[depth + 1] = pathlen[depth] + len(name) + 1
-        return maxlen
+                path_len[depth + 1] = path_len[depth] + len(name) + 1
+        return max_len
