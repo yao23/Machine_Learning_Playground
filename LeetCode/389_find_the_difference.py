@@ -1,12 +1,14 @@
 import collections
 
+
 class Solution(object):
-    # beats 24.97%
     def findTheDifference(self, s, t):
         """
         :type s: str
         :type t: str
         :rtype: str
+
+        beats 24.97%
         """
         s, t = sorted(s), sorted(t)
         return t[-1] if s == t[:-1] else [x[1] for x in zip(s, t) if x[0] != x[1]][0]
