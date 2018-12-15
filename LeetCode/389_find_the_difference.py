@@ -24,11 +24,12 @@ class Solution(object):
         """
         return chr(reduce(operator.xor, map(ord, s + t)))
 
-    # beats 31.10%
     def findTheDifference2(self, s, t):
         """
         :type s: str
         :type t: str
         :rtype: str
+
+        beats 31.10%
         """
         return list((collections.Counter(t) - collections.Counter(s)))[0]
