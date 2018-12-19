@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 23.73%
     def isRectangleCover(self, rectangles):
         """
         :type rectangles: List[List[int]]
         :rtype: bool
+
+        beats 23.73%
         """
         def recordCorner(point):
             if point in corners:
