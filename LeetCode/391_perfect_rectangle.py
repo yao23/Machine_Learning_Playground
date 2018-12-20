@@ -21,7 +21,8 @@ class Solution(object):
             area += (bx-ax)*(by-ay)                 # sum up the area of each sub-rectangle
             map(recordCorner, [(ax, ay), (bx, by), (ax, by), (bx, ay)])
 
-        if area != (T-B)*(R-L): return False        # check the area
+        if area != (T-B)*(R-L):
+            return False        # check the area
 
         big_four = [(L,B),(R,T),(L,T),(R,B)]
 
