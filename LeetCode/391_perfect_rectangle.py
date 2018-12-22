@@ -12,7 +12,7 @@ class Solution(object):
             else:
                 corners[point] = 1
 
-        corners = {}                                # record all corners
+        corners = {}  # record all corners
         L, B, R, T, area = float('inf'), float('inf'), -float('inf'), -float('inf'), 0
 
         for sub in rectangles:
