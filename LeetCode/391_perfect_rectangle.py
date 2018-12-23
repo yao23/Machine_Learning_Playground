@@ -18,7 +18,7 @@ class Solution(object):
         for sub in rectangles:
             L, B, R, T = min(L, sub[0]), min(B, sub[1]), max(R, sub[2]), max(T, sub[3])
             ax, ay, bx, by = sub[:]
-            area += (bx-ax)*(by-ay)                 # sum up the area of each sub-rectangle
+            area += (bx-ax)*(by-ay)  # sum up the area of each sub-rectangle
             map(recordCorner, [(ax, ay), (bx, by), (ax, by), (bx, ay)])
 
         if area != (T-B)*(R-L):
