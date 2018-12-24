@@ -22,7 +22,7 @@ class Solution(object):
             map(recordCorner, [(ax, ay), (bx, by), (ax, by), (bx, ay)])
 
         if area != (T-B)*(R-L):
-            return False        # check the area
+            return False  # check the area
 
         big_four = [(L,B),(R,T),(L,T),(R,B)]
 
