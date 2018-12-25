@@ -26,7 +26,7 @@ class Solution(object):
 
         big_four = [(L,B),(R,T),(L,T),(R,B)]
 
-        for bf in big_four:                         # check corners of big rectangle
+        for bf in big_four:  # check corners of big rectangle
             if bf not in corners or corners[bf] != 1:
                 return False
 
