@@ -30,7 +30,7 @@ class Solution(object):
             if bf not in corners or corners[bf] != 1:
                 return False
 
-        for key in corners:                         # check existing "inner" points
+        for key in corners:  # check existing "inner" points
             if corners[key]%2 and key not in big_four:
                 return False
 
