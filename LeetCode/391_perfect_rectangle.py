@@ -31,7 +31,7 @@ class Solution(object):
                 return False
 
         for key in corners:  # check existing "inner" points
-            if corners[key] %2 and key not in big_four:
+            if corners[key] % 2 and key not in big_four:
                 return False
 
         return True
