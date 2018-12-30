@@ -6,7 +6,6 @@ class Solution(object):
         :rtype: bool
 
             # beats 86.80%
-
         """
         t = iter(t)
         return all(c in t for c in s)
