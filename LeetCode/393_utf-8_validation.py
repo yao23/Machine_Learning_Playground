@@ -13,7 +13,7 @@ class Solution(object):
         :type data: List[int]
         :rtype: bool
 
-            # beats 32.31%
+        # beats 32.31%
         """
         n = len(data);
         ind = 0
