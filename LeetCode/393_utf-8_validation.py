@@ -32,5 +32,6 @@ class Solution(object):
                     if (data[i] >> 7) & 1 != 1: return False
                     if (data[i] >> 6) & 1 != 0: return False
             ind += m
-            if m == 0: ind += 1
+            if m == 0:
+                ind += 1
         return True
