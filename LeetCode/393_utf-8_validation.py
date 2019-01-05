@@ -19,7 +19,8 @@ class Solution(object):
         ind = 0
         while ind < n:
             m = self.countOne(data[ind])
-            if ind + m > n: return False
+            if ind + m > n:
+                return False
             if m == 0:
                 if (data[ind] >> 7) & 1 != 0: return False
             elif m == 1 or m > 4:
