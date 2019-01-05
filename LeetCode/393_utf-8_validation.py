@@ -15,7 +15,7 @@ class Solution(object):
 
         # beats 32.31%
         """
-        n = len(data);
+        n = len(data)
         ind = 0
         while ind < n:
             m = self.countOne(data[ind])
