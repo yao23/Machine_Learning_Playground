@@ -22,7 +22,8 @@ class Solution(object):
             if ind + m > n:
                 return False
             if m == 0:
-                if (data[ind] >> 7) & 1 != 0: return False
+                if (data[ind] >> 7) & 1 != 0:
+                    return False
             elif m == 1 or m > 4:
                 return False
             else:
