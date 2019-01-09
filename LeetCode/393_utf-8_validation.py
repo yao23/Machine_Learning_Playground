@@ -30,7 +30,8 @@ class Solution(object):
                 for i in xrange(m):
                     if (data[ind] >> (7 - i)) & 1 != 1:
                         return False
-                if (data[ind] >> (7 - i - 1)) & 1 != 0: return False
+                if (data[ind] >> (7 - i - 1)) & 1 != 0:
+                    return False
                 for i in xrange(ind + 1, ind + m):
                     if (data[i] >> 7) & 1 != 1: return False
                     if (data[i] >> 6) & 1 != 0: return False
