@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 2.39%
     def decodeString(self, s):
         """
         :type s: str
         :rtype: str
+
+        # beats 2.39%
         """
         stack = []
         stack.append(["", 1])
