@@ -38,3 +38,20 @@ class Solution(object):
         n = node.next
         node.next = prev
         return self._reverse(n, node)
+
+    def reverseList2(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if head == None or head.next == None:
+            return head
+        return self.reverse_helper(None, head)
+
+    def reverse_helper(self, prev, current):
+        if current.next == None:
+            return current
+        res = self.reverse_helper(current, current.next)
+        current.next.next = current
+        current.next = prev
+        return res
