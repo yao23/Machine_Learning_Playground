@@ -10,6 +10,8 @@ class Solution:
         :type N: int
         :type K: int
         :rtype: int
+
+        beats 77.69%
         """
         delay, current_queue = [INF] * (N + 1), [(0, K)]
         delay[K] = 0
