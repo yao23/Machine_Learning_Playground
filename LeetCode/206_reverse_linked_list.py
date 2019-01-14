@@ -44,12 +44,12 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
-        if head == None or head.next == None:
+        if head is None or head.next is None:
             return head
         return self.reverse_helper(None, head)
 
     def reverse_helper(self, prev, current):
-        if current.next == None:
+        if current.next is None:
             return current
         res = self.reverse_helper(current, current.next)
         current.next.next = current
