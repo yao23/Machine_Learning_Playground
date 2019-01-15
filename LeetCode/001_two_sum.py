@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 89.04%
     def twoSum(self, nums, target):
         """
         :type nums: List[int]
         :type target: int
         :rtype: List[int]
+
+        # beats 89.04%
         """
         if len(nums) <= 1:
             return False
