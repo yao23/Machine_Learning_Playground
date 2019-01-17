@@ -82,11 +82,11 @@ class Solution:
 
         beats 31.82%
         """
-        l = len(grid)
-        g = [[0] * l * 3 for _ in range(l * 3)]
+        grid_len = len(grid)
+        g = [[0] * grid_len * 3 for _ in range(grid_len * 3)]
         # draw lines as squares on 2x2 grid. These will be walls for the flood fill
-        for i in range(l):
-            for j in range(l):
+        for i in range(grid_len):
+            for j in range(grid_len):
                 if grid[i][j] == '/':
                     g[3 * i + 2][3 * j] = 1
                     g[3 * i + 1][3 * j + 1] = 1
@@ -101,30 +101,33 @@ class Solution:
 
         # Flood Fill grid, count new regions
         visited = set()
-        tocheck = []
+        to_check = []
         regions = 0
-        # Indexing is not straight forward; you could check every 0 on the 3*l x 3*l grid, but that will take a constant factor longer.
-        # Only need to check directly left and right of middle, to find every possible region and also guarantees that the starting point is not a wall.
-        for i in range(l):
-            for j in range(l):
+        # Indexing is not straight forward;
+        # you could check every 0 on the 3*l x 3*l grid, but that will take a constant factor longer.
+        # Only need to check directly left and right of middle, to find every possible region and also guarantees
+        # that the starting point is not a wall.
+        for i in range(grid_len):
+            for j in range(grid_len):
                 for k in range(2):
                     if (3 * i + 1, 3 * j + 2 * k) not in visited:
                         # print i, j
-                        tocheck.append((i * 3 + 1, j * 3 + 2 * k))
-                        while tocheck:
-                            temp = tocheck.pop()
+                        to_check.append((i * 3 + 1, j * 3 + 2 * k))
+                        while to_check:
+                            temp = to_check.pop()
                             if temp in visited:
                                 continue
                             x = temp[0]
                             y = temp[1]
+                            # check down, up, left, right
                             if x > 0 and g[x - 1][y] != 1:
-                                tocheck.append((x - 1, y))
-                            if x < l * 3 - 1 and g[x + 1][y] != 1:
-                                tocheck.append((x + 1, y))
+                                to_check.append((x - 1, y))
+                            if x < grid_len * 3 - 1 and g[x + 1][y] != 1:
+                                to_check.append((x + 1, y))
                             if y > 0 and g[x][y - 1] != 1:
-                                tocheck.append((x, y - 1))
-                            if y < l * 3 - 1 and g[x][y + 1] != 1:
-                                tocheck.append((x, y + 1))
+                                to_check.append((x, y - 1))
+                            if y < grid_len * 3 - 1 and g[x][y + 1] != 1:
+                                to_check.append((x, y + 1))
                             visited.add(temp)
                         regions += 1
         return regions
