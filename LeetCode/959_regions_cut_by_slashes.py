@@ -53,6 +53,27 @@ class Solution:
         :rtype: int
 
         beats 68.18%
+
+        For any square, we have 4 regions named top, right, down, left in the clockwise direction.
+
+        Firstly, modify grid list, changing "\" to "*" for simplicity for reading grid[i][j]
+
+        Make matrix array marking [top, right, down, left] of each square to zero.
+
+        Iterate over matrix and process (dfs) if current region of the unit square is zero.
+
+        Increase group number (count) by one before processing
+
+        For DFS part:
+        If character of square is "*" ("\"), update matrix values of
+            Top and right if k <= 1 and go to related neighbours
+            Else, down and left and go to related neighbours
+        Elif character of square is "/", update matrix values of
+            Right and down if 1 <= k <= 2 and go to related neighbours
+            Else top and left and go to related neighbours
+        If square has no slash,
+            Update all 4 regions of current matrix square
+            Go to all related neighbours
         """
         def dfs(x, y, z):
             if 0 <= x < n > y >= 0 and not matrix[x][y][z]:
