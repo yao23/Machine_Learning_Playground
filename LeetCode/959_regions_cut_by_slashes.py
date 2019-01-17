@@ -5,6 +5,22 @@ class Solution:
         :rtype: int
 
         beats 18.18%
+
+        Split a cell in to 4 parts like this.
+        We give it a number top is 1, right is 2, bottom is 3 left is 4.
+        ---------
+        |\     /|
+        | \   / |
+        |  \ /  |
+        |   /\  |
+        |  /  \ |
+        | /    \|
+        ---------
+
+        Two adjacent parts in different cells are contiguous regions.
+        In case '/', top and left are contiguous, bottom and right are contiguous.
+        In case '\\', top and right are contiguous, bottom and left are contiguous.
+        In case ' ', all 4 parts are contiguous.
         """
         f = {}
 
