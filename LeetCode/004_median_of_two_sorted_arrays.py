@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 70.89%
     def findMedianSortedArrays(self, nums1, nums2):
         """
         :type nums1: List[int]
         :type nums2: List[int]
         :rtype: float
+
+        beats 70.89%
         """
         l = len(nums1) + len(nums2)
         if l % 2 == 1:
