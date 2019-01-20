@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 91.82%
     def convert(self, s, numRows):
         """
         :type s: str
         :type numRows: int
         :rtype: str
+
+        beats 91.82%
         """
         if numRows == 1 or numRows >= len(s):
             return s
