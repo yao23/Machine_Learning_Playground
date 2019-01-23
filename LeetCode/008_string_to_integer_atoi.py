@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 90.76%
     def myAtoi(self, str):
         """
         :type str: str
         :rtype: int
+
+        beats 90.76%
         """
         if len(str) == 0: return 0
         ls = list(str.strip())
