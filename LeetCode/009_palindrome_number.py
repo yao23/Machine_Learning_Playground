@@ -1,11 +1,10 @@
 class Solution(object):
-    # @param x, an integer
-    # @return a boolean
-    # beats 41.60%
     def isPalindrome(self, x):
         """
         :type x: int
         :rtype: bool
+
+        beats 41.60%
         """
         if x < 0:
             return False
