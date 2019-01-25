@@ -2,12 +2,13 @@ import unittest
 
 
 class Solution(object):
-    # beats 63.59%
     def isMatch(self, s, p):
         """
         :type s: str
         :type p: str
         :rtype: bool
+
+        beats 63.59%
         """
         # The DP table and the string s and p use the same indexes i and j, but
         # table[i][j] means the match status between p[:i] and s[:j], i.e.
