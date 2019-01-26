@@ -1,11 +1,10 @@
 class Solution:
-    # @param {string} s
-    # @return {integer}
-    # beats 39.27%
     def romanToInt(self, s):
         """
         :type s: str
         :rtype: int
+
+        beats 39.27%
         """
         roman = {'M': 1000,'D': 500 ,'C': 100,'L': 50,'X': 10,'V': 5,'I': 1}
         z = 0
