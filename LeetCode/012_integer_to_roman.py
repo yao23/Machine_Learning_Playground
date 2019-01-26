@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 79.51%
     def intToRoman(self, num):
         """
         :type num: int
         :rtype: str
+
+        beats 79.51%
         """
         M = ["", "M", "MM", "MMM"]
         C = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"]
