@@ -1,9 +1,10 @@
 class Solution(object):
-    # beats 60.17%
     def threeSum(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
+
+        beats 60.17%
         """
         res = []
         nums.sort()
