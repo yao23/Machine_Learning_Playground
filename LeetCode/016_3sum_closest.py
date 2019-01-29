@@ -1,11 +1,12 @@
 class Solution(object):
-    # @return an integer
-    # beats 48.01%
     def threeSumClosest(self, nums, target):
         """
         :type nums: List[int]
         :type target: int
         :rtype: int
+
+        @return an integer
+        beats 48.01%
         """
         nums.sort()
         result = nums[0] + nums[1] + nums[2]
