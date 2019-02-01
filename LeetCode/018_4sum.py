@@ -1,10 +1,11 @@
 class Solution(object):
-    # beats 91.97%
     def fourSum(self, nums, target):
         """
         :type nums: List[int]
         :type target: int
         :rtype: List[List[int]]
+
+        beats 91.97%
         """
         def findNsum(nums, target, N, result, results):
             if len(nums) < N or N < 2 or target < nums[0]*N or target > nums[-1]*N:  # early termination
