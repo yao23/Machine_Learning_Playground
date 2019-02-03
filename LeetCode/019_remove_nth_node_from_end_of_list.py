@@ -6,12 +6,13 @@
 
 
 class Solution(object):
-    # beats 58.24%
     def removeNthFromEnd(self, head, n):
         """
         :type head: ListNode
         :type n: int
         :rtype: ListNode
+
+        beats 58.24%
         """
         fast = slow = head
         for _ in range(n):
