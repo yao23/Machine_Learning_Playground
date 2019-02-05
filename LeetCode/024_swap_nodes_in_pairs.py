@@ -6,11 +6,12 @@
 
 
 class Solution(object):
-    # beats 90.86%
     def swapPairs(self, head):
         """
         :type head: ListNode
         :rtype: ListNode
+
+        beats 90.86%
         """
         pre, pre.next = self, head
         while pre.next and pre.next.next:
