@@ -1,18 +1,18 @@
 class Solution(object):
-    def _findSubstring(self, left, r, n, k, t, s, req, ans):
+    def _findSubstring(self, left, right, n, k, t, s, req, ans):
         curr = {}
-        while r + k <= n:
-            w = s[r:r + k]
-            r += k
+        while right + k <= n:
+            w = s[right:right + k]
+            right += k
             if w not in req:
-                left = r
+                left = right
                 curr.clear()
             else:
                 curr[w] = curr[w] + 1 if w in curr else 1
                 while curr[w] > req[w]:
                     curr[s[left:left + k]] -= 1
                     left += k
-                if r - left == t:
+                if right - left == t:
                     ans.append(left)
 
     def findSubstring(self, s, words):
