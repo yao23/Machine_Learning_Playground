@@ -1,7 +1,13 @@
 class Solution(object):
-    # https://discuss.leetcode.com/topic/13096/python-binary-search-solution-o-logn-48ms
-    # beats 98.63%
     def search(self, nums, target):
+        """
+        :param nums:
+        :param target:
+        :return:
+
+        https://discuss.leetcode.com/topic/13096/python-binary-search-solution-o-logn-48ms
+        beats 98.63%
+        """
         if not nums:
             return -1
 
