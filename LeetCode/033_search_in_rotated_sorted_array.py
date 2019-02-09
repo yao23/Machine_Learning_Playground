@@ -31,13 +31,15 @@ class Solution(object):
 
         return -1
 
-    # https://discuss.leetcode.com/topic/34467/pretty-short-c-java-ruby-python/2
-    # beats 28.80%
+
     def search1(self, nums, target):
         """
         :type nums: List[int]
         :type target: int
         :rtype: int
+
+        https://discuss.leetcode.com/topic/34467/pretty-short-c-java-ruby-python/2
+        beats 28.80%
         """
         low, high = 0, len(nums) - 1
         while low < high:
