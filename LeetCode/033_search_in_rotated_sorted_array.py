@@ -31,7 +31,6 @@ class Solution(object):
 
         return -1
 
-
     def search1(self, nums, target):
         """
         :type nums: List[int]
