@@ -10,19 +10,19 @@ class Solution(object):
         @return a list of length 2, [index1, index2]
         beats 39.47%
         """
-        start = self.binary_search(nums, target-0.5)
-        if not target in nums[start:start+1]:
+        start = self.binary_search(nums, target - 0.5)
+        if not target in nums[start:start + 1]:
             return [-1, -1]
         nums.append(0)
-        end = self.binary_search(nums, target+0.5)-1
+        end = self.binary_search(nums, target + 0.5) - 1
         return [start, end]
 
     def binary_search(self, arr, target):
-        start, end = 0, len(arr)-1
+        start, end = 0, len(arr) - 1
         while start < end:
-            mid = (start+end)//2
+            mid = (start + end) // 2
             if target < arr[mid]:
                 end = mid
             else:
-                start = mid+1
+                start = mid + 1
         return start
