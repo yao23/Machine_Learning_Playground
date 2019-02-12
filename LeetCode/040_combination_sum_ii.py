@@ -8,7 +8,7 @@ class Solution(object):
         beats 79.58%
         """
         candidates.sort()
-        table = [None] + [set() for i in range(target)]
+        table = [None] + [set() for _ in range(target)]
         for i in candidates:
             if i > target:
                 break
