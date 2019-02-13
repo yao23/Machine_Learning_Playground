@@ -1,7 +1,4 @@
 class Solution(object):
-    # @param {integer[]} nums
-    # @return {integer}
-    # beats 44.25%
     def jump(self, nums):
         """
         :type nums: List[int]
@@ -9,6 +6,7 @@ class Solution(object):
 
         check every index in the current available range to reach the end or not
 
+        beats 44.25%
         """
         n, start, end, step = len(nums), 0, 0, 0
         while end < n - 1:
