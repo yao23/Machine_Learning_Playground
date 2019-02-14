@@ -21,15 +21,15 @@ class Solution(object):
 
     def jump1(self, nums):
         """
+        :param nums:
+        :return:
+
         check indices before each index from 1 to nums_len - 1
         stop at the leftmost one which enables jump from j to i
 
         time: O(n), space: O(n)
 
         beats 55.00%
-
-        :param nums:
-        :return:
         """
         nums_len = len(nums)
         if nums_len == 0:
