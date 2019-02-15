@@ -2,13 +2,14 @@ import itertools
 
 
 class Solution(object):
-    # Recursive, take any number as first
-    # Take any number as the first number and append any permutation of the other numbers
-    # beats 9.16%
     def permute(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
+
+        Recursive, take any number as first
+        Take any number as the first number and append any permutation of the other numbers
+        beats 9.16%
         """
         return [[n] + p
             for i, n in enumerate(nums)
