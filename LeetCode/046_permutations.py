@@ -15,9 +15,14 @@ class Solution(object):
             for i, n in enumerate(nums)
             for p in self.permute(nums[:i] + nums[i+1:])] or [[]]
 
-    # Recursive, insert first number anywhere
-    # Insert the first number anywhere in any permutation of the remaining numbers
     def permute1(self, nums):
+        """
+        :param nums:
+        :return:
+
+        Recursive, insert first number anywhere
+        Insert the first number anywhere in any permutation of the remaining numbers
+        """
         return nums and [p[:i] + [nums[0]] + p[i:]
                          for p in self.permute(nums[1:])
                          for i in range(len(nums))] or [[]]
