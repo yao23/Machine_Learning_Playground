@@ -27,9 +27,14 @@ class Solution(object):
                          for p in self.permute(nums[1:])
                          for i in range(len(nums))] or [[]]
 
-    # Reduce, insert next number anywhere
-    # Use reduce to insert the next number anywhere in the already built permutations
     def permute2(self, nums):
+        """
+        :param nums:
+        :return:
+
+        Reduce, insert next number anywhere
+        Use reduce to insert the next number anywhere in the already built permutations
+        """
         return reduce(lambda P, n: [p[:i] + [n] + p[i:]
                                     for p in P for i in range(len(p) + 1)],
                       nums, [[]])
