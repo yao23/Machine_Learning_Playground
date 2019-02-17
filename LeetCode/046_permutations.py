@@ -39,8 +39,13 @@ class Solution(object):
                                     for p in P for i in range(len(p) + 1)],
                       nums, [[]])
 
-    # Using the library
     def permute3(self, nums):
+        """
+        :param nums:
+        :return:
+
+        Using the library
+        """
         return list(itertools.permutations(nums))
 
     def permute4(self, nums):
