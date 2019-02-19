@@ -51,8 +51,16 @@ class Solution(object):
     def permute4(self, nums):
         return map(list, itertools.permutations(nums))
 
-    # swap current index with pivot one to generate new permutation
     def helper_method(self, nums, nums_len, depth, result):
+        """
+        :param nums:
+        :param nums_len:
+        :param depth:
+        :param result:
+        :return:
+
+        swap current index with pivot one to generate new permutation
+        """
         if depth == nums_len:
             tmp_res = list(nums)
             result.append(tmp_res)
