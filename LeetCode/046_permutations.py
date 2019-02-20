@@ -75,7 +75,12 @@ class Solution(object):
                 self.helper_method(nums, nums_len, depth + 1, result)
 
     def permute5(self, nums):
-        # beats 58.61%
+        """
+        :param nums:
+        :return:
+
+        beats 58.61%
+        """
         result = []
         nums_len = len(nums)
         self.helper_method(nums, nums_len, 0, result)
