@@ -16,7 +16,7 @@ class Solution(object):
                 for i in xrange(len(l) + 1):
                     new_ans.append(l[:i] + [n] + l[i:])
                     if i < len(l) and l[i] == n:
-                        break              # handles duplication
+                        break  # handles duplication
             ans = new_ans
         return ans
 
