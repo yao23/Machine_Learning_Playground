@@ -1,5 +1,4 @@
 class Solution(object):
-    # beats 95.68%
     def permuteUnique(self, nums):
         """
         :type nums: List[int]
@@ -8,6 +7,7 @@ class Solution(object):
         [1,2,3]
         [[1]] => [[2,1],[1,2]] => [[3,2,1],[2,3,1],[2,1,3],[3,1,2],[1,3,2],[1,2,3]]
 
+        beats 95.68%
         """
         ans = [[]]
         for n in nums:
