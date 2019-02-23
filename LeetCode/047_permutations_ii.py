@@ -43,8 +43,9 @@ class Solution(object):
         """
         :param nums:
         :return:
+
+        beats 75.12%
         """
-        # beats 75.12%
         result = []
         nums_len = len(nums)
         sorted(nums)
