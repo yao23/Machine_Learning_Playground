@@ -40,6 +40,10 @@ class Solution(object):
                     nums[depth], nums[i] = nums[i], nums[depth]
 
     def permuteUnique1(self, nums):
+        """
+        :param nums:
+        :return:
+        """
         # beats 75.12%
         result = []
         nums_len = len(nums)
