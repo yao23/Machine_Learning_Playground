@@ -16,10 +16,10 @@ class Solution(object):
             return
         for i in xrange(len(nums)):
             nums[index] = i
-            if self.valid(nums, index):
+            if self.is_valid(nums, index):
                 self.dfs(nums, index + 1)
 
-    def valid(self, nums, n):
+    def is_valid(self, nums, n):
         for i in xrange(n):
             if nums[i] == nums[n] or abs(nums[n] - nums[i]) == n - i:  # vertical and diagonal
                 return False
