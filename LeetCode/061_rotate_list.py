@@ -27,15 +27,15 @@ class Solution(object):
             pointer = pointer.next
             length += 1
 
-        rotateTimes = k%length
+        rotate_times = k%length
 
-        if k == 0 or rotateTimes == 0:
+        if k == 0 or rotate_times == 0:
             return head
 
         fast_pointer = head
         slow_pointer = head
 
-        for a in range (rotateTimes):
+        for a in range (rotate_times):
             fast_pointer = fast_pointer.next
 
         while fast_pointer.next is not None:
