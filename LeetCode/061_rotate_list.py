@@ -27,7 +27,7 @@ class Solution(object):
             pointer = pointer.next
             length += 1
 
-        rotate_times = k%length
+        rotate_times = k %length
 
         if k == 0 or rotate_times == 0:
             return head
