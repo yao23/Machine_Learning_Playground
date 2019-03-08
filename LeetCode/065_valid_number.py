@@ -6,7 +6,7 @@ class Solution(object):
 
         beats 47.82%
         """
-        #define a DFA
+        # define a DFA
         state = [{},
               {'blank': 1, 'sign': 2, 'digit': 3, '.': 4},
               {'digit': 3, '.': 4},
