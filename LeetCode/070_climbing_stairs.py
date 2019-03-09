@@ -12,7 +12,7 @@ class Solution(object):
         a, b = 1, 2
         for i in xrange(2, n):
             tmp = b
-            b = a +b
+            b = a + b
             a = tmp
         return b
 
