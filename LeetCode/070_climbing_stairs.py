@@ -42,7 +42,7 @@ class Solution(object):
         """
         if n == 1:
             return 1
-        dic = [-1 for _ in xrange(n)]
+        dic = [-1 for _ in range(n)]
         dic[0], dic[1] = 1, 2
         return self.helper(n - 1, dic)
 
