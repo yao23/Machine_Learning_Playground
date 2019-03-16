@@ -9,7 +9,7 @@ class Solution(object):
         beats 54.30%
         """
         l1, l2 = len(word1) + 1, len(word2) + 1
-        dp = [[0 for _ in xrange(l2)] for _ in xrange(l1)]
+        dp = [[0 for _ in range(l2)] for _ in xrange(l1)]
         for i in xrange(l1):
             dp[i][0] = i
         for j in xrange(l2):
