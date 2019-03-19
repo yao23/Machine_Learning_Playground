@@ -12,7 +12,7 @@ class Solution(object):
         dp = [[0 for _ in range(l2)] for _ in range(l1)]
         for i in range(l1):
             dp[i][0] = i
-        for j in xrange(l2):
+        for j in range(l2):
             dp[0][j] = j
         for i in xrange(1, l1):
             for j in xrange(1, l2):
