@@ -29,7 +29,7 @@ class Solution(object):
         beats 87.02%
         """
         l1, l2 = len(word1) + 1, len(word2) + 1
-        pre = [0 for _ in xrange(l2)]
+        pre = [0 for _ in range(l2)]
         for j in xrange(l2):
             pre[j] = j
         for i in xrange(1, l1):
