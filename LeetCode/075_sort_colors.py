@@ -7,7 +7,7 @@ class Solution(object):
         beats 96.67%
         """
         i = j = 0
-        for k in xrange(len(nums)):
+        for k in range(len(nums)):
             v = nums[k]
             nums[k] = 2
             if v < 2:
