@@ -1,6 +1,6 @@
 class Solution(object):
     """
-    # @return a list of integers
+    @return a list of integers
 
     from up to down, then left to right
 
