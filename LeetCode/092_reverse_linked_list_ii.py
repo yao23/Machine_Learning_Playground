@@ -38,10 +38,10 @@ class Solution(object):
         reverse = None
         cur = pre.next
         for i in range(n - m + 1):
-            next = cur.next
+            next_node = cur.next
             cur.next = reverse
             reverse = cur
-            cur = next
+            cur = next_node
 
         pre.next.next = cur  # connect m with n+1, 2->5 in example output (pre = 1, pre.next = 2, cur = 5)
         pre.next = reverse  # connect n with m-1, 1->4 in example output (reverse = 4)
