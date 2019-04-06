@@ -41,5 +41,6 @@ class Solution(object):
                 for i in range(min(3, len(s) - 3 + len(l))):
                     if i != 2 or s[:3] <= '255':
                         S.append((l + [s[:i + 1]], s[i + 1:]))
-                    if s[0] == '0': break
+                    if s[0] == '0':
+                        break
         return res
