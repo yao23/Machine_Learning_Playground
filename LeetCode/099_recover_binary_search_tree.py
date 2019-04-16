@@ -70,7 +70,7 @@ class Solution(object):
         average O(lgn) space (worst case, O(n) space), recursively, one-pass
         beats 39.68%
         """
-        self.prevNode = TreeNode(-sys.maxsize - 1)
+        self.prev_node = TreeNode(-sys.maxsize - 1)
         self.first, self.second = None, None
         self.inorder(root)
         self.first.val, self.second.val = self.second.val, self.first.val
@@ -79,9 +79,9 @@ class Solution(object):
         if not root:
             return
         self.inorder(root.left)
-        if not self.first and self.prevNode.val > root.val:
-            self.first, self.second = self.prevNode, root
-        if self.first and self.prevNode.val > root.val:
+        if not self.first and self.prev_node.val > root.val:
+            self.first, self.second = self.prev_node, root
+        if self.first and self.prev_node.val > root.val:
             self.second = root
-        self.prevNode = root
+        self.prev_node = root
         self.inorder(root.right)
