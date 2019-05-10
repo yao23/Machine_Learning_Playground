@@ -1,3 +1,6 @@
+import collections
+
+
 class TreeNode(object):
     """
     Definition for a binary tree node.
@@ -6,9 +9,6 @@ class TreeNode(object):
         self.val = x
         self.left = None
         self.right = None
-
-
-import collections
 
 
 class Solution(object):
