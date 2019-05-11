@@ -12,7 +12,32 @@ class Node:
 
 
 class Solution:
-    def construct(self, grid: List[List[int]]) -> 'Node':
+    class Solution:
+        def construct(self, grid: List[List[int]]) -> 'Node':
+            v = [i for j in grid for i in j]
+            if set(v) != {0, 1}:
+                val = bool(list(set(v))[0])
+                isLeaf = True
+                topLeft = None
+                topRight = None
+                bottomLeft = None
+                bottomRight = None
+            else:
+                val = '*'
+                isLeaf = False
+                topLeft = self.construct([i[:int(len(grid) / 2)] for i in grid[:int(len(grid) / 2)]])
+                topRight = self.construct([i[int(len(grid) / 2):] for i in grid[:int(len(grid) / 2)]])
+                bottomLeft = self.construct([i[:int(len(grid) / 2)] for i in grid[int(len(grid) / 2):]])
+                bottomRight = self.construct([i[int(len(grid) / 2):] for i in grid[int(len(grid) / 2):]])
+            return Node(val, isLeaf, topLeft, topRight, bottomLeft, bottomRight)
+
+    def construct0(self, grid: List[List[int]]) -> 'Node':
+        """
+        my proposed solution
+
+        :param grid:
+        :return:
+        """
         return self.process(grid, 1)
 
     def process(self, grid: List[List[int]], node_matrix: List[List[Node]]) -> 'Node':
