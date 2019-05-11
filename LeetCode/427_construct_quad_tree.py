@@ -17,19 +17,19 @@ class Solution:
             v = [i for j in grid for i in j]
             if set(v) != {0, 1}:
                 val = bool(list(set(v))[0])
-                isLeaf = True
-                topLeft = None
-                topRight = None
-                bottomLeft = None
-                bottomRight = None
+                is_leaf = True
+                top_left = None
+                top_right = None
+                bottom_left = None
+                bottom_right = None
             else:
                 val = '*'
-                isLeaf = False
-                topLeft = self.construct([i[:int(len(grid) / 2)] for i in grid[:int(len(grid) / 2)]])
-                topRight = self.construct([i[int(len(grid) / 2):] for i in grid[:int(len(grid) / 2)]])
-                bottomLeft = self.construct([i[:int(len(grid) / 2)] for i in grid[int(len(grid) / 2):]])
-                bottomRight = self.construct([i[int(len(grid) / 2):] for i in grid[int(len(grid) / 2):]])
-            return Node(val, isLeaf, topLeft, topRight, bottomLeft, bottomRight)
+                is_leaf = False
+                top_left = self.construct([i[:int(len(grid) / 2)] for i in grid[:int(len(grid) / 2)]])
+                top_right = self.construct([i[int(len(grid) / 2):] for i in grid[:int(len(grid) / 2)]])
+                bottom_left = self.construct([i[:int(len(grid) / 2)] for i in grid[int(len(grid) / 2):]])
+                bottom_right = self.construct([i[int(len(grid) / 2):] for i in grid[int(len(grid) / 2):]])
+            return Node(val, is_leaf, top_left, top_right, bottom_left, bottom_right)
 
     def construct0(self, grid: List[List[int]]) -> 'Node':
         """
