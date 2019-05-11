@@ -53,13 +53,15 @@ class Solution:
         else:
             next_node_matrix = []  # store nodes for next level process
             next_grid = [[]]  # store number in new grid for next level process
+            i = 0
+            j = 0
             while i < len(grid):
                 while j < len(grid[i]):
-                    if grid[i][j] == grid[i][j + 1] and \
-                            grid[i][j + 1] == grid[i + 1][j] and \
-                            grid[i + 1][j] == grid[i + 1][j + 1]:
-                        next_grid[i][round(j / 2)] = grid[i][j]
-                        next_node_matrix[i][i] = self.process_node(grid[i][i], True)
+                    if grid[i[j]] == grid[i[j + 1]] and \
+                            grid[i[j + 1]] == grid[i + 1[j]] and \
+                            grid[i + 1[j]] == grid[i + 1[j + 1]]:
+                        next_grid[i][round(j / 2)] = grid[i[j]]
+                        next_node_matrix[i][i] = self.process_node(grid[i[i]], True)
                     else:
                         next_grid[i][round(j / 2)] = 2
                         if node_matrix is not None:
@@ -68,10 +70,10 @@ class Solution:
                             node_bottom_left = node_matrix[i + 1][i]
                             node_bottom_right = node_matrix[i][i]
                         else:
-                            node_top_left = self.process_node(grid[i][j], True)
-                            node_top_right = self.process_node(grid[i][j + 1], True)
-                            node_bottom_left = self.process_node(grid[i + 1][j], True)
-                            node_bottom_right = self.process_node(grid[i + 1][j + 1], True)
+                            node_top_left = self.process_node(grid[i[j]], True)
+                            node_top_right = self.process_node(grid[i[j + 1]], True)
+                            node_bottom_left = self.process_node(grid[i + 1[j]], True)
+                            node_bottom_right = self.process_node(grid[i + 1[j + 1]], True)
                         next_node_matrix[i][i] = Node('*', False, node_top_left, node_top_right, node_bottom_left,
                                                       node_bottom_right)
                     j += 2
