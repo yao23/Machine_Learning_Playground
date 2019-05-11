@@ -28,9 +28,9 @@ class Solution:
 
                 is_leaf = True
                 # Check if all elements of the grid are same
-                std = grid[0][0]
+                first_value = grid[0][0]
                 for l in grid:
-                    if l.count(std) != n:
+                    if l.count(first_value) != n:
                         is_leaf = False
                         break
 
