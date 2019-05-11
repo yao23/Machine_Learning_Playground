@@ -50,6 +50,29 @@ class Solution:
 
             return root
 
+        def construct2(self, grid):
+            """
+            https://leetcode.com/problems/construct-quad-tree/discuss/195855/Python-very-simple-recursive-solution-beats-97
+
+            :param grid:
+            :return:
+            """
+            if not grid: return None
+            if self.isLeaf(grid):
+                return Node(grid[0][0] == 1, True, None, None, None, None)
+            n = len(grid)
+            mid = n // 2
+            return Node('*',
+                        False,
+                        self.construct([row[:mid] for row in grid[:mid]]),
+                        self.construct([row[mid:] for row in grid[:mid]]),
+                        self.construct([row[:mid] for row in grid[mid:]]),
+                        self.construct([row[mid:] for row in grid[mid:]]))
+
+        def isLeaf(self, grid):
+            return all(grid[i][j] == grid[0][0]
+                       for i in range(len(grid)) for j in range(len(grid[i])))
+
         def construct1(self, grid: List[List[int]]) -> 'Node':
             """
             https://leetcode.com/problems/construct-quad-tree/discuss/287123/Python3
