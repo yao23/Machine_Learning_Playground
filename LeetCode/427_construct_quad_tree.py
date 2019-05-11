@@ -14,6 +14,12 @@ class Node:
 class Solution:
     class Solution:
         def construct(self, grid: List[List[int]]) -> 'Node':
+            """
+            https://leetcode.com/problems/construct-quad-tree/discuss/287123/Python3
+
+            :param grid:
+            :return:
+            """
             v = [i for j in grid for i in j]
             if set(v) != {0, 1}:
                 val = bool(list(set(v))[0])
