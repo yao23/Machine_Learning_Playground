@@ -31,8 +31,13 @@ class Solution(object):
                 queue.append((node.right, level+1))
         return res
 
-    # dfs recursively
     def levelOrderBottom1(self, root):
+        """
+        # dfs recursively
+
+        :param root:
+        :return:
+        """
         res = []
         self.dfs(root, 0, res)
         return res
