@@ -15,6 +15,43 @@ class Solution:
     class Solution:
         def construct(self, grid: List[List[int]]) -> 'Node':
             """
+            https://leetcode.com/problems/construct-quad-tree/discuss/274757/Python-Both-Time-and-Space-Beat-100
+
+            :param grid:
+            :return:
+            """
+            def constructTree(grid):
+                n = len(grid)
+
+                if n == 1:
+                    return Node(grid[0][0], True, None, None, None, None)
+
+                is_leaf = True
+                # Check if all elements of the grid are same
+                std = grid[0][0]
+                for l in grid:
+                    if l.count(std) != n:
+                        is_leaf = False
+                        break
+
+                if is_leaf:
+                    return Node(grid[0][0], True, None, None, None, None)
+                else:
+                    node = Node('*', False, None, None, None, None)
+                    mid = n // 2
+                    node.topLeft = constructTree([x[0:mid] for x in grid[0:mid]])
+                    node.topRight = constructTree([x[mid:] for x in grid[0:mid]])
+                    node.bottomLeft = constructTree([x[0:mid] for x in grid[mid:]])
+                    node.bottomRight = constructTree([x[mid:] for x in grid[mid:]])
+
+                    return node
+
+            root = constructTree(grid)
+
+            return root
+
+        def construct1(self, grid: List[List[int]]) -> 'Node':
+            """
             https://leetcode.com/problems/construct-quad-tree/discuss/287123/Python3
 
             :param grid:
