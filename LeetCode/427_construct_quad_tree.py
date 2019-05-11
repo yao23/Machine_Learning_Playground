@@ -50,6 +50,45 @@ class Solution:
 
             return root
 
+        def construct3(self, grid):
+            """
+            https://leetcode.com/problems/construct-quad-tree/discuss/290043/Python-Runtime%3A-96ms-100.00-Mem%3A-13.8MB-100
+
+            :param grid:
+            :return:
+            """
+            if len(grid) == 1:
+                return Node(grid[0][0], True)
+
+            return self.create(grid, 0, 0, len(grid))
+
+        def create(self, grid, row_index, col_index, length):
+            if length == 1:
+                return Node(grid[row_index][col_index], True, None, None, None, None)
+
+            k = grid[row_index][col_index]
+            f = False
+            for r in range(row_index, row_index + length):
+                for c in range(col_index, col_index + length):
+                    if grid[r][c] != k:
+                        f = True
+                        break
+                if f:
+                    break
+
+            if not f:
+                return Node(grid[row_index][col_index], True, None, None, None, None)
+            else:
+                root = Node(None, False, None, None, None, None)
+
+            mid = length // 2
+            root.topLeft = self.create(grid, row_index, col_index, mid)
+            root.topRight = self.create(grid, row_index, col_index + mid, mid)
+            root.bottomLeft = self.create(grid, row_index + mid, col_index, mid)
+            root.bottomRight = self.create(grid, row_index + mid, col_index + mid, mid)
+
+            return root
+
         def construct2(self, grid):
             """
             https://leetcode.com/problems/construct-quad-tree/discuss/195855/Python-very-simple-recursive-solution-beats-97
