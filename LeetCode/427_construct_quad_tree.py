@@ -1,6 +1,6 @@
 class Node:
     """
-    # Definition for a QuadTree node.
+    Definition for a QuadTree node.
     """
     def __init__(self, val, isLeaf, topLeft, topRight, bottomLeft, bottomRight):
         self.val = val
