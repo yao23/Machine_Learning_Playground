@@ -1,2 +1,2 @@
 # Machine_Learning_Playground
-play Machine Learning here
+Playground for Machine Learning (online courses exercise, competiton and side projects)
