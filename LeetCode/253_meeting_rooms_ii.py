@@ -7,6 +7,37 @@
 
 class Solution(object):
     def minMeetingRooms(self, intervals):
+      """
+      :type intervals: List[Interval]
+      :rtype: int
+
+      https://leetcode.com/problems/meeting-rooms-ii/discuss/293855/Java%3A-2D-Array-Input-2ms.-Faster-than-100.-%40magicyuli-algorithm
+      https://github.com/yao23/Java_Playground/blob/master/src/com/leetcode/www/MeetingRoomsII.java
+      
+      every time start a meeting, number of needed rooms has to add 1 
+      
+      every time end a meeting, add end index by 1
+
+      beats 67.03%
+      """
+      starts = []
+      ends = []
+      for i in intervals:
+          starts.append(i.start)
+          ends.append(i.end)
+
+      starts.sort()
+      ends.sort()
+      rooms = 0
+      endIndex = 0
+      for start in starts:
+        if start < ends[endIndex]:
+          rooms += 1
+        else:
+          endIndex += 1
+      return rooms
+
+    def minMeetingRoomsV0(self, intervals):
         """
         :type intervals: List[Interval]
         :rtype: int
