@@ -37,6 +37,7 @@ class Solution(object):
                 return self.kth(a, b[:ib], k)
 
      # https://github.com/neetcode-gh/leetcode/blob/main/python/0004-median-of-two-sorted-arrays.py
+     # https://www.youtube.com/watch?v=q6IEA26hvXc
      def findMedianSortedArraysV1(self, nums1: List[int], nums2: List[int]) -> float:
         A, B = nums1, nums2
         total = len(nums1) + len(nums2)
