@@ -33,3 +33,41 @@ class Solution(object):
             if not dfs(i):
                 return False
         return True
+
+    def canFinishV1(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: bool
+
+        if node v is being visited, return False (a ring found in DFS)
+        if neighbor list of node v has been visited (equals empty), then return true.
+
+        Check every course as line 70. (i.e. 1 -> 2,  3 -> 4)
+
+        https://www.youtube.com/watch?v=EgI5nU9etnU&list=PLot-Xpze53ldBT_7QA8NVot219jFNr_GI&index=2
+
+        beats 65.58%
+        """
+        map = {i:[] for i in range(numCourses)}
+        for crs, pre in prerequisites:
+            map[crs].append(pre)
+        visited = set()
+        
+        def dfs(crs):
+            if crs in visited:
+                return False
+            if map[crs] == []:
+                return True
+            visited.add(crs)
+            for pre in map[crs]:
+                if not dfs(pre):
+                    return False
+            visited.remove(crs)
+            map[crs] = []
+            return True
+
+        for crs in range(numCourses):
+            if not dfs(crs):
+                return False
+        return True
