@@ -56,3 +56,40 @@ class Solution(object):
                 if not dic[i]:  # no more prerequisite
                     queue.append(i)
         return res if count == numCourses else []
+
+    def findOrderV1(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: List[int]
+
+        DFS
+        beats 78.35%
+        """
+        map = {i:[] for i in range(numCourses)}
+        output = []
+        completed = set() # course are completed
+        visiting = set() # course are being visited
+
+        for crs, pre in prerequisites:
+            map[crs].append(pre)
+
+        def dfs(crs):
+            if crs in visiting:
+                return False
+            if crs in completed:
+                return True
+
+            visiting.add(crs)
+            for pre in map[crs]:
+                if not dfs(pre):
+                    return False
+            visiting.remove(crs)
+            completed.add(crs)
+            output.append(crs)
+            return True
+
+        for i in range(numCourses):
+            if not dfs(i):
+                return []
+        return output
