@@ -50,3 +50,36 @@ class Solution(object):
                     cnt += 1
                     dfs(x, y)
         return cnt
+
+    def numIslands(self, grid: List[List[str]]) -> int:
+        if not grid:
+            return
+        row = len(grid)
+        col = len(grid[0])
+        visited = set()
+        q = collections.deque()
+
+        def bfs(x, y):
+            if grid[x][y] == "0" or (x, y) in visited:
+                return
+            
+            visited.add((x, y))
+            q.append((x, y))
+            while q:
+                x, y = q.popleft() # dfs if change to q.pop()
+                directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+                for d in directions:
+                    dx = x + d[0]
+                    dy = y + d[1]
+                    if dx in range(row) and dy in range(col):
+                        if (dx, dy) not in visited and grid[dx][dy] == "1":
+                            visited.add((dx, dy))
+                            q.append((dx, dy))
+
+        cnt = 0
+        for x in range(row):
+            for y in range(col):
+                if grid[x][y] == "1" and (x, y) not in visited:
+                    cnt += 1
+                    bfs(x, y)
+        return cnt
