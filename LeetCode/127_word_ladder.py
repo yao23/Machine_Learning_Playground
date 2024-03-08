@@ -42,6 +42,45 @@ class Solution(object):
         dict_words = construct_dict(set(wordList))
         return bfs_words(beginWord, endWord, dict_words)
 
+    def ladderLengthV0(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        """
+        :type beginWord: str
+        :type endWord: str
+        :type wordList: List[str]
+        :rtype: int
+
+        use star * to replace each character in the wordList to save time than replace with letters from a to z
+        https://www.youtube.com/watch?v=h9iTnkgv05E&list=PLot-Xpze53ldBT_7QA8NVot219jFNr_GI&index=6
+
+        beats 84.23%
+        """
+        if endWord not in wordList:
+            return 0
+        nei = collections.defaultdict(list)
+        wordList.append(beginWord)
+        for word in wordList:
+            for j in range(len(word)):
+                pattern = word[:j] + "*" +word[j+1: ]
+                nei[pattern].append(word)
+        
+        visit = set([beginWord])
+        q = deque([beginWord])
+        res = 1
+        while q:
+            for i in range(len(q)):
+                word = q.popleft()
+                if word == endWord:
+                    return res
+                for j in range(len(word)):
+                    pattern = word[:j] + "*" +word[j+1: ]
+                    for neiWord in nei[pattern]:
+                        if neiWord not in visit:
+                            visit.add(neiWord)
+                            q.append(neiWord)
+            res += 1
+        
+        return 0
+    
     def ladderLength1(self, beginWord, endWord, wordList):
         """
         :type beginWord: str
