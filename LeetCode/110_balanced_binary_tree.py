@@ -7,7 +7,44 @@
 
 
 class Solution(object):
-    def isBalanced(self, root):
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        """
+        :type root: TreeNode
+        :rtype: bool
+
+        Recursive
+        beats 78.16%
+        """
+        def dfs(node):
+            if node is None:
+                return 0
+            left = dfs(node.left)
+            if left < 0:
+                return left
+            right = dfs(node.right)
+            if right < 0:
+                return right
+            if abs(left - right) > 1:
+                return -1
+            return 1 + max(left, right)
+
+        return dfs(root) >= 0
+    
+    def isBalanced2(self, root: Optional[TreeNode]) -> bool:
+        """
+        https://github.com/neetcode-gh/leetcode/blob/main/python/0110-balanced-binary-tree.py
+        """
+        def dfs(root):
+            if not root:
+                return [True, 0]
+
+            left, right = dfs(root.left), dfs(root.right)
+            balanced = left[0] and right[0] and abs(left[1] - right[1]) <= 1
+            return [balanced, 1 + max(left[1], right[1])]
+
+        return dfs(root)[0]
+    
+    def isBalanced0(self, root):
         """
         :type root: TreeNode
         :rtype: bool
