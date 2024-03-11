@@ -31,6 +31,9 @@ class Solution(object):
         return ans
 
     def levelOrder2(self, root):
+        """
+        Beats 46.41%
+        """
         if not root:
             return []
         ans, level = [], [root]
@@ -41,3 +44,27 @@ class Solution(object):
                 temp.extend([node.left, node.right])
             level = [leaf for leaf in temp if leaf]
         return ans
+
+    def levelOrder3(self, root: Optional[TreeNode]) -> List[List[int]]:
+        """
+        Beats 37.03% of users with Python3
+        """
+        res = []
+        if not root:
+            return res
+        q = deque()
+        q.append(root)
+        visit = set()
+        while q:
+            size = len(q)
+            tmp = []
+            for _ in range(size):
+                cur = q.popleft()
+                tmp.append(cur.val)
+                visit.add(cur)
+                if cur.left:
+                    q.append(cur.left)
+                if cur.right:
+                    q.append(cur.right)
+            res.append(tmp)
+        return res
