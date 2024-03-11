@@ -68,3 +68,25 @@ class Solution(object):
                     q.append(cur.right)
             res.append(tmp)
         return res
+
+    def levelOrder3(self, root: TreeNode) -> List[List[int]]:
+        """
+        https://github.com/neetcode-gh/leetcode/blob/main/python/0102-binary-tree-level-order-traversal.py
+        """
+        res = []
+        q = collections.deque()
+        if root:
+            q.append(root)
+
+        while q:
+            val = []
+
+            for i in range(len(q)):
+                node = q.popleft()
+                val.append(node.val)
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+            res.append(val)
+        return res
