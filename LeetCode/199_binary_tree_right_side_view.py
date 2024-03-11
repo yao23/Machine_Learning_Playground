@@ -45,6 +45,8 @@ class Solution(object):
 
     def rightSideView3(self, root: Optional[TreeNode]) -> List[int]:
         """
+        https://github.com/neetcode-gh/leetcode/blob/main/python/0199-binary-tree-right-side-view.py
+        
         Beats 19.50%
         """
         res = []
