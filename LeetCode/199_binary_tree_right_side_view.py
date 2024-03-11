@@ -7,7 +7,27 @@
 
 
 class Solution(object):
-    def rightSideView(self, root):
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        """
+        Beats 9.80%
+        """
+        res = []
+        if not root:
+            return res
+        q = deque([root])
+
+        while q:
+            res.append(q[-1].val)
+            for _ in range(len(q)):
+                cur = q.popleft()
+                if cur.left:
+                    q.append(cur.left)
+                if cur.right:
+                    q.append(cur.right)
+        return res
+
+    
+    def rightSideView0(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
@@ -23,6 +43,27 @@ class Solution(object):
         left = self.rightSideView(root.left)
         return [root.val] + right + left[len(right):]
 
+    def rightSideView3(self, root: Optional[TreeNode]) -> List[int]:
+        """
+        Beats 19.50%
+        """
+        res = []
+        q = collections.deque([root])
+
+        while q:
+            rightSide = None
+            qLen = len(q)
+
+            for i in range(qLen):
+                node = q.popleft()
+                if node:
+                    rightSide = node
+                    q.append(node.left)
+                    q.append(node.right)
+            if rightSide:
+                res.append(rightSide.val)
+        return res
+        
     def rightSideView1(self, root):
         """
         :param root:
