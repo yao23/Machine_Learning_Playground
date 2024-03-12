@@ -28,3 +28,23 @@ class Solution(object):
         self.helper(node.left, count)
         count.append(node.val)
         self.helper(node.right, count)
+
+
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        """
+        https://github.com/neetcode-gh/leetcode/blob/main/python/0230-kth-smallest-element-in-a-bst.py
+        
+        beats 58.41
+        """
+        stack = []
+        cur = root
+
+        while stack or cur:
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+            cur = stack.pop()
+            k -= 1
+            if k == 0:
+                return cur.val
+            cur = cur.right
