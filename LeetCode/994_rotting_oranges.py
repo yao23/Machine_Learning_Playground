@@ -11,9 +11,9 @@ class Solution:
 
         for r in range(len(grid)):
             for c in range(len(grid[0])):
-                if grid[r][c] == 1:
+                if grid[r][c] == 1: # fresh orange counter is easy to detect island
                     fresh += 1
-                if grid[r][c] == 2:
+                if grid[r][c] == 2: # get all rotting oranges to get shortest distance
                     q.append((r, c))
 
         directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
