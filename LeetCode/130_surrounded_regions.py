@@ -1,5 +1,42 @@
 class Solution(object):
-    def solve(self, board):
+    def solve(self, board: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+
+        https://www.youtube.com/watch?v=9z2BunfoZ5Y&list=PLot-Xpze53ldBT_7QA8NVot219jFNr_GI&index=21
+
+        Beats 94.62%
+        """
+        row, col = len(board), len(board[0])
+
+        # 1. (DFS) capture unsurrounded
+        def dfs(r, c):
+            if r < 0 or c < 0 or r == row or c == col or board[r][c] != "O":
+                return
+            board[r][c] = "T"
+            dfs(r + 1, c)
+            dfs(r - 1, c)
+            dfs(r, c + 1)
+            dfs(r, c - 1)
+
+        # 2. capture surrounded regions (O => X)
+        for r in range(row):
+            for c in range(col):
+                if board[r][c] == "O" and r in [0, row -1 ] or c in [0, col - 1]:
+                    dfs(r, c)
+
+        # 3. capture unsurrounded regions (T => O)
+        for r in range(row):
+            for c in range(col):
+                if board[r][c] == "O":
+                    board[r][c] = "X"
+
+        for r in range(row):
+            for c in range(col):
+                if board[r][c] == "T":
+                    board[r][c] = "O"
+                    
+    def solve0(self, board):
         """
         :type board: List[List[str]]
         :rtype: void Do not return anything, modify board in-place instead.
