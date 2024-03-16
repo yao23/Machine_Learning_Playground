@@ -1,5 +1,30 @@
 class Solution(object):
-    def validTree(self, n, edges):
+    def valid_tree(self, n: int, edges: List[List[int]]) -> bool:
+        # write your code here
+        if not edges:
+            return False
+        adj = {i:[] for i in range(n)}
+        for x,y in edges:
+            adj[x].append(y)
+            adj[y].append(x)
+        visit = set()
+
+        def dfs(cur, pre):
+            if cur in visit:
+                return False
+
+            visit.add(cur)
+            for nei in adj[cur]:
+                if nei == pre:
+                    continue
+                if not dfs(nei, cur):
+                    return False
+            return True
+
+        return dfs(0, -1) and n == len(visit)
+
+    
+    def validTree0(self, n, edges):
         """
         :type n: int
         :type edges: List[List[int]]
