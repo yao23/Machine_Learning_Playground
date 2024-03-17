@@ -1,4 +1,16 @@
 class Solution(object):
+    def minimumTotal1(self, triangle: List[List[int]]) -> int:
+        """
+        https://www.youtube.com/watch?v=OM1MTokvxs4&list=PLot-Xpze53ldg4pN6PfzoJY7KsKcxF1jg&index=7
+        
+        beats 38.21%
+        """
+        dp = [0] * (len(triangle) + 1)
+        for row in triangle[::-1]: # traverse in reversed order (bottom up)
+            for i, n in enumerate(row):
+                dp[i] = n + min(dp[i], dp[i + 1])
+        return dp[0]
+        
     def minimumTotal(self, triangle):
         """
         :type triangle: List[List[int]]
