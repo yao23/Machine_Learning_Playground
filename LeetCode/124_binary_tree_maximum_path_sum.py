@@ -10,7 +10,33 @@ class TreeNode(object):
 
 
 class Solution(object):
-    def maxPathSum(self, root):
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        """
+        https://www.youtube.com/watch?v=Hr5cWUld4vU&list=PLot-Xpze53ldg4pN6PfzoJY7KsKcxF1jg&index=21
+
+        beats 77.76%
+        """
+        res = float("-inf")
+
+        def dfs(node):
+            nonlocal res
+
+            if not node:
+                return 0
+
+            left = dfs(node.left)
+            right = dfs(node.right)
+
+            leftSide = node.val + left
+            rightSide = node.val + right
+            arc = node.val + left + right
+            res = max(res, max(node.val, max(arc, max(leftSide, rightSide))))
+            return max(node.val, max(leftSide, rightSide))
+        
+        dfs(root)
+        return res
+        
+    def maxPathSum0(self, root):
         """
         :type root: TreeNode
         :rtype: int
