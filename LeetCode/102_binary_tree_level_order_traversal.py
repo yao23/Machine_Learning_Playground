@@ -9,7 +9,30 @@ class TreeNode(object):
 
 
 class Solution(object):
-    def levelOrder(self, root):
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        """
+        https://www.youtube.com/watch?v=6ZnyEApgFYg&list=PLot-Xpze53ldg4pN6PfzoJY7KsKcxF1jg&index=14
+        
+        beats 90.28%
+        """
+        res = []
+        if not root:
+            return res
+        q = deque()
+        q.append(root)
+        while q:
+            tmp = []
+            for _ in range(len(q)):
+                cur = q.popleft()
+                tmp.append(cur.val)
+                if cur.left:
+                    q.append(cur.left)
+                if cur.right:
+                    q.append(cur.right)
+            res.append(tmp)
+        return res
+        
+    def levelOrder0(self, root):
         """
         :type root: TreeNode
         :rtype: List[List[int]]
@@ -69,7 +92,7 @@ class Solution(object):
             res.append(tmp)
         return res
 
-    def levelOrder3(self, root: TreeNode) -> List[List[int]]:
+    def levelOrder4(self, root: TreeNode) -> List[List[int]]:
         """
         https://github.com/neetcode-gh/leetcode/blob/main/python/0102-binary-tree-level-order-traversal.py
         """
