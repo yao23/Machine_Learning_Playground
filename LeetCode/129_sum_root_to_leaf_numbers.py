@@ -9,7 +9,29 @@ import collections
 
 
 class Solution(object):
-    def sumNumbers(self, root):
+    def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        """
+        https://www.youtube.com/watch?v=Jk16lZGFWxE&list=PLot-Xpze53ldg4pN6PfzoJY7KsKcxF1jg&index=8
+        
+        beats 40.01%
+        """
+        res = 0
+
+        def dfs(root, tmp):
+            nonlocal res
+            if not root:
+                return
+            if not root.left and not root.right:
+                res += int(tmp + str(root.val))
+                return
+            
+            dfs(root.left, tmp + str(root.val))
+            dfs(root.right, tmp + str(root.val))
+
+        dfs(root, "")
+        return res
+        
+    def sumNumbers0(self, root):
         """
         :type root: TreeNode
         :rtype: int
