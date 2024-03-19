@@ -8,7 +8,25 @@
 
 
 class Solution:
-    def connect(self, root):
+    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
+        """
+        https://www.youtube.com/watch?v=U4hFQCa1Cq0&list=PLot-Xpze53ldg4pN6PfzoJY7KsKcxF1jg&index=34
+        
+        beats 97.11%
+        """
+        cur, nxt = root, root.left if root else None
+
+        while cur and nxt:
+            cur.left.next = cur.right
+            if cur.next:
+                cur.right.next = cur.next.left
+            cur = cur.next
+            if not cur: # no next 
+                cur = nxt
+                nxt = cur.left
+        return root
+        
+    def connect0(self, root):
         """
         :param root:
         :return:
