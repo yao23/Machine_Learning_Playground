@@ -5,8 +5,31 @@
 #         self.left = None
 #         self.right = None
 
+class BSTIterator:
+    """
+    https://www.youtube.com/watch?v=RXy5RzGF5wo&list=PLot-Xpze53ldg4pN6PfzoJY7KsKcxF1jg&index=33
+    
+    beats 77.41%
+    """
+    def __init__(self, root: Optional[TreeNode]):
+        self.stack = []
+        cur = root
+        while cur:
+            self.stack.append(cur)
+            cur = cur.left
 
-class BSTIterator(object):
+    def next(self) -> int:
+        res = self.stack.pop()
+        cur = res.right
+        while cur:
+            self.stack.append(cur)
+            cur = cur.left
+        return res.val
+
+    def hasNext(self) -> bool:
+        return self.stack != []
+
+class BSTIterator0(object):
     def __init__(self, root):
         """
         :type root: TreeNode
