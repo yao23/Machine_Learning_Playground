@@ -7,7 +7,28 @@
 
 
 class Solution(object):
-    def flatten(self, root):
+    def flatten(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+
+        https://www.youtube.com/watch?v=rKnD7rLT0lI&list=PLot-Xpze53ldg4pN6PfzoJY7KsKcxF1jg&index=25
+        
+        beats 60.66%
+        """
+        def dfs(root):
+            if not root:
+                return None
+            leftTail = dfs(root.left)
+            rightTail = dfs(root.right)
+            if root.left:
+                leftTail.right = root.right
+                root.right = root.left
+                root.left = None
+            last = rightTail or leftTail or root
+            return last
+        dfs(root)
+        
+    def flatten0(self, root):
         """
         :type root: TreeNode
         :rtype: void Do not return anything, modify root in-place instead.
