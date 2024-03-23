@@ -12,7 +12,7 @@ class Solution:
         while r < len(nums):
             total += nums[r]
 
-            while nums[r] * (r - l + 1) > total + k: # over allowed increment
+            while nums[r] * (r - l + 1) > total + k: # over allowed increment, mathmetical thinking and modeling
                 total -= nums[l]
                 l += 1
             
