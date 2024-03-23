@@ -43,6 +43,10 @@ class Solution(object):
         """
         :type head: ListNode
         :rtype: ListNode
+
+        https://www.youtube.com/watch?v=G0_I-ZF0S38&list=PLot-Xpze53leU0Ec0VkBhnf4npMRFiNcB&index=2
+        
+        beats 38.62%
         """
         if head is None or head.next is None:
             return head
