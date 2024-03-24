@@ -1,5 +1,68 @@
 class Solution(object):
-    def change(self, amount, coins):
+
+    def change(self, amount: int, coins: List[int]) -> int:
+        """
+        https://www.youtube.com/watch?v=Mjy4hd2xgrs&list=PLot-Xpze53lcvx_tjrr_m2lgD2NsRHlNO&index=4
+        
+        beats 26.15
+        """
+        mem = {}
+
+        def dfs(depth, sum):
+            if sum == amount:
+                return 1
+            if sum > amount:
+                return 0
+            if depth == len(coins):
+                return 0
+            if (depth, sum) in mem:
+                return mem[(depth, sum)]
+            
+            mem[(depth, sum)] = dfs(depth, sum + coins[depth]) + dfs(depth + 1, sum)
+            return mem[(depth, sum)]
+        
+        return dfs(0, 0)
+    
+   
+    def changeV5(self, amount: int, coins: List[int]) -> int:
+        """
+        https://www.youtube.com/watch?v=Mjy4hd2xgrs&list=PLot-Xpze53lcvx_tjrr_m2lgD2NsRHlNO&index=4
+
+        time: O(nm), space:O(nm)
+        
+        beats 46.71%
+        """
+        dp = [[0] * (len(coins) + 1) for i in range(amount + 1)]
+        dp[0] = [1] * (len(coins) + 1)
+
+        for a in range(1, amount + 1): # amount
+            for i in range(len(coins) - 1, -1, -1): # coins
+                dp[a][i] = dp[a][i + 1]
+                if a - coins[i] >= 0:
+                    dp[a][i] += dp[a - coins[i]][i]
+        return dp[amount][0]
+    
+    def changeV4(self, amount: int, coins: List[int]) -> int:
+        """
+        https://www.youtube.com/watch?v=Mjy4hd2xgrs&list=PLot-Xpze53lcvx_tjrr_m2lgD2NsRHlNO&index=4
+
+        time: O(nm), space:O(n)
+        beats 59.84%
+        """
+        dp = [0] * (amount + 1)
+        dp[0] = 1
+
+        for i in range(len(coins) - 1, -1, -1): # coins
+            nextDP = [0] * (amount + 1)
+            nextDP[0] = 1
+            for a in range(1, amount + 1): # amount
+                nextDP[a] = dp[a]
+                if a - coins[i] >= 0:
+                    nextDP[a] += nextDP[a - coins[i]]
+            dp = nextDP
+        return dp[amount]
+    
+    def changeV3(self, amount, coins):
         """
         :type amount: int
         :type coins: List[int]
