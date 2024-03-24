@@ -1,4 +1,20 @@
 class Solution(object):
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        """
+        https://www.youtube.com/watch?v=H9bfqozjoqs&list=PLot-Xpze53lcvx_tjrr_m2lgD2NsRHlNO&index=16
+        
+        beats 61.06%
+        """
+        dp = [amount + 1] * (amount + 1) # min coin num to get each amount
+        dp[0] = 0 # amount 0 need 0 coin
+
+        for a in range(1, amount + 1): # amount
+            for c in coins: # coin
+                if a - c >= 0: # amount > coin
+                    dp[a] = min(dp[a], dp[a - c] + 1) # dp[7] = dp[7 - 4] + 1, amount 7 needs 1 coin (4) and num to get 3 (7 - 4)
+
+        return dp[amount] if dp[amount] != amount + 1 else -1
+    
     """
     This solution is inspired by the BFS solution for problem Perfect Square.
     Since it is to find the least coin solution (like a shortest path from 0 to amount),
@@ -7,7 +23,7 @@ class Solution(object):
 
     beats 97.75%
     """
-    def coinChange(self, coins, amount):
+    def coinChangeV0(self, coins, amount):
         """
         :type coins: List[int]
         :type amount: int
