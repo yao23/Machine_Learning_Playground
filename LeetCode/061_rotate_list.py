@@ -6,7 +6,38 @@ class ListNode(object):
 
 
 class Solution(object):
-    def rotateRight(self, head, k):
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        """
+        https://www.youtube.com/watch?v=UcGtPs2LE_c&list=PLot-Xpze53leU0Ec0VkBhnf4npMRFiNcB&index=14
+        
+        beats 56.94%
+        """
+        if not head or not head.next or k == 0:
+            return head
+        cnt = 1
+        cur = head.next
+        while cur:
+            cnt += 1
+            cur = cur.next
+        n = cnt - (k % cnt)
+        if n == cnt: # no rotation need
+            return head
+        
+        pre = None
+        cur = head
+        while n > 0: # move the break point
+            n -= 1
+            pre = cur
+            cur = cur.next
+        pre.next = None # break 1st and 2nd half
+        res = cur # record new head
+
+        while cur and cur.next: # move to end of 2nd half
+            cur = cur.next
+        cur.next = head # connect to old head
+        return res
+        
+    def rotateRightV0(self, head, k):
         """
         :type head: ListNode
         :type k: int
