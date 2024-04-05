@@ -14,8 +14,8 @@ class Solution(object):
         low, high = 0, rows * cols - 1
 
         while low <= high:
-            mid = (low + high) / 2
-            num = matrix[mid / cols][mid % cols]
+            mid = (low + high) // 2
+            num = matrix[mid // cols][mid % cols]
 
             if num == target:
                 return True
