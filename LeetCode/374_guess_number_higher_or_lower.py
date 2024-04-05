@@ -11,7 +11,25 @@ def guess(num):
 
 
 class Solution(object):
-    def guessNumber(self, n):
+    def guessNumber(self, n: int) -> int:
+        """
+        https://www.youtube.com/watch?v=xW4QsTtaCa4
+        
+        beats 17.85%
+        """
+        l, r = 1, n
+        while l <= r:
+            m = (l + r) // 2
+            tmp = guess(m)
+            if tmp == 0:
+                return m
+            elif tmp == 1:
+                l = m + 1
+            else:
+                r = m - 1
+        return -1
+        
+    def guessNumberV0(self, n):
         """
         :type n: int
         :rtype: int
