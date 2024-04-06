@@ -28,8 +28,10 @@ class Solution(object):
 
         return self.hasPathSum(root.left, sum) or self.hasPathSum(root.right, sum)
 
-    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+    def hasPathSumV0(self, root: Optional[TreeNode], targetSum: int) -> bool:
         """
+        https://www.youtube.com/watch?v=LSKQyOz_P8I
+        
         beats 90.20%
         """
         if not root:
