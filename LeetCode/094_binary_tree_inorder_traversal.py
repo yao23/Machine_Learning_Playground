@@ -9,7 +9,28 @@ class TreeNode(object):
 
 
 class Solution(object):
-    def inorderTraversal(self, root):
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        """
+        
+
+        beats 44.30%
+        """
+        res = []
+        if not root:
+            return res
+        cur = root
+        q = []
+        while q or cur:
+            if cur:
+                q.append(cur)
+                cur = cur.left
+            else:
+                cur = q.pop()
+                res.append(cur.val)
+                cur = cur.right
+        return res
+        
+    def inorderTraversalV0(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
@@ -28,7 +49,7 @@ class Solution(object):
             res.append(root.val)
             self.helper(root.right, res)
 
-    def inorderTraversal1(self, root):
+    def inorderTraversalV1(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
