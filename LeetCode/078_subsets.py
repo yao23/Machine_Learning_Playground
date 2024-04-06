@@ -1,5 +1,28 @@
 class Solution(object):
-    def subsets(self, nums):
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        """
+        https://www.youtube.com/watch?v=REOH22Xwdkk
+        
+        beats 51.05%
+        """
+        res = []
+
+        def dfs(depth, tmp):
+            if depth == len(nums):
+                res.append(tmp.copy())
+                return
+
+            
+            dfs(depth + 1, tmp)
+
+            tmp.append(nums[depth])
+            dfs(depth + 1, tmp)
+            tmp.pop()
+
+        dfs(0, [])
+        return res
+        
+    def subsetsV0(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
