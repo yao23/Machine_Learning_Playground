@@ -18,7 +18,7 @@ class Solution:
       return res
 
   
-  def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+  def kClosestV0(self, points: List[List[int]], k: int) -> List[List[int]]:
     # https://walkccc.me/LeetCode/problems/0973/#__tabbed_3_3
     # https://github.com/yao23/Java_Playground/blob/master/src/com/leetcode/www/KClosestPointsToOrigin.java
     
