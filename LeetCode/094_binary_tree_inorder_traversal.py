@@ -11,23 +11,21 @@ class TreeNode(object):
 class Solution(object):
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         """
-        
+        https://www.youtube.com/watch?v=g_S5WuasWUE
 
-        beats 44.30%
+        beats 91.90%
         """
         res = []
-        if not root:
-            return res
         cur = root
-        q = []
-        while q or cur:
-            if cur:
-                q.append(cur)
+        stack = []
+        while stack or cur:
+            while cur:
+                stack.append(cur)
                 cur = cur.left
-            else:
-                cur = q.pop()
-                res.append(cur.val)
-                cur = cur.right
+            
+            cur = stack.pop()
+            res.append(cur.val)
+            cur = cur.right
         return res
         
     def inorderTraversalV0(self, root):
