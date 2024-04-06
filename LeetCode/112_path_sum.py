@@ -27,3 +27,17 @@ class Solution(object):
         sum -= root.val
 
         return self.hasPathSum(root.left, sum) or self.hasPathSum(root.right, sum)
+
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        """
+        beats 90.20%
+        """
+        if not root:
+            return False
+        def dfs(node, sum):
+            if not node:
+                return False 
+            if not node.left and not node.right:
+                return sum + node.val == targetSum
+            return dfs(node.left, sum + node.val) or dfs(node.right, sum + node.val)
+        return dfs(root, 0)
