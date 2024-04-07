@@ -62,6 +62,73 @@ class LRUCache(object):
         newNode.next = self.tail
         newNode.prev = last
 
+
+class ListNode:
+    def __init__(self, key=0, val=0, prev=None, next=None):
+        self.key = key
+        self.val = val
+        self.prev = prev
+        self.next = next
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.count = 0
+        self.head = ListNode(0)
+        self.tail = ListNode(0)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+        self.map = {}
+
+    def get(self, key: int) -> int:
+        # print("get key: ", key)
+        if key not in self.map:
+            return -1
+        else:
+            node = self.removeFromList(key)
+            self.addToHead(node)
+            return node.val
+
+    def put(self, key: int, value: int) -> None:
+        # print("put: ", key, value)
+        if key not in self.map:
+            if self.count == self.capacity:
+                self.count -=1
+                tmp = self.removeFromList(self.tail.prev.key)
+                # print("remove key: ", tmp.key)
+                del self.map[tmp.key]
+
+            node = ListNode(key, value)
+            self.addToHead(node)
+            self.count += 1
+            self.map[key] = node
+        else:
+            node = self.removeFromList(key)
+            self.addToHead(node)
+            node.val = value
+        
+        # self.printList()
+
+    def addToHead(self, node):
+        node.next = self.head.next
+        node.prev = self.head   
+        self.head.next.prev = node
+        self.head.next = node
+
+    def removeFromList(self, key):
+        node = self.map[key]
+        node.next.prev = node.prev
+        node.prev.next = node.next
+        return node
+
+    def printList(self):
+        cur = self.head.next
+        # print("cur list: ")
+        for i in range(self.count):
+            print(cur.key)
+            cur = cur.next
+
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
 # param_1 = obj.get(key)
