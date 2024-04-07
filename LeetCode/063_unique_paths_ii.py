@@ -1,5 +1,24 @@
 class Solution(object):
-    def uniquePathsWithObstacles(self, obstacleGrid):
+    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+        """
+        beats 63.55%
+        """
+        m, n = len(obstacleGrid), len(obstacleGrid[0])
+        if obstacleGrid[m - 1][n - 1] == 1:
+            return 0
+        preRow = [0] * n # the row under last row with all zeros
+        preRow[n - 1] = 1
+        for i in range(m - 1, -1, -1): # start from last row
+            curRow = [0] * n
+            if obstacleGrid[i][n - 1] == 0 and preRow[n - 1]: # can go down
+                curRow[n - 1] = 1
+            for j in range(n - 2, -1, -1):
+                if obstacleGrid[i][j] == 0:    
+                    curRow[j] = preRow[j] + curRow[j + 1] # sum down and right
+            preRow = curRow
+        return preRow[0]
+        
+    def uniquePathsWithObstaclesV0(self, obstacleGrid):
         """
         :type obstacleGrid: List[List[int]]
         :rtype: int
