@@ -63,6 +63,10 @@ class LRUCache(object):
         newNode.prev = last
 
 
+# https://www.youtube.com/watch?v=7ABFKPK2hD4
+# TikTok / Microsoft
+# beats 53.57%
+
 class ListNode:
     def __init__(self, key=0, val=0, prev=None, next=None):
         self.key = key
@@ -82,7 +86,6 @@ class LRUCache:
         self.map = {}
 
     def get(self, key: int) -> int:
-        # print("get key: ", key)
         if key not in self.map:
             return -1
         else:
@@ -91,12 +94,10 @@ class LRUCache:
             return node.val
 
     def put(self, key: int, value: int) -> None:
-        # print("put: ", key, value)
         if key not in self.map:
             if self.count == self.capacity:
                 self.count -=1
                 tmp = self.removeFromList(self.tail.prev.key)
-                # print("remove key: ", tmp.key)
                 del self.map[tmp.key]
 
             node = ListNode(key, value)
@@ -107,8 +108,6 @@ class LRUCache:
             node = self.removeFromList(key)
             self.addToHead(node)
             node.val = value
-        
-        # self.printList()
 
     def addToHead(self, node):
         node.next = self.head.next
@@ -121,13 +120,6 @@ class LRUCache:
         node.next.prev = node.prev
         node.prev.next = node.next
         return node
-
-    def printList(self):
-        cur = self.head.next
-        # print("cur list: ")
-        for i in range(self.count):
-            print(cur.key)
-            cur = cur.next
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
