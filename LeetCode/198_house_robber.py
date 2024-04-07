@@ -1,5 +1,21 @@
 class Solution(object):
-    def rob(self, nums):
+    def rob(self, nums: List[int]) -> int:
+        """
+        https://www.youtube.com/watch?v=73r3KWiEvyk
+
+        beats 55.04%
+        """
+        length = len(nums)
+        if length < 2:
+            return nums[0]
+        dp = [nums[0], max(nums[0], nums[1])]
+        for i in range(2, length):
+            tmp = dp[1]
+            dp[1] = max(dp[0] + nums[i], dp[1])
+            dp[0] = tmp
+        return dp[1]
+        
+    def robV0(self, nums):
         """
         :type nums: List[int]
         :rtype: int
