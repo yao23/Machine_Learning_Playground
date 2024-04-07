@@ -3,7 +3,7 @@ class Solution(object):
         """
         beats 75.15%
         """
-        preRow = [0] * n
+        preRow = [0] * n # the row under last row with all zeros
         for i in range(m - 1, -1, -1): # start from last row
             curRow = [0] * n
             curRow[n - 1] = 1
@@ -18,9 +18,9 @@ class Solution(object):
         
         beats 69.61%
         """
-        row = [1] * n
+        row = [1] * n # last row with all ones
 
-        for i in range(m - 1):
+        for i in range(m - 1): # start from last 2nd row
             newRow = [1] * n
             for j in range(n - 2, -1, -1):
                 newRow[j] = newRow[j + 1] + row[j]
