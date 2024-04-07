@@ -1,6 +1,45 @@
 class Solution(object):
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
         """
+        https://www.youtube.com/watch?v=d3UOz7zdE4I
+    
+        beats 59.61%
+        """
+        M, N = len(obstacleGrid), len(obstacleGrid[0])
+        dp = [0] * N
+        dp[N-1] = 1
+
+        # Time: O(N*M), Space: O(N)
+        for r in reversed(range(M)): # from last row (reversed iteration)
+            for c in reversed(range(N)): # from last column (reversed iteration)
+                if obstacleGrid[r][c]: # obstacle
+                    dp[c] = 0
+                elif c + 1 < N: # valid column
+                    dp[c] = dp[c] + dp[c + 1]
+        return dp[0]
+
+    def uniquePathsWithObstaclesV2(self, obstacleGrid: List[List[int]]) -> int:
+        """
+        recursive with memoization (dp map)
+
+        
+        # Time: O(N*M), Space: O(N*M)
+        # beats 36.32%
+        """
+        M, N = len(obstacleGrid), len(obstacleGrid[0])
+        dp = {(M - 1, N - 1): 1}
+
+        def dfs(r, c):
+            if r == M or c == N or obstacleGrid[r][c]:
+                return 0
+            if (r, c) in dp:
+                return dp[(r, c)]
+            dp[(r, c)] = dfs(r + 1, c) + dfs(r, c + 1)
+            return dp[(r, c)]
+        return dfs(0, 0)
+    
+    def uniquePathsWithObstaclesV1(self, obstacleGrid: List[List[int]]) -> int:
+        """
         beats 63.55%
         """
         m, n = len(obstacleGrid), len(obstacleGrid[0])
