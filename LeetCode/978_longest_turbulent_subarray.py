@@ -1,7 +1,7 @@
 class Solution:
     def maxTurbulenceSize(self, arr: List[int]) -> int:
         """
-        beats 5.05%
+        beats 54.79%
         """
         length = len(arr)
         if length <= 1:
