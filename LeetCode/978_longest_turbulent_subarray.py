@@ -16,15 +16,10 @@ class Solution:
 
         res = 2
         cur = 2
-        # flag = arr[i - 1] > arr[i] # True
-        # print("flag before: ", flag)
 
         for j in range(i + 1, length):
-            print("j: ", j)
-            print("cur: ", cur)
             if cur == 1: # last 2 num are same
                 cur += 1
-                # flag = arr[j - 1] > arr[j]
                 res = max(cur, res)
             # check with next number
             # if turbulent then continue
@@ -32,13 +27,11 @@ class Solution:
                 cur += 1
                 res = max(cur, res)
             else: # else start from current number
-                if arr[j] == arr[j - 1]:
+                if arr[j] == arr[j - 1]: # cur and last number are same
                     res = max(cur, res)
                     cur = 1
-                else:
+                else: # inconsistent and keep cur and last number
                     res = max(cur, res)
                     cur = 2
-                    # flag = arr[j - 1] > arr[j]
-            # print("flag after: ", flag)
             
         return res
