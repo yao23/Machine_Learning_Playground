@@ -30,7 +30,7 @@ class Solution:
         for r in range(len(s)):
             count[s[r]] = 1 + count.get(s[r], 0)
 
-            while (r - l + 1) - max(count.values()) > k:
+            while (r - l + 1) - max(count.values()) > k: # windowLength - frequencyOfMostAppearedLetter
                 count[s[l]] -= 1
                 l += 1
 
