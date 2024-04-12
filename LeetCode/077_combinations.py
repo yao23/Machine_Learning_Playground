@@ -2,7 +2,25 @@ from itertools import combinations
 
 
 class Solution(object):
-    def combine(self, n, k):
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        """
+        https://www.youtube.com/watch?v=q0s6m7AiM7o
+
+        beats 64.20%
+        """
+        res = []
+        def helper(start, comb):
+            if len(comb) == k:
+                res.append(comb.copy())
+                return
+            for i in range(start, n+1):
+                comb.append(i)
+                helper(i+1, comb)
+                comb.pop()
+        helper(1, [])
+        return res
+        
+    def combineV0(self, n, k):
         """
         :type n: int
         :type k: int
