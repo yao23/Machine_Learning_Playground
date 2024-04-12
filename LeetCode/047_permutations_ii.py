@@ -1,24 +1,31 @@
+import collections
+
 class Solution(object):
-    def permuteUnique(self, nums):
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         """
-        :type nums: List[int]
-        :rtype: List[List[int]]
-
-        [1,2,3]
-        [[1]] => [[2,1],[1,2]] => [[3,2,1],[2,3,1],[2,1,3],[3,1,2],[1,3,2],[1,2,3]]
-
-        beats 95.68%
+        https://www.youtube.com/watch?v=qhBVWf0YafA
+        
+        beats 87.52%
         """
-        ans = [[]]
-        for n in nums:
-            new_ans = []
-            for l in ans:
-                for i in xrange(len(l) + 1):
-                    new_ans.append(l[:i] + [n] + l[i:])
-                    if i < len(l) and l[i] == n:
-                        break  # handles duplication
-            ans = new_ans
-        return ans
+        result = []
+        counter = collections.Counter(nums)
+
+        def backtrack(perm, counter):
+            if len(perm) == len(nums):
+                result.append(perm.copy())
+
+            for n in counter:
+                if counter[n] == 0:
+                    continue
+                perm.append(n)
+                counter[n] -= 1
+                backtrack(perm, counter)
+                perm.pop()
+                counter[n] += 1
+
+        backtrack([], counter)
+
+        return result
 
     def helper_method(self, nums, nums_len, depth, result):
         if depth == nums_len:
@@ -51,3 +58,25 @@ class Solution(object):
         sorted(nums)
         self.helper_method(nums, nums_len, 0, result)
         return result
+
+    def permuteUniqueV0(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+
+        [1,2,3]
+        [[1]] => [[2,1],[1,2]] => [[3,2,1],[2,3,1],[2,1,3],[3,1,2],[1,3,2],[1,2,3]]
+
+        beats 95.68%
+        """
+        ans = [[]]
+        for n in nums:
+            new_ans = []
+            for l in ans:
+                for i in xrange(len(l) + 1):
+                    new_ans.append(l[:i] + [n] + l[i:])
+                    if i < len(l) and l[i] == n:
+                        break  # handles duplication
+            ans = new_ans
+        return ans
+
