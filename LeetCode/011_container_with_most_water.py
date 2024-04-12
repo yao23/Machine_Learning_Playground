@@ -1,5 +1,39 @@
 class Solution(object):
-    def maxArea(self, height):
+    """
+    # brute force not work for LC test cases (TLE)
+    # T: O(n ^ 2)
+    
+    def maxArea(self, height: List[int]) -> int:
+        res = 0
+
+        for l in range(lens(height)):
+            for r in range(l + 1, lens(height)):
+                res = max(res, min(height[l], height[r]) * (r - l))
+            
+        return res
+
+    """
+    
+    def maxArea(self, height: List[int]) -> int:
+        """
+        https://www.youtube.com/watch?v=UuiTKBwPgAo
+        T: O(n)
+        
+        beats 57.46%
+        """
+        l, r = 0, len(height) - 1
+        res = 0
+
+        while l < r:
+            res = max(res, min(height[l], height[r]) * (r - l))
+            if height[l] < height[r]:
+                l += 1
+            elif height[r] <= height[l]:
+                r -= 1
+            
+        return res
+    
+    def maxAreaV0(self, height):
         """
         :type height: List[int]
         :rtype: int
