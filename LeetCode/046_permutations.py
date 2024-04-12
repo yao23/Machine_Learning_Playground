@@ -2,7 +2,65 @@ import itertools
 
 
 class Solution(object):
-    def permute(self, nums):
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        """
+        https://www.youtube.com/watch?v=s7AvT7cGdSo
+        
+        beats 83.41%
+        """
+        res = []
+
+        # base case
+        if len(nums) == 1:
+            return [nums[:]]  # nums[:] is a deep copy
+
+        for i in range(len(nums)):
+            n = nums.pop(0)
+            perms = self.permute(nums)
+
+            for perm in perms:
+                perm.append(n)
+            res.extend(perms)
+            nums.append(n)
+        return res
+
+    def helper_method(self, nums, nums_len, depth, result):
+        """
+        :param nums:
+        :param nums_len:
+        :param depth:
+        :param result:
+        :return:
+
+        swap current index with pivot one to generate new permutation
+        """
+        if depth == nums_len:
+            tmp_res = list(nums)
+            result.append(tmp_res)
+            return
+
+        for i in range(depth, nums_len):
+            if i != depth:
+                nums[depth], nums[i] = nums[i], nums[depth]
+                self.helper_method(nums, nums_len, depth + 1, result)
+                nums[depth], nums[i] = nums[i], nums[depth]
+            else:
+                self.helper_method(nums, nums_len, depth + 1, result)
+
+    def permute5(self, nums):
+        """
+        :param nums:
+        :return:
+
+        beats 58.61%
+        """
+        result = []
+        nums_len = len(nums)
+        self.helper_method(nums, nums_len, 0, result)
+
+        return result
+
+    def permuteV0(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
@@ -50,39 +108,3 @@ class Solution(object):
 
     def permute4(self, nums):
         return map(list, itertools.permutations(nums))
-
-    def helper_method(self, nums, nums_len, depth, result):
-        """
-        :param nums:
-        :param nums_len:
-        :param depth:
-        :param result:
-        :return:
-
-        swap current index with pivot one to generate new permutation
-        """
-        if depth == nums_len:
-            tmp_res = list(nums)
-            result.append(tmp_res)
-            return
-
-        for i in range(depth, nums_len):
-            if i != depth:
-                nums[depth], nums[i] = nums[i], nums[depth]
-                self.helper_method(nums, nums_len, depth + 1, result)
-                nums[depth], nums[i] = nums[i], nums[depth]
-            else:
-                self.helper_method(nums, nums_len, depth + 1, result)
-
-    def permute5(self, nums):
-        """
-        :param nums:
-        :return:
-
-        beats 58.61%
-        """
-        result = []
-        nums_len = len(nums)
-        self.helper_method(nums, nums_len, 0, result)
-
-        return result
