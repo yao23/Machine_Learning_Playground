@@ -1,5 +1,28 @@
 class Solution(object):
-    def trap(self, height):
+    def trap(self, height: List[int]) -> int:
+        """
+        https://www.youtube.com/watch?v=ZI2z5pq0TqA
+        
+        beats 51.11%
+        """
+        if not height:
+            return 0
+
+        l, r = 0, len(height) - 1
+        leftMax, rightMax = height[l], height[r]
+        res = 0
+        while l < r:
+            if leftMax < rightMax:
+                l += 1
+                leftMax = max(leftMax, height[l])
+                res += leftMax - height[l]
+            else:
+                r -= 1
+                rightMax = max(rightMax, height[r])
+                res += rightMax - height[r]
+        return res
+
+    def trapV0(self, height):
         """
         :type height: List[int]
         :rtype: int
