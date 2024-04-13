@@ -6,7 +6,29 @@
 
 
 class Solution(object):
-    def detectCycle(self, head):
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        """
+        beats 88.06%
+        """
+        if not head or not head.next:
+            return None
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow is fast:
+                break
+
+        if slow is fast:
+            slow2 = head
+            while slow2 is not slow:
+                slow2 = slow2.next
+                slow = slow.next
+            return slow
+        else:
+            return None
+            
+    def detectCycleV0(self, head):
         """
         :type head: ListNode
         :rtype: ListNode
