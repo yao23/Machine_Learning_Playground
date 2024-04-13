@@ -6,6 +6,15 @@
 
 
 class Solution(object):
+    """
+    if there's a cycle, fast pointer walks 2 times distance of slow
+    
+    2 * slow = fast
+
+    assume distance from starting node to cycle starter is P, cycle starter to intersection is (C - X), intersection to starter is X
+
+    then we have 2 (P + C - X) = P + C - X + C, finally P = X, which means head and slow will meet at cycle starter
+    """
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         """
         beats 88.06%
