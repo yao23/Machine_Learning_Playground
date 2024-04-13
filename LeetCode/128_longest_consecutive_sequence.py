@@ -1,4 +1,21 @@
 class Solution(object):
+    """
+    https://www.youtube.com/watch?v=P6RZZMu_maU
+
+    beats 24.02%
+    """
+    def longestConsecutive(self, nums: List[int]) -> int:
+        res = 0
+        s = set(nums)
+
+        for n in nums:
+            if (n - 1) not in s: # check its the start of a sequence
+                length = 0
+                while (n + length) in s:
+                    length += 1
+                res = max(res, length)
+        return res
+        
     def longestConsecutive(self, nums):
         """
         :type nums: List[int]
