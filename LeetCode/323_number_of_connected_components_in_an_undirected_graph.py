@@ -1,4 +1,27 @@
-class Solution(object):
+class UnionFind:
+    def __init__(self):
+        self.f = {}
+
+    def findParent(self, x):
+        y = self.f.get(x, x)
+        if x != y:
+            y = self.f[x] = self.findParent(y)
+        return y
+
+    def union(self, x, y):
+        self.f[self.findParent(x)] = self.findParent(y)
+
+"""
+https://www.youtube.com/watch?v=8f1XPm4WOUc
+"""
+class Solution:
+    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+        dsu = UnionFind()
+        for a, b in edges:
+            dsu.union(a, b)
+        return len(set(dsu.findParent(x) for x in range(n)))
+
+class SolutionV0(object):    
     def countComponents(self, n, edges):
         """
         :type n: int
