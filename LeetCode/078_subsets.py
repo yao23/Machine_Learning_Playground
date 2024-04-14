@@ -12,9 +12,10 @@ class Solution(object):
                 res.append(tmp.copy())
                 return
 
-            
+            # decision to not include current number
             dfs(depth + 1, tmp)
 
+            # decision to include current number
             tmp.append(nums[depth])
             dfs(depth + 1, tmp)
             tmp.pop()
