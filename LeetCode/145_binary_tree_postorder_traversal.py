@@ -7,6 +7,9 @@
 
 
 class Solution(object):
+    """
+    https://www.youtube.com/watch?v=QhszUQhGGlA
+    """
     def postorderTraversal(self, root):
         """
         :type root: TreeNode
