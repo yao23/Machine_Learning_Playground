@@ -12,15 +12,15 @@ class BSTIterator:
     beats 77.41%
     """
     def __init__(self, root: Optional[TreeNode]):
-        self.stack = []
+        self.stack = [] # store in-order traversed nodes 
         cur = root
-        while cur:
+        while cur: # find smallest and push all nodes on the way to stack
             self.stack.append(cur)
             cur = cur.left
 
     def next(self) -> int:
-        res = self.stack.pop()
-        cur = res.right
+        res = self.stack.pop() # stack top element is smallest
+        cur = res.right # find smallest one in right tree
         while cur:
             self.stack.append(cur)
             cur = cur.left
