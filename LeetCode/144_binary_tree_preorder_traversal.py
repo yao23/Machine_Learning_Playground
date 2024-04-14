@@ -7,7 +7,26 @@
 
 
 class Solution(object):
-    def preorderTraversal(self, root):
+    """
+    https://www.youtube.com/watch?v=afTpieEZXck
+
+    beats 80.17%
+    """
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+        stack = []
+        cur = root
+        while cur or stack:
+            if cur:
+                res.append(cur.val)
+                if cur.right:
+                    stack.append(cur.right)
+                cur = cur.left
+            else:
+                cur = stack.pop()
+        return res
+        
+    def preorderTraversalV0(self, root):
         """
         :type root: TreeNode
         :rtype: List[int]
