@@ -1,6 +1,32 @@
 import collections
 
 class Solution(object):
+    """
+    beats 93.92%
+    """
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        def backtrack(depth, perm):
+            if depth == len(nums):
+                res.append(perm.copy())
+                return
+
+            numSet = set()
+            for i in range(depth, len(nums)):
+                if nums[i] in numSet: # used same value before and skip current one
+                    continue
+
+                numSet.add(nums[i])
+                nums[i], nums[depth] = nums[depth], nums[i]
+                perm.append(nums[depth])
+                backtrack(depth + 1, perm)
+                perm.pop()
+                nums[i], nums[depth] = nums[depth], nums[i]
+
+        backtrack(0, [])
+
+        return res
+
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         """
         https://www.youtube.com/watch?v=qhBVWf0YafA
