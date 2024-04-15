@@ -2,7 +2,28 @@ import itertools
 
 
 class Solution(object):
+    """
+beats 49.62%
+    """
     def permute(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        def backtrack(depth, perm):
+            if depth == len(nums):
+                res.append(perm.copy())
+                return
+
+            for i in range(depth, len(nums)):
+                nums[i], nums[depth] = nums[depth], nums[i]
+                perm.append(nums[depth])
+                backtrack(depth + 1, perm)
+                perm.pop()
+                nums[i], nums[depth] = nums[depth], nums[i]
+
+        backtrack(0, [])
+
+        return res
+
+    def permuteV4(self, nums: List[int]) -> List[List[int]]:
         """
         https://www.youtube.com/watch?v=s7AvT7cGdSo
         
@@ -16,11 +37,11 @@ class Solution(object):
 
         for i in range(len(nums)):
             n = nums.pop(0)
-            perms = self.permute(nums)
+            perms = self.permuteV4(nums)
 
-            for perm in perms:
-                perm.append(n)
-            res.extend(perms)
+            for perm in perms: # [2,3], [3,2]
+                perm.append(n) # [2,3,1], [3,2,1]
+            res.extend(perms) # add multi list
             nums.append(n)
         return res
 
