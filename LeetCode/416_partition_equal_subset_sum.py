@@ -15,10 +15,12 @@ class Solution:
         target = total // 2
 
         for i in range(len(nums) - 1, -1, -1):
+            if nums[i] == target: # current num is half sum
+                    return True
             nextDP = set()
             for t in dp:
                 tmp = t + nums[i]
-                if tmp == target:
+                if tmp == target: # subset sum is half sum
                     return True
                 nextDP.add(tmp) # add cur num
                 nextDP.add(t) # no cur num
