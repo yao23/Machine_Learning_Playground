@@ -11,12 +11,12 @@ class Solution(object):
         for i in range(len(words) - 1):
             w1, w2 = words[i], words[i + 1]
             minLen = min(len(w1), len(w2))
-            if len(w1) > len(w2) and w1[:minLen] == w2[:minLen]:
+            if len(w1) > len(w2) and w1[:minLen] == w2[:minLen]:  # invalid when letter is before empty, i.e. w1="app", w2="ap"
                 return ""
             for j in range(minLen):
                 if w1[j] != w2[j]:
-                    print(w1[j], w2[j])
-                    adj[w1[j]].add(w2[j])
+                    # print(w1[j], w2[j])
+                    adj[w1[j]].add(w2[j]) # construct graph
                     break
 
         visited = {}  # {char: bool} False visited, True current path
@@ -36,10 +36,10 @@ class Solution(object):
             res.append(char)
 
         for char in adj:
-            if dfs(char):
+            if dfs(char): # invalid as cyclic graph 
                 return ""
 
-        res.reverse()
+        res.reverse() # post order DFS, so reverse back as output requirement
         return "".join(res)
 
     def alienOrderV0(self, words):
