@@ -3,7 +3,30 @@ import heapq
 
 
 class Solution(object):
-    def kthSmallest(self, matrix, k):
+    """
+    https://www.youtube.com/watch?v=0d6WF79hQME
+    
+    beats 80.04%
+    """
+    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+        l, r, N = matrix[0][0], matrix[-1][-1], len(matrix)
+
+        def lessK(m):
+            cnt = 0
+            for i in range(N):
+                x = bisect_right(matrix[i], m) # insert m into current row matrix[i] and keep sorted after insertion, return right-most index to insert m
+                cnt += x
+            return cnt # how many elements smaller than m
+
+        while l < r:
+            mid = (l + r) // 2
+            if lessK(mid) < k:
+                l = mid + 1
+            else:
+                r = mid
+        return l
+        
+    def kthSmallestV4(self, matrix, k):
         """
         :type matrix: List[List[int]]
         :type k: int
@@ -65,3 +88,15 @@ class Solution(object):
         for row in matrix:
             res_list += row
         return sorted(res_list)[k - 1]
+
+    """
+    https://www.youtube.com/watch?v=0d6WF79hQME
+    
+    beats 62.03%
+    """
+    def kthSmallestV3(self, matrix: List[List[int]], k: int) -> int:
+        flatList = [] # flat 2D matrix to 1D list
+        for row in matrix:
+            flatList.extend(row)
+        flatList.sort()
+        return flatList[k - 1]
