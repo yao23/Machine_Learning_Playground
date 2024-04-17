@@ -4,6 +4,8 @@ import heapq
 
 class Solution(object):
     """
+    TikTok
+    
     https://www.youtube.com/watch?v=0d6WF79hQME
     
     beats 80.04%
