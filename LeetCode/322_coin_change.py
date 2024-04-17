@@ -1,7 +1,36 @@
 class Solution(object):
+    """
+    Backtracking / DFS + Memoization
+    
+    beats 5.0%
+    """
     def coinChange(self, coins: List[int], amount: int) -> int:
+        mem = {}
+
+        def dfs(depth, total):
+            if total == 0:
+                return 0
+            if total < 0 or depth == len(coins):
+                return float('inf')
+            if (depth, total) in mem:
+                return mem[(depth, total)]
+            
+            # Case 1: Include the current coin
+            include_current = 1 + dfs(depth, total - coins[depth])
+            # Case 2: Exclude the current coin
+            exclude_current = dfs(depth + 1, total)
+            
+            mem[(depth, total)] = min(include_current, exclude_current)
+            return mem[(depth, total)]
+        
+        res = dfs(0, amount)
+        return res if res != float('inf') else -1
+        
+    def coinChangeV4(self, coins: List[int], amount: int) -> int:
         """
         https://www.youtube.com/watch?v=H9bfqozjoqs&list=PLot-Xpze53lcvx_tjrr_m2lgD2NsRHlNO&index=16
+
+        DP
         
         beats 61.06%
         """
