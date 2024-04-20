@@ -35,6 +35,12 @@ class Solution:
       """
       DP
 
+      if traverse days index (i) in non-reversed order:
+      dp[i] will lose the info of previous min value and only get min value when starting from current index
+
+      if traverse days index (i) in reversed order:
+      dp[i] will accumulate based on previous min value while index j moving right
+
       beats 80.90%
       """
       def mincostTicketsV0(self, days: List[int], costs: List[int]) -> int:
