@@ -1,5 +1,26 @@
 class Solution(object):
-    def numDistinct(self, s, t):
+    """
+    https://www.youtube.com/watch?v=-RDzMJ33nx8
+    
+    beats 5.02%
+    """
+    def numDistinct(self, s: str, t: str) -> int:
+        cache = {}
+
+        for i in range(len(s) + 1):
+            cache[(i, len(t))] = 1
+        for j in range(len(t)):
+            cache[(len(s), j)] = 0
+
+        for i in range(len(s) - 1, -1, -1):
+            for j in range(len(t) - 1, -1, -1):
+                if s[i] == t[j]:
+                    cache[(i, j)] = cache[(i + 1, j + 1)] + cache[(i + 1, j)] # take or skip current char in s
+                else:
+                    cache[(i, j)] = cache[(i + 1, j)] # skip current char in s
+        return cache[(0, 0)]
+
+    def numDistinctV0(self, s, t):
         """
         :type s: str
         :type t: str
