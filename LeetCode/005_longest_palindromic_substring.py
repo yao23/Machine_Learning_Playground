@@ -1,4 +1,36 @@
 class Solution(object):
+    """
+    https://www.youtube.com/watch?v=XYQecbcd6_c
+    
+    expand from middle to left and right to find longest palindrome substring
+    
+    beats 63.02%
+    """
+    def longestPalindrome(self, s: str) -> str:
+        res = ""
+        resLen = 0
+
+        for i in range(len(s)):
+            # odd length
+            l, r = i, i  
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                if (r - l + 1) > resLen:
+                    res = s[l : r + 1]
+                    resLen = r - l + 1
+                l -= 1
+                r += 1
+
+            # even length
+            l, r = i, i + 1
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                if (r - l + 1) > resLen:
+                    res = s[l : r + 1]
+                    resLen = r - l + 1
+                l -= 1
+                r += 1
+
+        return res
+
     def longestPalindrome(self, s):
         """
         :type s: str
