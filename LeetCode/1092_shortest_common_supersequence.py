@@ -30,6 +30,42 @@ class Solution:
         return helper(str1, str2)
 
   """
+  Memory Limit Exceeded
+  """
+  def shortestCommonSupersequence(self, str1: str, str2: str) -> str:
+        dp = {}
+
+        @lru_cache(maxsize= 8000)
+        def helper(i, j, first: str, second: str):
+            
+            if not first and not second:
+                return ""
+            
+            if not first:
+                return second
+            
+            if not second:
+                return first
+
+            if (i, j) in dp:
+                return dp[(i, j)]
+            
+            if first[0] == second[0]:
+                dp[(i, j)] = first[0] + helper(i + 1, j + 1, first[1:], second[1:])
+                return dp[(i, j)]
+            
+            right = second[0] + helper(i, j + 1, first, second[1:])
+            left = first[0] + helper(i + 1, j, first[1:], second)
+            
+            if len(right) > len(left):
+                dp[(i, j)] = left
+            else:
+                dp[(i, j)] = right
+            return dp[(i, j)]
+            
+        return helper(0, 0, str1, str2)
+      
+  """
   https://leetcode.com/problems/shortest-common-supersequence/solutions/3501177/day-403-easy-lcs-0ms-100-python-java-c-explained-approach
   
   beats 95.07%
