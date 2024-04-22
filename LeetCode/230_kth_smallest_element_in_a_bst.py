@@ -33,8 +33,10 @@ class Solution(object):
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         """
         https://github.com/neetcode-gh/leetcode/blob/main/python/0230-kth-smallest-element-in-a-bst.py
+
+        similar as inorder traversal, count down k every time stack pop, return when k is zero
         
-        beats 58.41
+        beats 58.41%
         """
         stack = []
         cur = root
