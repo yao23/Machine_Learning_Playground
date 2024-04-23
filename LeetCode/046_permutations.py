@@ -3,7 +3,7 @@ import itertools
 
 class Solution(object):
     """
-beats 49.62%
+    beats 49.62%
     """
     def permute(self, nums: List[int]) -> List[List[int]]:
         res = []
