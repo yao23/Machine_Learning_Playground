@@ -7,6 +7,9 @@
 class Solution:
     """
     https://www.youtube.com/watch?v=3JU0v2kuYGg
+
+    T: O(n^2) - two level for loop to calculate distance
+    S: O(n) - list to store left and right leave tree node distances
     
     beats 89.68%
     """
