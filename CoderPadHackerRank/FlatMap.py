@@ -11,6 +11,10 @@
 
 # Enjoy your interview!
 
+# AP - LC 341
+# https://github.com/yao23/Machine_Learning_Playground/blob/master/LeetCode/341_flatten_nested_list_iterator.py
+# https://www.youtube.com/watch?v=4ILiBgLokM8
+
 
 # input: [1, [2], [[4, 3, 5]], 6, 7, 8, 9]
 
