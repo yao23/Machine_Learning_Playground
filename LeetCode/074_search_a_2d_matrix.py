@@ -26,6 +26,30 @@ class Solution(object):
 
         return False
 
+    """
+    start from bottom left corner, move up if larger than target, otherwise move right
+    
+    beats 60.18%
+    """
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        if not matrix or target is None:
+            return False
+
+        rows, cols = len(matrix), len(matrix[0])
+        r, c = rows - 1, 0 # left bottom
+
+        while r in range(rows) and c in range(cols):
+            num = matrix[r][c]
+
+            if num == target:
+                return True
+            elif num < target:
+                c += 1
+            else:
+                r -= 1
+
+        return False
+
     def searchMatrixV0(self, matrix: List[List[int]], target: int) -> bool:
         """
         https://www.youtube.com/watch?v=Ber2pi2C0j0
